@@ -23,8 +23,10 @@ public class patient_register extends AppCompatActivity {
 
     EditText signupEmail, signupPassword;
     Button signupButton;
+    String phone;
     FirebaseDatabase database;
     DatabaseReference reference;
+    EditText phone_number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class patient_register extends AppCompatActivity {
         signupEmail = findViewById(R.id.email_pat);
         signupPassword = findViewById(R.id.pass_pat);
         signupButton = findViewById(R.id.signuppat);
+        phone_number = findViewById(R.id.phone_number);
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,13 +56,14 @@ public class patient_register extends AppCompatActivity {
 
                 String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
-
+                phone = phone_number.getText().toString().trim();
                 if(validateEmail() && validatePassword()){
                     HelperClass2 helperClass = new HelperClass2(email, password);
                     reference.child(email.replace(".", ",")).setValue(helperClass);
 
                     Toast.makeText(patient_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(patient_register.this, MainActivity.class);
+                    Intent intent = new Intent(patient_register.this, otp_screen.class);
+                    intent.putExtra("phone",phone);
                     startActivity(intent);
 
                 }

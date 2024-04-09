@@ -24,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 finish();
             }
-        },3000);
+        },1500);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.motion_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
