@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".HomePage">
+
+
+    <TextView
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="HOME PAGE"
+        android:textColor="@color/my_primary"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/how"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home"
+        android:layout_margin="20dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="20dp"
+        android:text="Hello,how are you?"
+        android:textColor="@color/my_primary"
+        android:textSize="20dp" />
+
+    <View
+        android:id="@+id/P"
+
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/book_but"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/home"
+        android:layout_marginTop="135dp"
+        android:text="Book an appointment."
+        app:cornerRadius="32dp" />
+
+    <View
+        android:id="@+id/R"
+
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/medi_but"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/home"
+        android:layout_marginTop="301dp"
+        android:text="Add your Medical History"
+        app:cornerRadius="32dp" />
+
+    <View
+        android:id="@+id/Q"
+
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/chat_but"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/home"
+        android:layout_marginTop="469dp"
+        android:text="Chat with your Doctor"
+        app:cornerRadius="32dp" />
+
+    <View
+        android:id="@+id/S"
+
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logout_but"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/home"
+        android:layout_marginTop="576dp"
+        android:text="logout"
+        android:layout_centerHorizontal="true"
+        app:cornerRadius="20dp" />
+
+</RelativeLayout>

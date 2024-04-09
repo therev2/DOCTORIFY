@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main2"
+    android:id="@+id/main"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context=".MainActivity">
+    tools:context=".doctor_register">
 
 
     <RelativeLayout
@@ -31,15 +30,6 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/logo_line_white"
             android:padding="200px"/>
-
-
-
-
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_android_black_24dp"/>-->
 
 
     </LinearLayout>
@@ -74,7 +64,7 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="LOGIN AS A DOCTOR"
+                android:text="SIGNUP AS A DOCTOR"
                 android:alpha="0.9"/>
             <View
                 android:id="@+id/G"
@@ -88,18 +78,13 @@
                 android:layout_height="wrap_content"
                 android:text="EMAIL:"
                 android:alpha="0.9"/>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/M11"
-                android:hint=""
+            <EditText
+                android:id="@+id/email_doc"
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/loginemail_doc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="15"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"/>
+            <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
             <View
                 android:id="@+id/J"
 
@@ -112,53 +97,30 @@
                 android:layout_height="wrap_content"
                 android:text="PASSWORD:"
                 android:alpha="0.9"/>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/M1"
-                android:hint=""
-                android:layout_width="match_parent"
-                app:passwordToggleEnabled="true"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/loginpass_doc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:ems="15"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <RelativeLayout
-                android:id="@+id/M"
+            <EditText
+                android:id="@+id/pass_doc"
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:id="@+id/N"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"/>
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remember Me"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.9"/>
-                <TextView
-                    android:id="@+id/singupfordoc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Signup Now"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
-            </RelativeLayout>
+            <!--            android:drawableEnd="@drawable/="ic_baseline_remove_red_eye_24""/>-->
+
             <View
-                android:id="@+id/P"
+                android:id="@+id/rnd"
 
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/loginbtn_doc"
+                android:id="@+id/signupdoc"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Login"
+                android:text="Signup"
                 app:cornerRadius="32dp"/>
 
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 </RelativeLayout>
