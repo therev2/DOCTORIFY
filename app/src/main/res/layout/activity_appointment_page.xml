@@ -57,7 +57,8 @@
         android:layout_marginTop="220dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Location"/>
+        android:text="Location"
+        android:id="@+id/Search_location_button"/>
 
 
     <View

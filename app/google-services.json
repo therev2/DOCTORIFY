@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "810763068944",
+    "firebase_url": "https://doctorifyy-b4dfb-default-rtdb.firebaseio.com",
+    "project_id": "doctorifyy-b4dfb",
+    "storage_bucket": "doctorifyy-b4dfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810763068944:android:223f7ff2c395223e534c95",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGVQn9yT12-BzquqSlqKvMojRCwN7HVL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/remove_red_eye/baseline_remove_red_eye_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/star/baseline_star_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,8 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="round" />
+                            <entry key="color" value="f1ce47" />
+                            <entry key="outputName" value="baseline_star_24" />
                             <entry key="sourceFile" value="$PROJECT_DIR$/../../round.svg" />
                           </map>
                         </option>

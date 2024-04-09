@@ -23,7 +23,7 @@ public class AppointmentPage extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
-
+    Button location_search_btn;
     @SuppressLint({"WrongViewCast", "CutPasteId", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,15 @@ public class AppointmentPage extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        location_search_btn =findViewById(R.id.Search_location_button);
+        location_search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AppointmentPage.this, Doctor_list_patient_main_screen.class);
+                startActivity(intent);
+            }
         });
 
 

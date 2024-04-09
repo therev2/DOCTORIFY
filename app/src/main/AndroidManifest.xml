@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".Doctor_list_patient_main_screen"
+            android:exported="false" />
+        <activity
+            android:name=".doctor_list"
+            android:exported="false" />
+        <activity
             android:name=".doctor_register"
             android:exported="false" />
         <activity
