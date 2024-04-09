@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img"
+    android:background="@color/black"
     tools:context=".MainActivity"
     android:id="@+id/main">
 
@@ -16,7 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.00"
-        android:background="@color/my_primary" />
+        android:background="@color/my_primary" >
+
+
+    </RelativeLayout>
 
     <LinearLayout
             android:id="@+id/B"
@@ -26,18 +29,15 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="28dp" >
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo_line_white"
+            android:padding="200px"/>
 
 
-    <TextView
-        android:id="@+id/C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:fontFamily="sans-serif-condensed-light"
-        android:text="        DOCTORIFY"
-        android:textColor="@color/white"
-        android:textSize="48sp"
-        android:textStyle="bold" />
 
         <!--        <ImageView-->
         <!--            android:layout_width="wrap_content"-->

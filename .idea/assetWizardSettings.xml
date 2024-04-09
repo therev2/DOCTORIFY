@@ -13,8 +13,9 @@
                       <PersistentState>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_android_black_24dp" />
-                            <entry key="sourceFile" value="C:\Users\revan\AndroidStudioProjects\MyApplication" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="logo_line_white" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../logo_line_white.svg" />
                           </map>
                         </option>
                       </PersistentState>
