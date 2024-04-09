@@ -88,13 +88,17 @@
                 android:layout_height="wrap_content"
                 android:text="EMAIL:"
                 android:alpha="0.9"/>
-            <EditText
-                android:id="@+id/I"
-
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/M11"
+                android:hint=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"/>
-            <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="15"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <View
                 android:id="@+id/J"
 
@@ -107,14 +111,18 @@
                 android:layout_height="wrap_content"
                 android:text="PASSWORD:"
                 android:alpha="0.9"/>
-            <EditText
-                android:id="@+id/L"
-
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/M1"
+                android:hint=""
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
-
-            <!--            android:drawableEnd="@drawable/="ic_baseline_remove_red_eye_24""/>-->
+                app:passwordToggleEnabled="true"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="15"/>
+            </com.google.android.material.textfield.TextInputLayout>
             <RelativeLayout
                 android:id="@+id/M"
 
