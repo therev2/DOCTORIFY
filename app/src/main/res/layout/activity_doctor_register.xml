@@ -1,313 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:background="@color/black"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context=".doctor_register"
+    android:id="@+id/main">
 
-    tools:context=".doctor_register">
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/A"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:alpha="0.00"
-                android:background="@color/my_primary" />
-
-            <LinearLayout
-                android:id="@+id/B"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/card"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="28dp" >
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="200px"
-                    app:srcCompat="@drawable/logo_line_white" />
-
-
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                app:cardCornerRadius="28dp"
-                android:layout_marginBottom="-20dp">
-
-                <LinearLayout
-                    android:id="@+id/D"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="28dp">
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="-20dp"
+                    app:cardCornerRadius="28dp">
 
-
-
-                    <TextView
-                        android:id="@+id/E"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="WELCOME"
-                        android:textColor="@color/my_primary"
-                        android:textSize="32sp"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/F"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SIGNUP AS A DOCTOR"
-                        android:alpha="0.9"/>
-
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"/>
-
-
-
-    <ImageView
-        android:id="@+id/upload_img"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="200dp"/>
-                    <View
-                        android:id="@+id/J76587567"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="10dp"/>
-
-
-                    <Button
-                        android:id="@+id/browse_btn"
-                        android:layout_width="347dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="Browse" />
-
-                    <TextView
-                        android:id="@+id/K267"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text=" ADD YOUR IMAGE():"
-                        android:alpha="0.9"/>
-
-
-                    <View
-                        android:id="@+id/Gclass"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-
-                    <TextView
-                        android:id="@+id/H"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="NAME:"
-                        android:alpha="0.9"/>
-                    <EditText
-                        android:id="@+id/name_doc"
-
+                    <LinearLayout
+                        android:id="@+id/D"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"/>
+                        android:orientation="vertical"
+                        android:padding="28dp">
 
 
-                    <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
-                    <View
-                        android:id="@+id/J23"
+                        <TextView
+                            android:id="@+id/E"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="WELCOME"
+                            android:textColor="@color/my_primary"
+                            android:textSize="32sp"
+                            android:textStyle="bold" />
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-                    <TextView
-                        android:id="@+id/K"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="EMAIL:"
-                        android:alpha="0.9"/>
-
-                    <EditText
-                        android:id="@+id/email_doc"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"/>
-                    <View
-                        android:id="@+id/J765534"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-                    <TextView
-                        android:id="@+id/K1"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PASSWORD:"
-                        android:alpha="0.9"/>
+                        <TextView
+                            android:id="@+id/F"
+                            android:fontFamily="@font/regular_light"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.9"
+                            android:text="SIGNUP AS A DOCTOR" />
 
 
-                    <EditText
-                        android:id="@+id/pass_doc"
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"/>
 
-                    <View
-                        android:id="@+id/J765875674"
+                        <ImageView
+                            android:id="@+id/uploaded_img"
+                            android:layout_width="300dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/doctor" />
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
+                        <View
+                            android:id="@+id/J76587567"
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="0dp"
-                        android:hint="@string/specialist"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        >
+                            android:layout_width="wrap_content"
+                            android:layout_height="10dp" />
 
-                        <AutoCompleteTextView
-                            android:id="@+id/specilist_doc"
+
+                        <Button
+                            android:id="@+id/browse_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="none"/>
+                            android:layout_centerHorizontal="true"
+                            android:letterSpacing="0.06"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:text="Browse" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/K267"
 
-
-                    <View
-                        android:id="@+id/J765"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-
-                    <TextView
-                        android:id="@+id/K2"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ENTER YOUR WORK EXPERIENCE (e.g., 10+ years):"
-                        android:alpha="0.9"/>
-
-                    <EditText
-                        android:id="@+id/exp_doc"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"/>
-                    <View
-                        android:id="@+id/J76586"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-
-                    <TextView
-                        android:id="@+id/K4"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ENTER YOUR CHARGES FOR AN APPOINTMENT:"
-                        android:alpha="0.9"/>
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:alpha="1"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:text=" ADD YOUR IMAGE:" />
 
 
+                        <View
+                            android:id="@+id/Gclass"
 
-                    <EditText
-                        android:id="@+id/charge_doc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"/>
+                        <TextView
+                            android:id="@+id/H"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="1"
+                            android:text="NAME:" />
 
-                    <View
-                        android:id="@+id/J76552546"
+                        <EditText
+                            android:id="@+id/name_doc"
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
-
-                    <TextView
-                        android:id="@+id/K876"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TIMING:"
-                        android:alpha="0.9"/>
-
-
-                    <EditText
-                        android:id="@+id/time_doc"
-
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"/>
-
-                    <View
-                        android:id="@+id/J765323"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
 
 
-                    <TextView
-                        android:id="@+id/K74435"
+                        <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
+                        <View
+                            android:id="@+id/J23"
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DEGREE:"
-                        android:alpha="0.9"/>
-                    <EditText
-                        android:id="@+id/degree_doc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
 
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"/>
+                        <TextView
+                            android:id="@+id/K"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="1"
+                            android:text="EMAIL:" />
+
+                        <EditText
+                            android:id="@+id/email_doc"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress" />
+
+                        <View
+                            android:id="@+id/J765534"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/K1"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.9"
+                            android:text="PASSWORD:" />
 
 
-                    <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
-                    <View
-                        android:id="@+id/J816382"
+                        <EditText
+                            android:id="@+id/pass_doc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName" />
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"/>
+                        <View
+                            android:id="@+id/J765875674"
 
-                    <Button
-                        android:id="@+id/signupdoc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Finish"
-                        android:layout_centerInParent="true"/>
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="0dp"
+                            android:hint="@string/specialist">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/specilist_doc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
+                        <View
+                            android:id="@+id/J765"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/K2"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="1"
+                            android:text="ENTER YOUR WORK EXPERIENCE (e.g., 10+ years):" />
+
+                        <EditText
+                            android:id="@+id/exp_doc"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+
+                        <View
+                            android:id="@+id/J76586"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/K4"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.9"
+                            android:text="ENTER YOUR CHARGES FOR AN APPOINTMENT:" />
 
 
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/charge_doc"
 
-        </LinearLayout>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal" />
+
+                        <View
+                            android:id="@+id/J76552546"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <TextView
+                            android:id="@+id/K876"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.9"
+                            android:text="TIMING:" />
+
+
+                        <EditText
+                            android:id="@+id/time_doc"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+
+                        <View
+                            android:id="@+id/J765323"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+
+                        <TextView
+                            android:id="@+id/K74435"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.9"
+                            android:text="DEGREE:" />
+
+                        <EditText
+                            android:id="@+id/degree_doc"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+
+
+                        <!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
+                        <View
+                            android:id="@+id/J816382"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp" />
+
+                        <Button
+                            android:id="@+id/signupdoc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/regular_semi_bold"
+                            android:letterSpacing="0.06"
+                            android:layout_gravity="center"
+                            android:text="Finish" />
+
+
+                    </LinearLayout>
+    </androidx.cardview.widget.CardView>
     </ScrollView>
-</LinearLayout>
+
+
+</RelativeLayout>
+
+
+

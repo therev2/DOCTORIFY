@@ -11,15 +11,7 @@
     android:id="@+id/main">
 
 
-    <RelativeLayout
-        android:id="@+id/A"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.00"
-        android:background="@color/my_primary" >
 
-
-    </RelativeLayout>
 
     <LinearLayout
             android:id="@+id/B"

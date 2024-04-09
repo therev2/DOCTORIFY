@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0B0A07"
-    tools:context=".MainActivity">
+    tools:context=".Doc_home_page">
 
 
     <RelativeLayout
@@ -15,187 +14,523 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.00"
-        android:background="@color/my_primary" />
+        android:background="@color/my_secondary" />
 
     <LinearLayout
-        android:id="@+id/B"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/card"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="28dp" >
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:paddingTop="10sp"
+        android:paddingRight="10dp">
+
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
 
-            android:padding="200px"/>
-
-
-
-
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_android_black_24dp"/>-->
-
-
+            android:src="@drawable/logo_line_white" />
     </LinearLayout>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        app:cardCornerRadius="28dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="-20dp"
-        >
+        app:cardCornerRadius="28dp">
 
         <LinearLayout
             android:id="@+id/D"
-
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
             android:orientation="vertical"
             android:padding="28dp">
-            <TextView
-                android:id="@+id/E"
 
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HOME PAGE"
-                android:textColor="@color/my_primary"
-                android:textSize="32sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/E"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/regular_light"
+                    android:letterSpacing="0.03"
+                    android:text="Hi,"
+                    android:textColor="@color/black"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/name_of_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.99"
+                    android:fontFamily="@font/regular_italic"
+                    android:letterSpacing="0.03"
+                    android:paddingStart="5dp"
+                    android:text="Harshit"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/F"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HELLO! How are you?"
-                android:alpha="0.9"/>
+                android:fontFamily="@font/regular_bold"
+                android:text="Welcome Back"
+                android:textColor="@color/black"
+                android:textSize="34dp" />
+
             <View
                 android:id="@+id/G"
 
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
-<!--            <TextView-->
-<!--                android:id="@+id/H"-->
+                android:layout_height="20dp" />
 
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="EMAIL:"-->
-<!--                android:alpha="0.9"/>-->
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/M11"-->
-<!--                android:hint=""-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/loginemail_doc"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:inputType="text"-->
-<!--                    android:ems="15"/>-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-<!--            <View-->
-<!--                android:id="@+id/J"-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
 
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="20dp"/>-->
-<!--            <TextView-->
-<!--                android:id="@+id/K"-->
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
 
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="PASSWORD:"-->
-<!--                android:alpha="0.9"/>-->
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/M1"-->
-<!--                android:hint=""-->
-<!--                android:layout_width="match_parent"-->
-<!--                app:passwordToggleEnabled="true"-->
-<!--                android:layout_height="wrap_content">-->
-<!--                <com.google.android.material.textfield.TextInputEditText-->
-<!--                    android:id="@+id/loginpass_doc"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:inputType="textPassword"-->
-<!--                    android:ems="15"/>-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-<!--            <RelativeLayout-->
-<!--                android:id="@+id/M"-->
-
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-<!--                <CheckBox-->
-<!--                    android:id="@+id/N"-->
-
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Remember Me"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:alpha="0.9"/>-->
-<!--                <TextView-->
-<!--                    android:id="@+id/singupfordoc"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Signup Now"-->
-<!--                    android:layout_alignParentEnd="true"-->
-<!--                    android:layout_centerVertical="true"/>-->
-<!--            </RelativeLayout>-->
             <View
                 android:id="@+id/P"
 
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/book_but"
+                android:layout_height="10dp" />
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="MAKE AN APPOINTMENT"
-                app:cornerRadius="32dp"/>
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/small_card"
+                        android:layout_width="90dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentTop="true"
+
+                        android:layout_alignParentBottom="true"
+                        app:cardBackgroundColor="#5C6784"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/heart"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:orientation="vertical"
+                            android:paddingTop="33dp">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/heart"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/regular_semi_bold"
+                                android:gravity="center"
+                                android:text="Heart"
+                                android:textColor="@color/white" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/small_card2"
+                        android:layout_width="90dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="30dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="#5C6784"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/dental"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+
+                            android:paddingTop="33dp">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/tooth__2_"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/regular_semi_bold"
+                                android:gravity="center"
+                                android:text="Dental"
+                                android:textColor="@color/white" />
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/small_card3"
+                        android:layout_width="90dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="30dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="#5C6784"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/brain"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="30dp">
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/brain"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/regular_semi_bold"
+                                android:gravity="center"
+                                android:text="Brain"
+                                android:textColor="@color/white" />
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/small_card4"
+                        android:layout_width="90dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="30dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="#5C6784"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/ENT"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="30dp">
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/throat"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/regular_semi_bold"
+                                android:gravity="center"
+                                android:text="ENT"
+                                android:textColor="@color/white" />
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/small_card5"
+                        android:layout_width="90dp"
+                        android:layout_height="120dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="30dp"
+                        android:clickable="true"
+                        app:cardBackgroundColor="#5C6784"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/bone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:paddingTop="30dp">
+
+                            <ImageView
+                                android:layout_width="55dp"
+                                android:layout_height="55dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/bone"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/regular_semi_bold"
+                                android:gravity="center"
+                                android:text="Bone"
+                                android:textColor="@color/white" />
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
             <View
-                android:id="@+id/Q"
+                android:id="@+id/P1"
 
                 android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/CHAT_but"
+                android:layout_height="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/regular_bold"
+                android:text="Top Rate"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                tools:ignore="TextSizeCheck" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="CHAT"
-                app:cornerRadius="32dp"/>
-            <View
-                android:id="@+id/R"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/ADD_but"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="ADD YOUR MEDICAL HISTORY"
-                app:cornerRadius="32dp"/>
-            <View
-                android:id="@+id/S"
 
-                android:layout_width="wrap_content"
-                android:layout_height="10dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recyclerView"
+                    android:clickable="true"
+                    android:scrollbars="vertical"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/logout"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:text="Logout"
-                android:layout_gravity="center"
 
-                app:cornerRadius="32dp" />
+
+<!--                <androidx.cardview.widget.CardView-->
+
+
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="90dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:backgroundTint="#F1FAEE"-->
+<!--                    app:cardCornerRadius="12dp">-->
+
+<!--                    <LinearLayout-->
+
+<!--                        android:id="@+id/doctor_profile"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:clickable="true"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="60dp"-->
+
+<!--                            android:layout_height="60dp"-->
+<!--                            android:layout_marginLeft="14dp"-->
+<!--                            android:layout_marginTop="14dp"-->
+<!--                            android:background="@drawable/edit_text_rounded_corner"-->
+<!--                            android:clipToOutline="true"-->
+<!--                            android:src="@drawable/doctor" />-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:paddingLeft="10dp"-->
+<!--                            android:paddingTop="20dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_bold"-->
+<!--                                android:text="Dr.Revan Channa"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="16dp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_semi_bold"-->
+<!--                                android:text="Heart Surgeon" />-->
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/doctor_profile2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="90dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:backgroundTint="#F1FAEE"-->
+<!--                    app:cardCornerRadius="12dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/doctor_card_2"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:clickable="true"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="60dp"-->
+
+<!--                            android:layout_height="60dp"-->
+<!--                            android:layout_marginLeft="14dp"-->
+<!--                            android:layout_marginTop="14dp"-->
+<!--                            android:background="@drawable/edit_text_rounded_corner"-->
+<!--                            android:clipToOutline="true"-->
+<!--                            android:src="@drawable/doctor" />-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:paddingLeft="10dp"-->
+<!--                            android:paddingTop="20dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_bold"-->
+<!--                                android:text="Dr.Revan Channa"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="16dp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_semi_bold"-->
+<!--                                android:text="Heart Surgeon" />-->
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:id="@+id/doctor_profile3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="90dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:backgroundTint="#F1FAEE"-->
+<!--                    app:cardCornerRadius="12dp">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/doctor_card_3"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:clickable="true"-->
+<!--                        android:orientation="horizontal">-->
+
+<!--                        <ImageView-->
+<!--                            android:layout_width="60dp"-->
+
+<!--                            android:layout_height="60dp"-->
+<!--                            android:layout_marginLeft="14dp"-->
+<!--                            android:layout_marginTop="14dp"-->
+<!--                            android:background="@drawable/edit_text_rounded_corner"-->
+<!--                            android:clipToOutline="true"-->
+<!--                            android:src="@drawable/doctor" />-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical"-->
+<!--                            android:paddingLeft="10dp"-->
+<!--                            android:paddingTop="20dp">-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_bold"-->
+<!--                                android:text="Dr.Revan Channa"-->
+<!--                                android:textColor="@color/black"-->
+<!--                                android:textSize="16dp" />-->
+
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/regular_semi_bold"-->
+<!--                                android:text="Heart Surgeon" />-->
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+<!--                </androidx.cardview.widget.CardView>-->
+
+            </LinearLayout>
 
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </RelativeLayout>

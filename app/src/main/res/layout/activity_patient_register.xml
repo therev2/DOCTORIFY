@@ -84,6 +84,7 @@
                 android:layout_height="20dp"/>
             <TextView
                 android:id="@+id/H"
+                android:fontFamily="@font/regular_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL:"
@@ -107,7 +108,7 @@
                 android:layout_height="20dp"/>
             <TextView
                 android:id="@+id/K"
-
+                android:fontFamily="@font/regular_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PASSWORD:"
@@ -135,6 +136,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Signup"
+                android:letterSpacing="0.06"
+                android:fontFamily="@font/regular_semi_bold"
                 android:id="@+id/signuppat"
                 app:cornerRadius="32dp"/>
             <View

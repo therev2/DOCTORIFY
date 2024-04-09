@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".MainActivity">
+    tools:context=".DocLoginActivity">
 
 
     <RelativeLayout
@@ -71,7 +71,7 @@
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/F"
-
+                android:fontFamily="@font/regular_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LOGIN AS A DOCTOR"
@@ -83,7 +83,7 @@
                 android:layout_height="20dp"/>
             <TextView
                 android:id="@+id/H"
-
+                android:fontFamily="@font/regular_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL:"
@@ -107,7 +107,7 @@
                 android:layout_height="20dp"/>
             <TextView
                 android:id="@+id/K"
-
+                android:fontFamily="@font/regular_semi_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PASSWORD:"
@@ -132,7 +132,8 @@
                 android:layout_height="wrap_content">
                 <CheckBox
                     android:id="@+id/N"
-
+                    android:fontFamily="@font/regular_light"
+                    android:textSize="13sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Remember Me"
@@ -143,6 +144,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Signup Now"
+                    android:clickable="true"
+                    android:fontFamily="@font/regular_light"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
@@ -155,6 +158,8 @@
                 android:id="@+id/loginbtn_doc"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:letterSpacing="0.06"
+                android:fontFamily="@font/regular_semi_bold"
                 android:text="Login"
                 app:cornerRadius="32dp"/>
 

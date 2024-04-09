@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chat_activity"
+    android:background="@color/my_primary">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:id="@+id/back_btn_arrow"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:layout_centerVertical="true"
+            android:background="?android:windowTransitionBackgroundFadeDuration"
+            android:layout_toLeftOf="@id/doctor_profile"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:id="@+id/doctor_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text_rounded_corner"
+            android:clipToOutline="true"
+            android:src="@drawable/doctor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dr. Revan Channa"
+            android:id="@+id/doctor_name"
+            android:layout_toRightOf="@id/doctor_profile"
+            android:gravity=""
+            android:layout_marginTop="7dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/regular_semi_bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Online"
+            android:layout_toRightOf="@id/doctor_profile"
+            android:layout_below="@id/doctor_name"
+            android:id="@+id/doctor_status"
+            android:textColor="@color/white"
+            android:fontFamily="@font/regular_light"
+            android:textSize="12sp"/>
+
+
+
+    </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="70sp"
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="28dp"
+        >
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/main_chat_screen"
+            android:layout_height="match_parent"
+
+            >
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_marginTop="14dp"
+                android:layout_height="match_parent"
+                >
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bottom_layout">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:hint="Write Message Here"
+                android:layout_marginBottom="50dp"
+                android:elevation="4dp"
+                android:padding="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/edit_text_rounded_corner"
+                android:layout_toLeftOf="@id/send_btn">
+                
+            </EditText>
+            <ImageButton
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/baseline_send_24"
+                android:background="?android:windowTransitionBackgroundFadeDuration"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/send_btn"
+                android:layout_marginBottom="50dp"
+                android:layout_alignParentBottom="true"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
