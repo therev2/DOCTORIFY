@@ -120,6 +120,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
+                            android:tag="18/3/23"
                             android:orientation="vertical"
                             android:paddingTop="33dp">
 
@@ -164,6 +165,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
+                            android:tag="19/3/23"
                             android:orientation="vertical"
                             android:paddingTop="33dp">
 
@@ -204,6 +206,7 @@
 
                         <LinearLayout
                             android:id="@+id/a20"
+                            android:tag="20/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -247,6 +250,7 @@
 
                         <LinearLayout
                             android:id="@+id/a21"
+                            android:tag="21/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -290,6 +294,7 @@
 
                         <LinearLayout
                             android:id="@+id/a22"
+                            android:tag="22/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -334,6 +339,7 @@
 
                         <LinearLayout
                             android:id="@+id/a23"
+                            android:tag="23/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -378,6 +384,7 @@
 
                         <LinearLayout
                             android:id="@+id/a24"
+                            android:tag="24/3/24"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
