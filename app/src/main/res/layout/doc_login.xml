@@ -94,9 +94,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginemail_doc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:ems="15"/>
             </com.google.android.material.textfield.TextInputLayout>
             <View
@@ -118,6 +119,7 @@
                 app:passwordToggleEnabled="true"
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/loginpass_doc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -150,6 +152,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/loginbtn_doc"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Login"
