@@ -1,7 +1,7 @@
 
 # Doctorifyy
 
-HealthCare Appointment Platform
+HealthCare Appointment Platform by Team Auxin.
 
 This platform facilitates patient-doctor interactions by enabling appointment scheduling and schedule management. Patients can book appointments with ease, while doctors efficiently manage their schedules. 
 

@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "810763068944",
-    "firebase_url": "https://doctorifyy-b4dfb-default-rtdb.firebaseio.com",
-    "project_id": "doctorifyy-b4dfb",
-    "storage_bucket": "doctorifyy-b4dfb.appspot.com"
+    "project_number": "1084574668453",
+    "firebase_url": "https://doctorifyy-709ef-default-rtdb.firebaseio.com",
+    "project_id": "doctorifyy-709ef",
+    "storage_bucket": "doctorifyy-709ef.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:810763068944:android:223f7ff2c395223e534c95",
+        "mobilesdk_app_id": "1:1084574668453:android:6b509f628421a437c75f4c",
         "android_client_info": {
           "package_name": "com.example.myapplication"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBGVQn9yT12-BzquqSlqKvMojRCwN7HVL0"
+          "current_key": "AIzaSyDVFX0agkILwaS2FPGW6O5Fho7vcv16Ca8"
         }
       ],
       "services": {
