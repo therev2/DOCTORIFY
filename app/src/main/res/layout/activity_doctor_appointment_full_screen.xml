@@ -30,6 +30,7 @@
                 style="@style/roundedImageViewRounded"
                 android:layout_width="130dp"
                 android:layout_height="130dp"
+
                 android:background="@drawable/edit_img_rounded_corner"
                 android:clipToOutline="true"
 
@@ -120,7 +121,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:tag="18/3/23"
                             android:orientation="vertical"
                             android:paddingTop="33dp">
 
@@ -165,7 +165,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
-                            android:tag="19/3/23"
                             android:orientation="vertical"
                             android:paddingTop="33dp">
 
@@ -206,7 +205,6 @@
 
                         <LinearLayout
                             android:id="@+id/a20"
-                            android:tag="20/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -250,7 +248,6 @@
 
                         <LinearLayout
                             android:id="@+id/a21"
-                            android:tag="21/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -294,7 +291,6 @@
 
                         <LinearLayout
                             android:id="@+id/a22"
-                            android:tag="22/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -339,7 +335,6 @@
 
                         <LinearLayout
                             android:id="@+id/a23"
-                            android:tag="23/3/23"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -384,7 +379,6 @@
 
                         <LinearLayout
                             android:id="@+id/a24"
-                            android:tag="24/3/24"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:clickable="true"
@@ -716,15 +710,26 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
+            <TextView
+                android:layout_marginTop="10sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
+                android:paddingLeft="12dp"
+                android:text="Time"
+                android:textColor="@color/black"
+                android:textSize="33dp" />
 
             <Button
                 android:id="@+id/time_btn"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_marginHorizontal="15dp"
+                android:layout_marginHorizontal="100dp"
                 android:text="Select Time"
+                android:backgroundTint="#5C6784"
                 android:fontFamily="@font/regular_semi_bold"
                 android:layout_height="60dp"
+
                 android:textSize="18dp"
 
                 />
@@ -734,7 +739,7 @@
                 android:letterSpacing="0.06"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="140dp"
                 android:backgroundTint="@color/my_primary"
                 android:fontFamily="@font/regular_semi_bold"
                 android:text="Book Appointment"
