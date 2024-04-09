@@ -182,22 +182,25 @@ public class DocLoginActivity extends AppCompatActivity {
                 if (snapshot.exists()){
                     loginEmail.setError(null);
                     String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
+                    String docu_name = snapshot.child(userUseremail.replace(".",",")).child("name").getValue(String.class);
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
+                        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences_doc.edit();
+                        editor.putString("doc_email", userUseremail);
+                        editor.apply();
 
                         if(checkBox_btn_doc.isChecked()){
-                            SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPreferences_doc.edit();
 
                             editor.putString("remember", "true");
-                            editor.putString("doc_email", userUseremail);
                             editor.apply();
                         }
 
 
                         Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
+                        intent.putExtra("docu_name",docu_name);
                         startActivity(intent);
 
 

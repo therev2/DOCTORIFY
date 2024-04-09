@@ -71,7 +71,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
 
                 Log.d(TAG, pat_mail+" "+doc_mail+" "+date+" "+time);
                 HelperClass3 helperClass = new HelperClass3(pat_mail, doc_mail ,date ,time);
-                reference.child(doc_mail.replace(".",",")).setValue(helperClass);
+                reference.child(pat_mail.replace(".",",")+"&"+doc_mail.replace(".",",")).setValue(helperClass);
 
                 Intent intent = new Intent(doctor_appointment_full_screen.this, booked_confirm.class);
                 intent.putExtra("doctor_name",docccc);

@@ -26,6 +26,7 @@ public class booked_confirm extends AppCompatActivity {
         done1.setOnClickListener(v -> {
             Intent intent = new Intent(booked_confirm.this,HomePage.class);
             startActivity(intent);
+            finish();
 
         });
         doctor_namee = findViewById(R.id.doctor_name1);
