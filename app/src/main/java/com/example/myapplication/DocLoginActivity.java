@@ -3,9 +3,11 @@ package com.example.myapplication;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +32,8 @@ public class DocLoginActivity extends AppCompatActivity {
 
     EditText loginEmail, loginPassword;
     Button loginButton;
+    CheckBox checkBox_btn_doc;
+    public static final String SHARED_PREFS="sharedPrefs_doc";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -56,6 +60,10 @@ public class DocLoginActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginemail_doc);
         loginPassword = findViewById(R.id.loginpass_doc);
         loginButton = findViewById(R.id.loginbtn_doc);
+        checkBox_btn_doc = findViewById(R.id.remember_me_chkb_doc);
+
+        checkBox_Doc();
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +78,17 @@ public class DocLoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void checkBox_Doc() {
+        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String check = sharedPreferences_doc.getString("remember", "");
+        if (check.equals("true")){
+            Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     boolean isAlphanumeric(final int codePoint) {
@@ -166,10 +185,18 @@ public class DocLoginActivity extends AppCompatActivity {
 
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
-                        Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
 
-//                        --------->IMP
-//                        page where to move doc after login
+                        if(checkBox_btn_doc.isChecked()){
+                            SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences_doc.edit();
+
+                            editor.putString("remember", "true");
+                            editor.putString("doc_email", userUseremail);
+                            editor.apply();
+                        }
+
+
+                        Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
                         startActivity(intent);
 

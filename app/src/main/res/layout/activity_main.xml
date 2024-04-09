@@ -131,16 +131,16 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <CheckBox
-                android:id="@+id/rememberbox"
+                android:id="@+id/remember_me_chkb"
 
                 android:layout_width="wrap_content"
-                android:fontFamily="@font/regular_light"
                 android:layout_height="wrap_content"
+                android:alpha="0.9"
+                android:fontFamily="@font/regular_light"
                 android:text="Remember Me"
-                android:textSize="13sp"
-                android:layout_centerVertical="true"
-                android:alpha="0.9"/>
+                android:textSize="13sp" />
             <TextView
                 android:id="@+id/O"
                 android:fontFamily="@font/regular_light"

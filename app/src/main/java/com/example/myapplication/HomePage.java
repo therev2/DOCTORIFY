@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -28,7 +29,9 @@ import java.util.ArrayList;
 
 import io.grpc.LoadBalancer;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements View.OnClickListener {
+
+
 
     LinearLayout doc1;
     LinearLayout layout;
@@ -38,6 +41,18 @@ public class HomePage extends AppCompatActivity {
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
+    CardView card1, card2, card3, card4, card5;
+
+
+
+    @Override
+    public void onClick(View v){
+        System.out.println("button pressed");
+        String filterlist = (String) v.getTag();
+        System.out.println(filterlist);
+        searchList(filterlist);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +60,8 @@ public class HomePage extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_page);
 
-//        doc1 = findViewById(R.id.doctor_profile);
-//
-//        doc1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomePage.this, doctor_appointment_full_screen.class);
-//                startActivity(intent);
-//            }
-//        });
+
+
 
         recyclerView = findViewById(R.id.recyclerView);
         database = FirebaseDatabase.getInstance().getReference("doctor");
@@ -81,11 +89,29 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        card1 = findViewById(R.id.small_card1);
+        card2 = findViewById(R.id.small_card2);
+        card3 = findViewById(R.id.small_card3);
+        card4 = findViewById(R.id.small_card4);
+        card5 = findViewById(R.id.small_card5);
+
+        card1.setOnClickListener(this);
+        card2.setOnClickListener(this);
+        card3.setOnClickListener(this);
+        card4.setOnClickListener(this);
+        card5.setOnClickListener(this);
 
 
+    }
 
-
-
+    public void searchList(String text){
+        ArrayList<HelperClass> searchList = new ArrayList<>();
+        for (HelperClass helperClass: list){
+            if (helperClass.getSpeacilist().toLowerCase().contains(text.toLowerCase())){
+                searchList.add(helperClass);
+            }
+        }
+        myAdapter.searchDataList(searchList);
     }
 
 }

@@ -119,26 +119,29 @@
 
 
                 <LinearLayout
+                    android:id="@+id/spec_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/small_card"
+                        android:id="@+id/small_card1"
+                        android:tag="Cardiologist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
-
+                        android:clickable="true"
                         android:layout_alignParentBottom="true"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
+
 
                         <LinearLayout
                             android:id="@+id/heart"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:clickable="true"
+
                             android:orientation="vertical"
                             android:paddingTop="33dp">
 
@@ -164,6 +167,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card2"
+                        android:tag="Dentist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
@@ -205,6 +209,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card3"
+                        android:tag="Physiotherapist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
@@ -245,6 +250,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card4"
+                        android:tag="ENT Specialist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
@@ -289,6 +295,7 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card5"
+                        android:tag="General physician"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
@@ -360,172 +367,6 @@
 
 
 
-<!--                <androidx.cardview.widget.CardView-->
-
-
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="90dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:backgroundTint="#F1FAEE"-->
-<!--                    app:cardCornerRadius="12dp">-->
-
-<!--                    <LinearLayout-->
-
-<!--                        android:id="@+id/doctor_profile"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:clickable="true"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="60dp"-->
-
-<!--                            android:layout_height="60dp"-->
-<!--                            android:layout_marginLeft="14dp"-->
-<!--                            android:layout_marginTop="14dp"-->
-<!--                            android:background="@drawable/edit_text_rounded_corner"-->
-<!--                            android:clipToOutline="true"-->
-<!--                            android:src="@drawable/doctor" />-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:orientation="vertical"-->
-<!--                            android:paddingLeft="10dp"-->
-<!--                            android:paddingTop="20dp">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_bold"-->
-<!--                                android:text="Dr.Revan Channa"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="16dp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_semi_bold"-->
-<!--                                android:text="Heart Surgeon" />-->
-<!--                        </LinearLayout>-->
-
-
-<!--                    </LinearLayout>-->
-
-
-<!--                </androidx.cardview.widget.CardView>-->
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/doctor_profile2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="90dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:backgroundTint="#F1FAEE"-->
-<!--                    app:cardCornerRadius="12dp">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/doctor_card_2"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:clickable="true"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="60dp"-->
-
-<!--                            android:layout_height="60dp"-->
-<!--                            android:layout_marginLeft="14dp"-->
-<!--                            android:layout_marginTop="14dp"-->
-<!--                            android:background="@drawable/edit_text_rounded_corner"-->
-<!--                            android:clipToOutline="true"-->
-<!--                            android:src="@drawable/doctor" />-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:orientation="vertical"-->
-<!--                            android:paddingLeft="10dp"-->
-<!--                            android:paddingTop="20dp">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_bold"-->
-<!--                                android:text="Dr.Revan Channa"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="16dp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_semi_bold"-->
-<!--                                android:text="Heart Surgeon" />-->
-<!--                        </LinearLayout>-->
-
-
-<!--                    </LinearLayout>-->
-
-
-<!--                </androidx.cardview.widget.CardView>-->
-
-<!--                <androidx.cardview.widget.CardView-->
-<!--                    android:id="@+id/doctor_profile3"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="90dp"-->
-<!--                    android:layout_alignParentTop="true"-->
-<!--                    android:layout_alignParentBottom="true"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:backgroundTint="#F1FAEE"-->
-<!--                    app:cardCornerRadius="12dp">-->
-
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/doctor_card_3"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:clickable="true"-->
-<!--                        android:orientation="horizontal">-->
-
-<!--                        <ImageView-->
-<!--                            android:layout_width="60dp"-->
-
-<!--                            android:layout_height="60dp"-->
-<!--                            android:layout_marginLeft="14dp"-->
-<!--                            android:layout_marginTop="14dp"-->
-<!--                            android:background="@drawable/edit_text_rounded_corner"-->
-<!--                            android:clipToOutline="true"-->
-<!--                            android:src="@drawable/doctor" />-->
-
-<!--                        <LinearLayout-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:orientation="vertical"-->
-<!--                            android:paddingLeft="10dp"-->
-<!--                            android:paddingTop="20dp">-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_bold"-->
-<!--                                android:text="Dr.Revan Channa"-->
-<!--                                android:textColor="@color/black"-->
-<!--                                android:textSize="16dp" />-->
-
-<!--                            <TextView-->
-<!--                                android:layout_width="wrap_content"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:fontFamily="@font/regular_semi_bold"-->
-<!--                                android:text="Heart Surgeon" />-->
-<!--                        </LinearLayout>-->
-
-
-<!--                    </LinearLayout>-->
-
-
-<!--                </androidx.cardview.widget.CardView>-->
 
             </LinearLayout>
 

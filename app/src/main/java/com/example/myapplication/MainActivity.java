@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import static android.service.controls.ControlsProviderService.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -39,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
     String per2[] = {"android.permission.ACCESS_FINE_LOCATION"};
     String per3[] = {"android.permission.ACCESS_BACKGROUND_LOCATION"};
 
+    CheckBox checkBox_btn;
+    public static final String SHARED_PREFS="sharedPrefs";
+    public static final String SHARED_PREFS_DOC="sharedPrefs_doc";
+
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 //        linking all activities
+        checkBox();
+        checkBox_Doc();
 
         are_doc = findViewById(R.id.are_you_doc);
         are_doc.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginemail);
         loginPassword = findViewById(R.id.loginpass);
         loginButton = findViewById(R.id.klop);
+        checkBox_btn = findViewById(R.id.remember_me_chkb);
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +114,28 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void checkBox() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String check = sharedPreferences.getString("remember", "");
+        if (check.equals("true")){
+            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private void checkBox_Doc() {
+        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS_DOC, MODE_PRIVATE);
+        String check = sharedPreferences_doc.getString("remember", "");
+        if (check.equals("true")){
+            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, doc_landing_page.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 
@@ -200,6 +236,16 @@ public class MainActivity extends AppCompatActivity {
 
                     if (passwordFromDB.equals(userPassword)) {
                         loginEmail.setError(null);
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email", userUseremail);
+                        editor.apply();
+                        String another = sharedPreferences.getString("email", "");
+                        if(checkBox_btn.isChecked()){
+                            editor.putString("remember", "true");
+                            editor.apply();
+                        }
+
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
