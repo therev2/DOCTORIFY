@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import static android.service.controls.ControlsProviderService.TAG;
 
@@ -12,6 +13,7 @@ import android.view.View;
 
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 
 import androidx.activity.EdgeToEdge;
@@ -34,6 +36,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
     String docccc;
     FirebaseDatabase database;
     DatabaseReference reference;
+    Button timeButton;
 
     public static final String SHARED_PREFS="sharedPrefs";
 
@@ -47,6 +50,14 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         doctor_name = findViewById(R.id.doc_namee);
         doctor_specialist = findViewById(R.id.doc_specialistt);
         doc_profile = findViewById(R.id.doc_dp);
+        timeButton = findViewById(R.id.time_btn);
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
 
         doctor_name.setText(getIntent().getStringExtra("username"));
         docccc = getIntent().getStringExtra("username");
@@ -59,7 +70,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         String pat_mail = sharedPreferences.getString("email", "");
 
         String date = "1/1/1";
-        String time = "1:1";
+        String time = timeButton.getText().toString();
 
         String doc_mail = getIntent().getStringExtra("doc_mail");
 
@@ -91,4 +102,28 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
             return insets;
         });
     }
+
+    public String openDialog() {
+        TimePickerDialog dialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                int hour = hourOfDay;
+                String amPm;
+
+
+                    amPm = (hour >= 12) ? "PM" : "AM";
+                    hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
+
+                String formattedTime = String.format("%02d:%02d %s", hour, minute, amPm);
+
+                timeButton.setText(formattedTime);
+
+            }
+        }, 12, 00, false);
+
+        dialog.show();
+
+        return null;
+    }
+
 }
