@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/card"
+
         android:gravity="center"
         android:orientation="vertical"
         android:padding="28dp" >
@@ -62,7 +63,7 @@
             android:padding="28dp">
             <TextView
                 android:id="@+id/E"
-
+                android:letterSpacing="0.02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="WELCOME"
@@ -71,8 +72,8 @@
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/F"
-
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/regular_light"
                 android:layout_height="wrap_content"
                 android:text="SIGNUP AS A PATIENT"
                 android:alpha="0.9"/>
@@ -83,7 +84,6 @@
                 android:layout_height="20dp"/>
             <TextView
                 android:id="@+id/H"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="EMAIL:"
@@ -97,7 +97,7 @@
                     android:id="@+id/email_pat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:inputType="textEmailAddress"
                     android:ems="15"/>
             </com.google.android.material.textfield.TextInputLayout>
             <View

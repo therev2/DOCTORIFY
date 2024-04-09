@@ -65,7 +65,6 @@
         android:padding="28dp">
         <TextView
             android:id="@+id/E"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WELCOME"
@@ -75,7 +74,7 @@
             />
         <TextView
             android:id="@+id/F"
-
+            android:fontFamily="@font/regular_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LOGIN AS PATIENT"
@@ -91,7 +90,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EMAIL:"
-            android:alpha="0.9"/>
+            android:fontFamily="@font/regular_semi_bold"
+            android:alpha="1"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/M11"
             android:hint=""
@@ -99,9 +99,12 @@
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginemail"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
+
+
                 android:ems="15"/>
         </com.google.android.material.textfield.TextInputLayout>
         <View
@@ -115,7 +118,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PASSWORD:"
-            android:alpha="0.9"/>
+            android:fontFamily="@font/regular_semi_bold"
+            android:alpha="1"/>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/M1"
             android:hint=""
@@ -124,6 +128,7 @@
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loginpass"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
@@ -135,15 +140,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox
-                android:id="@+id/N"
+                android:id="@+id/rememberbox"
 
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/regular_light"
                 android:layout_height="wrap_content"
                 android:text="Remember Me"
+                android:textSize="13sp"
                 android:layout_centerVertical="true"
                 android:alpha="0.9"/>
             <TextView
                 android:id="@+id/O"
+                android:fontFamily="@font/regular_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Signup Now"
@@ -159,8 +167,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Login"
+            android:textAllCaps="false"
+            android:letterSpacing="0.06"
+            android:fontFamily="@font/regular_semi_bold"
+            android:elevation="8dp"
+            android:translationZ="8dp"
             android:id="@+id/klop"
             app:cornerRadius="32dp"/>
+
         <View
             android:id="@+id/Q"
 
@@ -172,6 +186,7 @@
             android:text="Are you a Doctor?"
             android:textColor="@color/black"
             android:layout_gravity="center"
+            android:fontFamily="@font/regular_light"
             android:id="@+id/are_you_doc"/>
 
     </LinearLayout>

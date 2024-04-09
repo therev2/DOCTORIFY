@@ -19,17 +19,12 @@
             android:id="@+id/specilist_complete_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"/>
+            android:hint=""
+            android:inputType="none"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        >-->
-<!--        -->
-<!--        -->
-<!--    </androidx.cardview.widget.CardView>-->
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -45,46 +40,63 @@
             android:text="Age"
             android:textSize="16dp" />
 
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:contentDescription="select age"
+            android:hint=""
+            android:minHeight="48dp"
+            tools:ignore="EditableContentDescCheck" />
 
 
     </LinearLayout>
+
 
     <Button
         android:layout_marginTop="220dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Location"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Select Day"
+        android:id="@+id/Day_select"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="280dp"
+        android:text="Location"
+        android:id="@+id/Search_location_button"/>
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="360dp"
         android:background="@color/black"/>
 
     <LinearLayout
+        android:id="@+id/loc_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="28dp"
-        >
+        android:padding="28dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="My Appointments"
-        android:textSize="25dp"
-        android:layout_marginTop="300dp"
-        android:textStyle="bold"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="360dp"
+            android:text="My Appointments"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
 
-<!--    need to add list of appointments-->
+    <!--    need to add list of appointments-->
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
