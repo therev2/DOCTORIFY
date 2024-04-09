@@ -89,7 +89,7 @@
                 android:text="EMAIL:"
                 android:alpha="0.9"/>
             <EditText
-                android:id="@+id/I"
+                android:id="@+id/email_pat"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 android:text="PASSWORD:"
                 android:alpha="0.9"/>
             <EditText
-                android:id="@+id/L"
+                android:id="@+id/pass_pat"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
