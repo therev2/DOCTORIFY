@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img"
+    tools:context=".MainActivity"
+    android:id="@+id/main">
+
+
+    <RelativeLayout
+        android:id="@+id/A"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.00"
+        android:background="@color/my_primary" />
+
+    <LinearLayout
+            android:id="@+id/B"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/card"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="28dp" >
+
+
+    <TextView
+        android:id="@+id/C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="        DOCTORIFY"
+        android:textColor="@color/white"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+        <!--        <ImageView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:src="@drawable/ic_android_black_24dp"/>-->
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="28dp"
+        android:layout_marginBottom="-20dp"
+        >
+
+    <LinearLayout
+        android:id="@+id/D"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="28dp">
+        <TextView
+            android:id="@+id/E"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WELCOME"
+            android:textColor="@color/my_primary"
+            android:textSize="32sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/F"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOGIN AS A PATIENT"
+            android:alpha="0.9"/>
+        <View
+            android:id="@+id/G"
+
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+        <TextView
+            android:id="@+id/H"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMAIL:"
+            android:alpha="0.9"/>
+        <EditText
+            android:id="@+id/I"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+<!--            android:drawableEnd="@drawable/ic_baseline_done_24"/>-->
+        <View
+            android:id="@+id/J"
+
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+        <TextView
+            android:id="@+id/K"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PASSWORD:"
+            android:alpha="0.9"/>
+        <EditText
+            android:id="@+id/L"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+<!--            android:drawableEnd="@drawable/="ic_baseline_remove_red_eye_24""/>-->
+        <RelativeLayout
+            android:id="@+id/M"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/N"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember Me"
+                android:layout_centerVertical="true"
+                android:alpha="0.9"/>
+            <TextView
+                android:id="@+id/O"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <View
+            android:id="@+id/P"
+
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Login"
+            android:id="@+id/klop"
+            app:cornerRadius="32dp"/>
+        <View
+            android:id="@+id/Q"
+
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Are you a Doctor?"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:id="@+id/are_you_doc"/>
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
