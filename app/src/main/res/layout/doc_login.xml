@@ -6,7 +6,7 @@
     android:id="@+id/main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/img"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
 
@@ -25,18 +25,16 @@
         android:gravity="center"
         android:orientation="vertical"
         android:padding="28dp" >
-
-
-        <TextView
-            android:id="@+id/C"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:srcCompat="@drawable/logo_line_white"
+            android:padding="200px"/>
 
-            android:fontFamily="sans-serif-condensed-light"
-            android:text="        DOCTORIFY"
-            android:textColor="@color/white"
-            android:textSize="48sp"
-            android:textStyle="bold" />
+
+
+
 
         <!--        <ImageView-->
         <!--            android:layout_width="wrap_content"-->
@@ -131,10 +129,10 @@
                     android:layout_centerVertical="true"
                     android:alpha="0.9"/>
                 <TextView
-                    android:id="@+id/O"
+                    android:id="@+id/singupfordoc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Forgot Password"
+                    android:text="Signup Now"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"/>
             </RelativeLayout>
