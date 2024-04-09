@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
@@ -66,26 +67,23 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
 
         appointmentButton = findViewById(R.id.Appointment_btn);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String pat_mail = sharedPreferences.getString("email", "");
 
-        String date = "1/1/1";
-        String time = timeButton.getText().toString();
 
-        String doc_mail = getIntent().getStringExtra("doc_mail");
+
+
+
+
 
         appointmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("appointment");
 
-                Log.d(TAG, pat_mail+" "+doc_mail+" "+date+" "+time);
-                HelperClass3 helperClass = new HelperClass3(pat_mail, doc_mail ,date ,time);
-                reference.child(pat_mail.replace(".",",")+"&"+doc_mail.replace(".",",")).setValue(helperClass);
 
                 Intent intent = new Intent(doctor_appointment_full_screen.this, booked_confirm.class);
                 intent.putExtra("doctor_name",docccc);
+                intent.putExtra("timee", selectedTime);
+                Log.d(TAG, selectedTime);
+
                 startActivity(intent);
 
             }
@@ -102,6 +100,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
             return insets;
         });
     }
+    public String selectedTime = "";
 
     public String openDialog() {
         TimePickerDialog dialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
@@ -110,20 +109,26 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
                 int hour = hourOfDay;
                 String amPm;
 
+                amPm = (hour >= 12) ? "PM" : "AM";
+                hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
 
-                    amPm = (hour >= 12) ? "PM" : "AM";
-                    hour = (hour == 0) ? 12 : ((hour > 12) ? (hour - 12) : hour);
-
-                String formattedTime = String.format("%02d:%02d %s", hour, minute, amPm);
-
-                timeButton.setText(formattedTime);
-
+                selectedTime = String.format("%02d:%02d %s", hour, minute, amPm);
+                database = FirebaseDatabase.getInstance();
+                reference = database.getReference("appointment");
+                String doc_mail = getIntent().getStringExtra("doc_mail");
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                String pat_mail = sharedPreferences.getString("email", "");
+                String date = "1/1/1";
+                String time = selectedTime;
+                HelperClass3 helperClass = new HelperClass3(pat_mail, doc_mail ,date ,time);
+                reference.child(pat_mail.replace(".",",")+"&"+doc_mail.replace(".",",")).setValue(helperClass);
+                timeButton.setText(selectedTime);
             }
         }, 12, 00, false);
 
         dialog.show();
 
-        return null;
+        return selectedTime;
     }
 
 }

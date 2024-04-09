@@ -16,6 +16,7 @@ public class booked_confirm extends AppCompatActivity {
 
     Button done1;
     TextView doctor_namee;
+    TextView timeee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class booked_confirm extends AppCompatActivity {
         });
         doctor_namee = findViewById(R.id.doctor_name1);
         doctor_namee.setText(getIntent().getStringExtra("doctor_name"));
+
+        timeee = findViewById(R.id.time);
+        timeee.setText(getIntent().getStringExtra("timee"));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
