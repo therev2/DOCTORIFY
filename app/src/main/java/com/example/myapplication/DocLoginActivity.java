@@ -192,9 +192,9 @@ public class DocLoginActivity extends AppCompatActivity {
                         editor.apply();
 
                         if(checkBox_btn_doc.isChecked()){
-
                             editor.putString("remember", "true");
                             editor.apply();
+                            System.out.println("does it run automatically");
                         }
 
 

@@ -52,4 +52,5 @@ dependencies {
     implementation("com.airbnb.android:lottie:6.4.0")
     implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
     implementation("com.journeyapps:zxing-android-embedded:4.1.0")
+    implementation("com.google.zxing:core:3.4.1")
 }

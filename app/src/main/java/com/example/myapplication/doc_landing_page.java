@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,8 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+
+import io.reactivex.rxjava3.core.Emitter;
 
 public class doc_landing_page extends AppCompatActivity {
 
@@ -36,8 +41,8 @@ public class doc_landing_page extends AppCompatActivity {
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
-    String doc_name,image_url;
-    Button logoutDoc;
+    String doc_name,image_url,scanned_patEmail,Email_of_doc;
+    Button logoutDoc, camera_btn, resetButton;
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
@@ -52,6 +57,9 @@ public class doc_landing_page extends AppCompatActivity {
         setContentView(R.layout.activity_doc_landing_page);
 
         logoutDoc = findViewById(R.id.logout_doc);
+        camera_btn = findViewById(R.id.camera_btn);
+        resetButton = findViewById(R.id.reset_btn);
+
         logoutDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +67,7 @@ public class doc_landing_page extends AppCompatActivity {
                 SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences_doc.edit();
                 editor.putString("doc_email", "null");
+                editor.putString("remember", "false");
                 editor.apply();
                 Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
                 startActivity(intent);
@@ -66,10 +75,31 @@ public class doc_landing_page extends AppCompatActivity {
             }
         });
 
+        camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator = new IntentIntegrator(doc_landing_page.this);
+                intentIntegrator.setPrompt("Scan a QR Code");
+                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
+                intentIntegrator.setCaptureActivity(CaptureActivityPortrait.class);
+                intentIntegrator.initiateScan();
+            }
+        });
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchList(Email_of_doc);
+                Toast.makeText(doc_landing_page.this,"reset successful",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         //getting doc email from shared preference and storing it in variable
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
+        Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
 
         //referencing database for parent "doctor"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
@@ -160,7 +190,33 @@ public class doc_landing_page extends AppCompatActivity {
         myadapter_doc.searchDataList(searchList);
     }
 
+    public void scannedList(String text){
+        ArrayList<HelperClass3> scannedList = new ArrayList<>();
+        for (HelperClass3 helperClass: list_doc){
+            if (helperClass.getPat_email().toLowerCase().contains((text.toLowerCase())) &&
+                    helperClass.getDoc_email().toLowerCase().contains(Email_of_doc.toLowerCase())){
+                scannedList.add(helperClass);
+            }
 
+        }
+        myadapter_doc.searchScannedList(scannedList);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(intentResult != null){
+            String content = intentResult.getContents();
+            if(content != null){
+                System.out.println(content);
+                scanned_patEmail = content.substring(0,content.indexOf("&"));
+                System.out.println(scanned_patEmail);
+                scannedList(scanned_patEmail);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
 
 }
