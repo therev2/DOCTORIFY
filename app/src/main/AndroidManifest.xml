@@ -11,6 +11,8 @@
     <uses-permission
         android:name="android.permission.READ_MEDIA_IMAGES"
         tools:ignore="SelectedPhotoAccess" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera"/>
 
     <application
         android:allowBackup="true"
@@ -25,6 +27,10 @@
         <activity
             android:name=".QrCodeGenerator"
             android:exported="false" />
+        <activity
+            android:name=".CaptureActivityPortrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme" />
         <activity
             android:name=".otp_screen"
             android:exported="false" />
