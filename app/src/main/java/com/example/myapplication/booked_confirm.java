@@ -52,7 +52,7 @@ public class booked_confirm extends AppCompatActivity {
 
         MultiFormatWriter mWriter = new MultiFormatWriter();
         try {
-            BitMatrix mMatrix = mWriter.encode(getIntent().getStringExtra("doctor_name"), BarcodeFormat.QR_CODE, 200,200);
+            BitMatrix mMatrix = mWriter.encode(getIntent().getStringExtra("qr_code_data"), BarcodeFormat.QR_CODE, 200,200);
             BarcodeEncoder mEncoder = new BarcodeEncoder();
             Bitmap mBitmap = mEncoder.createBitmap(mMatrix);
             qrcode.setImageBitmap(mBitmap);
