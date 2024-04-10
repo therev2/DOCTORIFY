@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,7 +32,10 @@ public class doc_landing_page extends AppCompatActivity {
     DatabaseReference database;
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
-    TextView doctor_nam_karan;
+    TextView doctorName;
+    String doc_name,image_url;
+
+    //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
 
 
@@ -42,12 +46,47 @@ public class doc_landing_page extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_doc_landing_page);
 
+        //getting doc email from shared preference and storing it in variable
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
 
+        //referencing database for parent "doctor"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
 
-        doctor_nam_karan = findViewById(R.id.doccomo);
-        doctor_nam_karan.setText("Dr."+ getIntent().getStringExtra("docu_name"));
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_doc);
+
+        System.out.println( Email_of_doc + "-----------------");
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    doc_name = snapshot.child(Email_of_doc.replace(".",",")).child("name").getValue(String.class);
+                    image_url = snapshot.child(Email_of_doc.replace(".",",")).child("image").getValue(String.class);
+
+                    //getting doc name form intent and setting it up
+                    doctorName = findViewById(R.id.doccomo);
+                    doctorName.setText("Dr."+doc_name);
+
+                    //setting doc image from database
+                    ImageView doc_photo = findViewById(R.id.imageView2);
+                    Glide.with(doc_landing_page.this).load(image_url).into(doc_photo);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+        //recycler to get all appointment list
         recyclerView_doc = findViewById(R.id.recyclerView_doc);
         database = FirebaseDatabase.getInstance().getReference("appointment");
         recyclerView_doc.setHasFixedSize(true);
@@ -56,20 +95,22 @@ public class doc_landing_page extends AppCompatActivity {
         list_doc = new ArrayList<>();
         myadapter_doc = new Myadapter_Doc(this,list_doc);
         recyclerView_doc.setAdapter(myadapter_doc);
-        ImageView doc_photo = findViewById(R.id.imageView2);
-        Glide.with(doc_landing_page.this).load(getIntent().getStringExtra("image_url")).into(doc_photo);
 
 
+
+        // getting all appointments from database
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HelperClass3 helper = dataSnapshot.getValue(HelperClass3.class);
                     list_doc.add(helper);
+
+                    //filtering all appointments list based on doc email
                     searchList(Email_of_doc);
 
-
                 }
+                //refreshing for data change
                 myadapter_doc.notifyDataSetChanged();
             }
 
@@ -86,6 +127,10 @@ public class doc_landing_page extends AppCompatActivity {
             return insets;
         });
     }
+
+
+    //function to filter all appointment list based upon whatever text is passed in the fucntion
+    //this one is for email based filtering
     public void searchList(String text){
         ArrayList<HelperClass3> searchList = new ArrayList<>();
         for (HelperClass3 helperClass: list_doc){
@@ -95,4 +140,8 @@ public class doc_landing_page extends AppCompatActivity {
         }
         myadapter_doc.searchDataList(searchList);
     }
+
+
+
+
 }
