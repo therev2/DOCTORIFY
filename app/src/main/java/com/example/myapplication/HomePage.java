@@ -1,21 +1,23 @@
 package com.example.myapplication;
 
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -42,7 +44,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5;
-
+    Button logout_btn;
+    public static final String SHARED_PREFS="sharedPrefs";
 
 
     @Override
@@ -54,11 +57,28 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home_page);
+
+        logout_btn = findViewById(R.id.logout_pat);
+
+        logout_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+                Intent intent = new Intent(HomePage.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
 
@@ -101,6 +121,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
 
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Close the application
+                finishAffinity();
+            }
+        });
+
 
     }
 
@@ -113,5 +142,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         }
         myAdapter.searchDataList(searchList);
     }
+
 
 }

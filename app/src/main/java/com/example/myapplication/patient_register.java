@@ -11,21 +11,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.firebase.Firebase;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class patient_register extends AppCompatActivity {
 
     EditText signupEmail, signupPassword;
     Button signupButton;
     String phone;
-    FirebaseDatabase database;
-    DatabaseReference reference;
     EditText phone_number;
 
     @Override
@@ -37,42 +32,32 @@ public class patient_register extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
         });
-
 
         signupEmail = findViewById(R.id.email_pat);
         signupPassword = findViewById(R.id.pass_pat);
         signupButton = findViewById(R.id.signuppat);
         phone_number = findViewById(R.id.phone_number);
-
+        signupEmail.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                database = FirebaseDatabase.getInstance();
-                reference = database.getReference("patient");
-
                 String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
                 phone = phone_number.getText().toString().trim();
-                if(validateEmail() && validatePassword()){
-                    HelperClass2 helperClass = new HelperClass2(email, password);
-                    reference.child(email.replace(".", ",")).setValue(helperClass);
 
-                    Toast.makeText(patient_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                if (validateEmail() && validatePassword()) {
+                    // Start the otp_screen activity and pass the phone number, email, and password as extras
                     Intent intent = new Intent(patient_register.this, otp_screen.class);
-                    intent.putExtra("phone",phone);
+                    intent.putExtra("phone", phone);
+                    intent.putExtra("email", email);
+                    intent.putExtra("password", password);
                     startActivity(intent);
-
                 }
-
-
             }
         });
-
-
     }
 
     boolean isAlphanumeric(final int codePoint) {
@@ -80,7 +65,6 @@ public class patient_register extends AppCompatActivity {
                 (codePoint >= 97 && codePoint <= 122) ||
                 (codePoint >= 32 && codePoint <= 57);
     }
-
 
     public Boolean validateEmail() {
         String val = signupEmail.getText().toString();
@@ -113,7 +97,6 @@ public class patient_register extends AppCompatActivity {
     public boolean properformat() {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-
         Pattern pattern = Pattern.compile(emailRegex);
         String val = signupEmail.getText().toString();
 
@@ -121,7 +104,6 @@ public class patient_register extends AppCompatActivity {
 
         return matcher.matches();
     }
-
 
     public Boolean validatePassword() {
         String val = signupPassword.getText().toString();
@@ -150,11 +132,6 @@ public class patient_register extends AppCompatActivity {
                     return false;
                 }
             }
-
-
         }
-
-
     }
-
 }

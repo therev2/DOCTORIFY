@@ -50,4 +50,6 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
     implementation("com.github.clans:fab:1.6.4")
     implementation("com.airbnb.android:lottie:6.4.0")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation("com.journeyapps:zxing-android-embedded:4.1.0")
 }

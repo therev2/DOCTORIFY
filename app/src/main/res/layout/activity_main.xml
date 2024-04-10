@@ -26,15 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/logo_line_white"
-            android:padding="200px"/>
+            android:padding="100px"/>
 
 
 
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_android_black_24dp"/>-->
 
 
     </LinearLayout>
