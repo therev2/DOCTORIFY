@@ -5,6 +5,7 @@ import com.google.firebase.Timestamp;
 import java.util.List;
 
 public class ChatRoom {
+
     String chatroomId;
     List<String> userIds;
     Timestamp lastMessageTimestamp;

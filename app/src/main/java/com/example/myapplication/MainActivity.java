@@ -130,11 +130,14 @@ public class MainActivity extends AppCompatActivity {
     private void checkBox_Doc() {
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS_DOC, MODE_PRIVATE);
         String check = sharedPreferences_doc.getString("remember", "");
+        String check_email = sharedPreferences_doc.getString("doc_email","");
         if (check.equals("true")){
-            Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, doc_landing_page.class);
-            startActivity(intent);
-            finish();
+            if (!check_email.equals("null")){
+                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, doc_landing_page.class);
+                startActivity(intent);
+                finish();
+            }
         }
     }
 

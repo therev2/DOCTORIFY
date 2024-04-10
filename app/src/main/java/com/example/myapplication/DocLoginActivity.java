@@ -33,6 +33,8 @@ public class DocLoginActivity extends AppCompatActivity {
     EditText loginEmail, loginPassword;
     Button loginButton;
     CheckBox checkBox_btn_doc;
+
+    //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +50,7 @@ public class DocLoginActivity extends AppCompatActivity {
             return insets;
         });
 
+        //sign up now for doc
         signdoc = findViewById(R.id.singupfordoc);
         signdoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,21 +60,23 @@ public class DocLoginActivity extends AppCompatActivity {
             }
         });
 
+        //initialised variables for login page
         loginEmail = findViewById(R.id.loginemail_doc);
         loginPassword = findViewById(R.id.loginpass_doc);
         loginButton = findViewById(R.id.loginbtn_doc);
         checkBox_btn_doc = findViewById(R.id.remember_me_chkb_doc);
 
-        checkBox_Doc();
 
-
-
+        //initialised login in button on click action
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validateEmail() | !validatePassword()){
+                // check if either of email or password field are filled and have proper format or not.
+                if(!validateEmail() | !validateEmail()){
 
                 } else {
+                    //if both validateEmail() validateEmail() is passed then this function will run to check if the email is present in database or not
+                    //if yes then account is loged in
                     checkEmail();
                 }
             }
@@ -80,24 +85,15 @@ public class DocLoginActivity extends AppCompatActivity {
 
     }
 
-    private void checkBox_Doc() {
-        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String check = sharedPreferences_doc.getString("remember", "");
-        if (check.equals("true")){
-            Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
-            startActivity(intent);
-            finish();
-        }
-    }
 
+    //function to check if the email and password is alphanumeric and not emoji etc..
     boolean isAlphanumeric(final int codePoint) {
         return (codePoint >= 64 && codePoint <= 90) ||
                 (codePoint >= 97 && codePoint <= 122) ||
                 (codePoint >= 32 && codePoint <= 57);
     }
 
-
+    //function to validate email
     public Boolean validateEmail() {
         String val = loginEmail.getText().toString();
         if (val.isEmpty()){
@@ -133,6 +129,7 @@ public class DocLoginActivity extends AppCompatActivity {
 
     }
 
+    //function to validate password
     public Boolean validatePassword() {
         String val = loginPassword.getText().toString();
         if (val.isEmpty()){
@@ -168,22 +165,25 @@ public class DocLoginActivity extends AppCompatActivity {
 
     }
 
+    //function for login
     public void checkEmail(){
+        //email and password from input field
         String userUseremail = loginEmail.getText().toString().trim();
         String userPassword = loginPassword.getText().toString().trim();
 
+        //refrencing database for parent "doctor"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
-        Query checkUserDatabase = reference.orderByChild("email").equalTo(userUseremail);
 
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(userUseremail);
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.exists()){
                     loginEmail.setError(null);
+                    //getting password from Database
                     String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
-                    String docu_name = snapshot.child(userUseremail.replace(".",",")).child("name").getValue(String.class);
-                    String image_url = snapshot.child(userUseremail.replace(".",",")).child("image").getValue(String.class);
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -200,8 +200,6 @@ public class DocLoginActivity extends AppCompatActivity {
 
                         Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
-                        intent.putExtra("docu_name",docu_name);
-                        intent.putExtra("image_url",image_url);
                         startActivity(intent);
 
 

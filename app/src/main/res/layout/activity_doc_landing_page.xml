@@ -31,6 +31,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:elevation="40dp"
+                        android:scaleType="centerCrop"
                         android:translationZ="40dp"
                         android:background="@drawable/btn_total_round"
                         android:clipToOutline="true"
@@ -81,6 +82,22 @@
             android:clickable="true"
             android:layout_below="@id/upcming"
             android:scrollbars="vertical"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logout_doc"
+            android:text="Log out"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/regular_bold"
+            android:textSize="16dp"
+            >
+
+        </Button>
+
+
 
 
 
