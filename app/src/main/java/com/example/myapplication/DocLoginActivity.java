@@ -183,7 +183,7 @@ public class DocLoginActivity extends AppCompatActivity {
                     loginEmail.setError(null);
                     String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
                     String docu_name = snapshot.child(userUseremail.replace(".",",")).child("name").getValue(String.class);
-
+                    String image_url = snapshot.child(userUseremail.replace(".",",")).child("image").getValue(String.class);
                     if(passwordFromDB.equals(userPassword)){
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -201,6 +201,7 @@ public class DocLoginActivity extends AppCompatActivity {
                         Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
                         intent.putExtra("docu_name",docu_name);
+                        intent.putExtra("image_url",image_url);
                         startActivity(intent);
 
 

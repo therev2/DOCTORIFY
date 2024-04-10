@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +47,7 @@ public class doc_landing_page extends AppCompatActivity {
 
 
         doctor_nam_karan = findViewById(R.id.doccomo);
-        doctor_nam_karan.setText(getIntent().getStringExtra("docu_name"));
+        doctor_nam_karan.setText("Dr."+ getIntent().getStringExtra("docu_name"));
         recyclerView_doc = findViewById(R.id.recyclerView_doc);
         database = FirebaseDatabase.getInstance().getReference("appointment");
         recyclerView_doc.setHasFixedSize(true);
@@ -54,6 +56,8 @@ public class doc_landing_page extends AppCompatActivity {
         list_doc = new ArrayList<>();
         myadapter_doc = new Myadapter_Doc(this,list_doc);
         recyclerView_doc.setAdapter(myadapter_doc);
+        ImageView doc_photo = findViewById(R.id.imageView2);
+        Glide.with(doc_landing_page.this).load(getIntent().getStringExtra("image_url")).into(doc_photo);
 
 
         database.addValueEventListener(new ValueEventListener() {

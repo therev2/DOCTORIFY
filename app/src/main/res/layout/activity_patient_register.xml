@@ -32,15 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/logo_line_white"
-            android:padding="200px"/>
+            android:padding="100px"/>
 
-
-
-
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:src="@drawable/ic_android_black_24dp"/>-->
 
 
     </LinearLayout>
@@ -132,16 +125,38 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
+            <TextView
+                android:fontFamily="@font/regular_semi_bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHONE NUMBER:"
+                android:alpha="0.9"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:ems="15"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <View
+                android:id="@+id/Q"
+
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"/>
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Signup"
+                android:text="Continue"
                 android:letterSpacing="0.06"
                 android:fontFamily="@font/regular_semi_bold"
                 android:id="@+id/signuppat"
                 app:cornerRadius="32dp"/>
             <View
-                android:id="@+id/Q"
+
 
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"/>

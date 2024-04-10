@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -106,6 +107,12 @@ public class doctor_register extends AppCompatActivity {
         browseBtn = findViewById(R.id.browse_btn);
         uplodedImage = findViewById(R.id.uploaded_img);
 
+//for compressing image
+////        uplodedImage.buildDrawingCache();
+//        Bitmap bmap = uplodedImage.getDrawingCache();
+//        Bitmap bitmap = Bitmap.createScaledBitmap(bmap, 300, 300, true);
+
+
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -176,7 +183,7 @@ public class doctor_register extends AppCompatActivity {
                             reference.child(email.replace(".",",")).setValue(helperClass);
 
                             Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
+                            Intent intent = new Intent(doctor_register.this, DocLoginActivity.class);
                             startActivity(intent);
 
 
@@ -293,4 +300,7 @@ public class doctor_register extends AppCompatActivity {
                 Toast.makeText(this,"permission granted",Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 }

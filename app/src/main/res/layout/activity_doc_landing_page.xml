@@ -31,6 +31,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:elevation="40dp"
+                        android:scaleType="centerCrop"
                         android:translationZ="40dp"
                         android:background="@drawable/btn_total_round"
                         android:clipToOutline="true"
