@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0A07"
+    tools:context=".Doc_home_page">
+
+
+    <RelativeLayout
+        android:id="@+id/A"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.00"
+        android:background="@color/my_secondary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:orientation="horizontal"
+        android:paddingTop="10sp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+
+            android:src="@drawable/logo_line_white" />
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="28dp">
+
+        <LinearLayout
+            android:id="@+id/D"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+
+            <TextView
+                android:id="@+id/F"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
+                android:text="Verification"
+                android:textColor="@color/black"
+                android:textSize="34dp" />
+
+            <View
+                android:id="@+id/G"
+
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
+
+                android:text="You will get OTP via SMS"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <View
+                android:id="@+id/P"
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+            <View
+                android:id="@+id/P1"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/M11"
+                android:hint=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/otp_entered"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="15"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:clickable="true"
+                    android:id="@+id/resend"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15sp"
+                    android:textColor="@color/black"
+                    android:text="Resend OTP"
+                    android:fontFamily="@font/regular_light"
+                    android:layout_above="@id/verify"/>
+                <Button
+
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    android:text="Verify"
+                    android:textAllCaps="false"
+                    android:letterSpacing="0.06"
+                    android:fontFamily="@font/regular_semi_bold"
+                    android:elevation="8dp"
+                    android:translationZ="8dp"
+                    android:id="@+id/verify"
+                    app:cornerRadius="32dp"/>
+
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
+
