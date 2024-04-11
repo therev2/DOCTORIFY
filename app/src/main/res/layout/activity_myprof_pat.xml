@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".MYprofPat">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10sp">
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="20sp"
+            android:src="@drawable/logo_line_white"
+
+            />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="675dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="28dp">
+
+        <LinearLayout
+            android:id="@+id/A"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="28dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
+                android:gravity="center"
+                android:text="My Profile"
+                android:textColor="@color/black"
+                android:textSize="34dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="364dp"
+                android:layout_height="397dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/n"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Name:  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+                        android:id="@+id/n1"
+                        android:layout_width="321dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="Harshit Kumar Jayaswal"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/n" />
+
+                    <TextView
+
+                        android:id="@+id/age"
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view1"
+                        android:fontFamily="@font/regular_semi_bold"
+
+
+                        android:text="Age:  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:layout_width="321dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_below="@id/view1"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="19"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/age" />
+
+                    <TextView
+                        android:id="@+id/add"
+
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view2"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Address:  "
+
+
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:id="@id/add"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view2"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="NIT ALLAHABAD"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/add" />
+
+                    <TextView
+                        android:id="@+id/gender"
+
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view3"
+                        android:fontFamily="@font/regular_semi_bold"
+
+                        android:text="Gender:  "
+
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:id="@id/gender"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view3"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="Male"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/gender" />
+
+                    <TextView
+                        android:id="@+id/status"
+
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view5"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Status:  "
+
+
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:id="@id/status"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view5"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="In a relationship"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/status" />
+
+
+                    <TextView
+                        android:id="@+id/phone"
+
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view6"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Number:  "
+
+
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:id="@id/phone"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view6"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n"
+                        android:text="9935873031"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/phone" />
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"/>
+
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+
+                android:layout_gravity="center"
+                android:fontFamily="@font/regular_light"
+                android:text="Edit Your Information"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
