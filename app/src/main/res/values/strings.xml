@@ -2,6 +2,11 @@
     <string name="app_name">Doctorify</string>
     <string name="specialist">Select specialist</string>
     <string name="resend_otp_message">Resend OTP in %1$d seconds</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
+    <string name="home">home</string>
+    <string name="my_profile">my_profile</string>
+    <string name="logout_profile">logout_profile</string>
 
 
 </resources>

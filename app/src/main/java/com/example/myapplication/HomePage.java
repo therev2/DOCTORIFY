@@ -5,26 +5,35 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -33,24 +42,22 @@ import io.grpc.LoadBalancer;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
-
-
-    LinearLayout doc1;
-    LinearLayout layout;
-    LinearLayout.LayoutParams params;
-
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    LottieAnimationView menu_toggle_btn;
     RecyclerView recyclerView;
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
-    CardView card1, card2, card3, card4, card5;
-    Button logout_btn;
+    CardView card1, card2, card3, card4, card5,card6;
+    TextView patName;
+
     public static final String SHARED_PREFS="sharedPrefs";
 
 
     @Override
     public void onClick(View v){
-        System.out.println("button pressed");
+
         String filterlist = (String) v.getTag();
         System.out.println(filterlist);
         searchList(filterlist);
@@ -62,23 +69,97 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.nav_drawer);
 
-        logout_btn = findViewById(R.id.logout_pat);
+        //initializing variable
+        patName = findViewById(R.id.name_of_user);
 
-        logout_btn.setOnClickListener(new View.OnClickListener() {
+        //getting doc email from shared preference and storing it in variable
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String Email_of_pat = sharedPreferences.getString("patient_email","");
+
+        System.out.println(Email_of_pat);
+
+        //referencing database for parent "patient"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_pat);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                Intent intent = new Intent(HomePage.this, MainActivity.class);
-                startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    //getting patient name form database
+                    String pat_name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
+
+                    System.out.println(pat_name);
+
+                    //setting patient name
+                    patName.setText(pat_name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
+        //initializing navigation drawer
+        drawerLayout = findViewById(R.id.drawer_layout);
+        menu_toggle_btn  = findViewById(R.id.menu_btn);
+
+
+        menu_toggle_btn.setOnClickListener(v -> {
+            menu_toggle_btn.playAnimation();
+            drawerLayout.open();
+
+        });
+
+        //navigation item selection code part
+        navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemID = menuItem.getItemId();
+
+                if (itemID ==R.id.My_app)
+                {
+                    Toast.makeText(HomePage.this, "MY appointments ", Toast.LENGTH_SHORT).show();
+                }
+
+
+                if (itemID == R.id.My_profile){
+                    Toast.makeText(HomePage.this, "My Profile ", Toast.LENGTH_SHORT).show();
+                }
+
+                if (itemID == R.id.My_doctors){
+                    Toast.makeText(HomePage.this, "My Doctors ", Toast.LENGTH_SHORT).show();
+                }
+
+                if (itemID == R.id.Logout_profile){
+                    Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    editor.putString("pat_email","none");
+                    editor.apply();
+                    Intent intent = new Intent(HomePage.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+
+                drawerLayout.close();
+                return false;
+            }
+        });
+
+
+
 
 
 
@@ -114,12 +195,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card3 = findViewById(R.id.small_card3);
         card4 = findViewById(R.id.small_card4);
         card5 = findViewById(R.id.small_card5);
+        card6 = findViewById(R.id.small_card6);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
         card3.setOnClickListener(this);
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
+        card6.setOnClickListener(this);
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
@@ -132,6 +215,29 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//
+//        else{
+//            super.onBackPressed();
+//        }
+//
+//    }
+
+
+//    @NonNull
+//    @Override
+//    public OnBackInvokedDispatcher getOnBackInvokedDispatcher() {
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//
+//        return super.getOnBackInvokedDispatcher();
+//    }
 
     public void searchList(String text){
         ArrayList<HelperClass> searchList = new ArrayList<>();

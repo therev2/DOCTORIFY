@@ -140,12 +140,14 @@ public class doc_landing_page extends AppCompatActivity {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Clear the list before adding new data
+                list_doc.clear();
+
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HelperClass3 helper = dataSnapshot.getValue(HelperClass3.class);
-                    list_doc.add(helper);
-
-                    //filtering all appointments list based on doc email
-                    searchList(Email_of_doc);
+                    if (helper.getDoc_email().toLowerCase().contains(Email_of_doc.toLowerCase())){
+                        list_doc.add(helper);
+                    }
 
                 }
                 //refreshing for data change
@@ -169,15 +171,15 @@ public class doc_landing_page extends AppCompatActivity {
 
     //function to filter all appointment list based upon whatever text is passed in the function
     //this one is for email based filtering
-    public void searchList(String text){
-        ArrayList<HelperClass3> searchList = new ArrayList<>();
-        for (HelperClass3 helperClass: list_doc){
-            if (helperClass.getDoc_email().toLowerCase().contains(text.toLowerCase())){
-                searchList.add(helperClass);
-            }
-        }
-        myadapter_doc.searchDataList(searchList);
-    }
+//    public void searchList(String text){
+//        ArrayList<HelperClass3> searchList = new ArrayList<>();
+//        for (HelperClass3 helperClass: list_doc){
+//            if (helperClass.getDoc_email().toLowerCase().contains(text.toLowerCase())){
+//                searchList.add(helperClass);
+//            }
+//        }
+//        myadapter_doc.searchDataList(searchList);
+//    }
 
 
     @Override

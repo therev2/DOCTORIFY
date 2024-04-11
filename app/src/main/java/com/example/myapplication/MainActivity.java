@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
     TextView are_doc;
     TextView signup;
     EditText loginEmail, loginPassword;
@@ -241,9 +241,8 @@ public class MainActivity extends AppCompatActivity {
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", userUseremail);
+                        editor.putString("patient_email", userUseremail);
                         editor.apply();
-                        String another = sharedPreferences.getString("email", "");
                         if(checkBox_btn.isChecked()){
                             editor.putString("remember", "true");
                             editor.apply();
