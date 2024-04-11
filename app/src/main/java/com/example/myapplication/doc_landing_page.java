@@ -42,7 +42,7 @@ public class doc_landing_page extends AppCompatActivity {
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
     String doc_name,image_url,scanned_patEmail,Email_of_doc;
-    Button logoutDoc, camera_btn, resetButton;
+    Button logoutDoc, camera_btn;
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
@@ -58,8 +58,6 @@ public class doc_landing_page extends AppCompatActivity {
 
         logoutDoc = findViewById(R.id.logout_doc);
         camera_btn = findViewById(R.id.camera_btn);
-        resetButton = findViewById(R.id.reset_btn);
-
         logoutDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,15 +81,6 @@ public class doc_landing_page extends AppCompatActivity {
                 intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
                 intentIntegrator.setCaptureActivity(CaptureActivityPortrait.class);
                 intentIntegrator.initiateScan();
-            }
-        });
-
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchList(Email_of_doc);
-                Toast.makeText(doc_landing_page.this,"reset successful",Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -178,7 +167,7 @@ public class doc_landing_page extends AppCompatActivity {
     }
 
 
-    //function to filter all appointment list based upon whatever text is passed in the fucntion
+    //function to filter all appointment list based upon whatever text is passed in the function
     //this one is for email based filtering
     public void searchList(String text){
         ArrayList<HelperClass3> searchList = new ArrayList<>();
@@ -190,18 +179,6 @@ public class doc_landing_page extends AppCompatActivity {
         myadapter_doc.searchDataList(searchList);
     }
 
-    public void scannedList(String text){
-        ArrayList<HelperClass3> scannedList = new ArrayList<>();
-        for (HelperClass3 helperClass: list_doc){
-            if (helperClass.getPat_email().toLowerCase().contains((text.toLowerCase())) &&
-                    helperClass.getDoc_email().toLowerCase().contains(Email_of_doc.toLowerCase())){
-                scannedList.add(helperClass);
-            }
-
-        }
-        myadapter_doc.searchScannedList(scannedList);
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -209,10 +186,36 @@ public class doc_landing_page extends AppCompatActivity {
         if(intentResult != null){
             String content = intentResult.getContents();
             if(content != null){
-                System.out.println(content);
                 scanned_patEmail = content.substring(0,content.indexOf("&"));
                 System.out.println(scanned_patEmail);
-                scannedList(scanned_patEmail);
+                System.out.println(Email_of_doc);
+                String parent = scanned_patEmail.replace(".",",") + "&" + Email_of_doc.replace(".",",");
+                System.out.println(parent);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                reference.child("appointment").orderByKey().equalTo(parent).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Toast.makeText(doc_landing_page.this,"Appointment Exists",Toast.LENGTH_SHORT).show();
+
+                            //harshit tick here
+
+                        } else {
+
+                            //if does not exists in database
+                            Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

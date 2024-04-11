@@ -93,14 +93,6 @@
             android:layout_below="@id/upcming"
             android:scrollbars="vertical"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/reset_btn"
-            android:text="reset filter"
-            android:layout_marginTop="620dp"
-            android:layout_marginLeft="10dp"
-            ></Button>
 
         <Button
             android:layout_width="match_parent"
