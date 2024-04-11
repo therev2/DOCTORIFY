@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("email", userUseremail);
+                        editor.putString("pat_email", userUseremail);
                         editor.apply();
                         String another = sharedPreferences.getString("email", "");
                         if(checkBox_btn.isChecked()){

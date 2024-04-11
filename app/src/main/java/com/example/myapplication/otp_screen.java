@@ -70,11 +70,7 @@ public class otp_screen extends AppCompatActivity {
             send_otp(formattedPhoneNumber, true);
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
     }
 
     private String formatPhoneNumber(String phoneNumber) {
@@ -161,7 +157,7 @@ public class otp_screen extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     setInProgress(false);
 
-                    Intent intent = new Intent(otp_screen.this, HomePage.class);
+                    Intent intent = new Intent(otp_screen.this, complete_your_profile.class);
                     String email = getIntent().getStringExtra("email");
                     String password = getIntent().getStringExtra("password");
                     String phoneNumber = getIntent().getStringExtra("phone");

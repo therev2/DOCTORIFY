@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import java.util.regex.Matcher;
@@ -22,6 +23,8 @@ public class patient_register extends AppCompatActivity {
     Button signupButton;
     String phone;
     EditText phone_number;
+    public static final String SHARED_PREFS="sharedPrefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +47,17 @@ public class patient_register extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //getting entered data from the fields and storing them in variables
                 String email = signupEmail.getText().toString();
                 String password = signupPassword.getText().toString();
                 phone = phone_number.getText().toString().trim();
 
+                //checking valid email and password formats
                 if (validateEmail() && validatePassword()) {
+                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("patient_email",email);
+                    editor.apply();
                     // Start the otp_screen activity and pass the phone number, email, and password as extras
                     Intent intent = new Intent(patient_register.this, otp_screen.class);
                     intent.putExtra("phone", phone);
@@ -60,12 +69,14 @@ public class patient_register extends AppCompatActivity {
         });
     }
 
+    //function to check if the password is alpha numeric
     boolean isAlphanumeric(final int codePoint) {
         return (codePoint >= 64 && codePoint <= 90) ||
                 (codePoint >= 97 && codePoint <= 122) ||
                 (codePoint >= 32 && codePoint <= 57);
     }
 
+    //function to check email
     public Boolean validateEmail() {
         String val = signupEmail.getText().toString();
         if (val.isEmpty()) {
@@ -94,6 +105,7 @@ public class patient_register extends AppCompatActivity {
         }
     }
 
+    //fucntion to check password format
     public boolean properformat() {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
@@ -105,6 +117,7 @@ public class patient_register extends AppCompatActivity {
         return matcher.matches();
     }
 
+    //function to check password
     public Boolean validatePassword() {
         String val = signupPassword.getText().toString();
         if (val.isEmpty()) {

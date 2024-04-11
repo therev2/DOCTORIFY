@@ -185,6 +185,7 @@ public class doctor_register extends AppCompatActivity {
                             SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences_doc.edit();
                             editor.putString("remember", "true");
+                            editor.apply();
                             editor.putString("doc_email", email);
                             editor.apply();
 

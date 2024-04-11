@@ -39,7 +39,7 @@
             android:layout_height="20sp"
             android:src="@drawable/logo_line_white"
             android:layout_alignParentEnd="true"
-            app:layout_constraintStart_toEndOf="@+id/menu_btn"
+
              />
     </RelativeLayout>
 
