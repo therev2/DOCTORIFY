@@ -10,6 +10,7 @@ import android.view.View;
 
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.window.OnBackInvokedDispatcher;
 
@@ -32,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5;
+    TextView patName;
 
     public static final String SHARED_PREFS="sharedPrefs";
 
@@ -68,9 +71,43 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_drawer);
 
+        //initializing variable
+        patName = findViewById(R.id.name_of_user);
 
-        //open navigation drawer
+        //getting doc email from shared preference and storing it in variable
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String Email_of_pat = sharedPreferences.getString("patient_email","");
 
+        System.out.println(Email_of_pat);
+
+        //referencing database for parent "patient"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_pat);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+
+                    //getting patient name form database
+                    String pat_name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
+
+                    System.out.println(pat_name);
+
+                    //setting patient name
+                    patName.setText(pat_name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //initializing navigation drawer
         drawerLayout = findViewById(R.id.drawer_layout);
         menu_toggle_btn  = findViewById(R.id.menu_btn);
 
@@ -82,7 +119,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         });
 
         //navigation item selection code part
-
         navigationView = findViewById(R.id.nav_view);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
