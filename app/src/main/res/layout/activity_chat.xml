@@ -35,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:clipToOutline="true"
-            android:src="@drawable/doctor" />
+            android:src="@drawable/doctor_default" />
 
         <TextView
             android:layout_width="match_parent"

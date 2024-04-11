@@ -77,7 +77,7 @@
 
 
                     <TextView
-                        android:id="@+id/n1"
+                        android:id="@+id/name_mp"
                         android:layout_width="321dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="50dp"
@@ -111,10 +111,9 @@
 
 
                     <TextView
-
+                        android:id="@+id/age_mp"
                         android:layout_width="321dp"
                         android:layout_height="wrap_content"
-
                         android:layout_below="@id/view1"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
@@ -132,25 +131,18 @@
 
                     <TextView
                         android:id="@+id/add"
-
-
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view2"
                         android:fontFamily="@font/regular_semi_bold"
                         android:text="Address:  "
-
-
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
 
                     <TextView
-
-                        android:id="@id/add"
+                        android:id="@+id/address_mp"
                         android:layout_width="321dp"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view2"
                         android:layout_marginStart="50dp"
@@ -169,25 +161,18 @@
 
                     <TextView
                         android:id="@+id/gender"
-
-
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view3"
                         android:fontFamily="@font/regular_semi_bold"
-
                         android:text="Gender:  "
-
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
 
                     <TextView
-
                         android:id="@id/gender"
                         android:layout_width="321dp"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view3"
                         android:layout_marginStart="50dp"
@@ -206,25 +191,18 @@
 
                     <TextView
                         android:id="@+id/status"
-
-
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view5"
                         android:fontFamily="@font/regular_semi_bold"
                         android:text="Status:  "
-
-
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
 
                     <TextView
-
-                        android:id="@id/status"
+                        android:id="@+id/status_mp"
                         android:layout_width="321dp"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view5"
                         android:layout_marginStart="50dp"
@@ -238,31 +216,24 @@
                     <View
                         android:id="@+id/view6"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_height="35dp"
                         android:layout_below="@id/status" />
 
 
                     <TextView
                         android:id="@+id/phone"
-
-
                         android:layout_width="wrap_content"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view6"
                         android:fontFamily="@font/regular_semi_bold"
                         android:text="Number:  "
-
-
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
 
                     <TextView
-
                         android:id="@id/phone"
                         android:layout_width="321dp"
-
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view6"
                         android:layout_marginStart="50dp"
@@ -270,7 +241,6 @@
                         android:text="9935873031"
                         android:textColor="@color/black"
                         android:textSize="20dp"
-
                         />
 
                     <View
@@ -294,7 +264,6 @@
                 android:id="@+id/edit"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-
                 android:layout_gravity="center"
                 android:fontFamily="@font/regular_light"
                 android:text="Edit Your Information"

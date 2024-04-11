@@ -32,10 +32,10 @@ public class MYprofPat extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String Email_of_pat = sharedPreferences.getString("patient_email","");
 
-        name_mp = findViewById(R.id.n1);
-        age_mp = findViewById(R.id.age);
-        add_mp = findViewById(R.id.add);
-        ms_mp = findViewById(R.id.status);
+        name_mp = findViewById(R.id.name_mp);
+        age_mp = findViewById(R.id.age_mp);
+        add_mp = findViewById(R.id.address_mp);
+        ms_mp = findViewById(R.id.status_mp);
         gender_mp =findViewById(R.id.gender);
         textView = findViewById(R.id.edit);
 
@@ -52,9 +52,19 @@ public class MYprofPat extends AppCompatActivity {
 
                     //getting patient name form database
                     String name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
+                    String address = snapshot.child(Email_of_pat.replace(".",",")).child("address").getValue(String.class);
+                    String age = snapshot.child(Email_of_pat.replace(".",",")).child("age").getValue(String.class);
+                    String gender = snapshot.child(Email_of_pat.replace(".",",")).child("gender").getValue(String.class);
+                    String status = snapshot.child(Email_of_pat.replace(".",",")).child("status").getValue(String.class);
+
 
                     //setting patient name
                     name_mp.setText(name);
+                    add_mp.setText(address);
+                    age_mp.setText(age);
+                    gender_mp.setText(gender);
+                    ms_mp.setText(status);
+
                 }
             }
 
