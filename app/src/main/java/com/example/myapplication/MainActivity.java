@@ -251,8 +251,7 @@ public class  MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
-                    }
-                    else {
+                    } else {
                         loginPassword.setError("invalid Credentials");
                         loginPassword.requestFocus();
                     }
