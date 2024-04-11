@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0B0A07"
-    tools:context=".Doc_home_page">
+    tools:context=".HomePage">
 
 
     <RelativeLayout
