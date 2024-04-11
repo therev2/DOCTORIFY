@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,13 +11,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.databinding.ActivityChatBinding;
 
 public class chat_activity extends AppCompatActivity {
 
     private ActivityChatBinding binding;
     TextView doc_name;
-
+    ImageView docImage;
     ImageButton back_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,10 @@ public class chat_activity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //setting doctor image on chat screen
+        docImage = findViewById(R.id.doctor_profile);
+        Glide.with(this).load(getIntent().getStringExtra("Image")).into(docImage);
 
         //setting the doctor username on chat screen//
         doc_name = findViewById(R.id.doctor_name);

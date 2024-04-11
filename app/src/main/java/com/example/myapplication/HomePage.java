@@ -135,6 +135,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 if (itemID ==R.id.My_app)
                 {
                     Toast.makeText(HomePage.this, "MY appointments ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, my_app_list.class);
+                    startActivity(intent);
                 }
 
 

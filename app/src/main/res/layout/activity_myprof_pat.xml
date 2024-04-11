@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="Harshit Kumar Jayaswal"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -117,7 +117,7 @@
                         android:layout_below="@id/view1"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="19"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -147,7 +147,7 @@
                         android:layout_below="@id/view2"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="NIT ALLAHABAD"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -177,7 +177,7 @@
                         android:layout_below="@id/view3"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="Male"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -207,7 +207,7 @@
                         android:layout_below="@id/view5"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="In a relationship"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
 
@@ -238,7 +238,7 @@
                         android:layout_below="@id/view6"
                         android:layout_marginStart="50dp"
                         android:layout_toEndOf="@id/n"
-                        android:text="9935873031"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="20dp"
                         />

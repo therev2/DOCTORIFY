@@ -18,7 +18,7 @@
 
 
         <TextView
-            android:id="@+id/pat_name"
+            android:id="@+id/patEmail"
             android:maxLines="1"
             android:fontFamily="@font/regular_bold"
             android:layout_width="wrap_content"

@@ -12,15 +12,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageButton
+            android:id="@+id/back_btn_arrow"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:src="@drawable/baseline_arrow_back_24"
-            android:id="@+id/back_btn_arrow"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
             android:layout_centerVertical="true"
-            android:background="?android:windowTransitionBackgroundFadeDuration"
-            android:layout_toLeftOf="@id/doctor_profile"/>
+            android:layout_marginTop="14dp"
+            android:layout_toLeftOf="@id/doctor_profile"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="@android:color/transparent" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:id="@+id/doctor_name"
             android:paddingLeft="9dp"
             android:layout_toRightOf="@id/doctor_profile"
-            android:gravity=""
+
             android:layout_marginTop="7dp"
             android:textColor="@color/white"
             android:fontFamily="@font/regular_semi_bold"
@@ -117,15 +117,15 @@
                 
             </EditText>
             <ImageButton
+                android:id="@+id/send_btn"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:src="@drawable/baseline_send_24"
-                android:background="?android:windowTransitionBackgroundFadeDuration"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/send_btn"
+                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="50dp"
-                android:layout_alignParentBottom="true"/>
+                android:src="@drawable/baseline_send_24"
+                android:background="@android:color/transparent" />
 
         </RelativeLayout>
 
