@@ -171,7 +171,7 @@
 
 
                     <TextView
-                        android:id="@id/gender"
+                        android:id="@+id/gender_mp"
                         android:layout_width="321dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/view3"

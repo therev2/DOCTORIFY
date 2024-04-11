@@ -174,7 +174,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <View
-                android:id="@+id/Z"
+                android:id="@+id/Z1"
 
                 android:layout_width="wrap_content"
                 android:layout_height="10dp" />
@@ -188,19 +188,42 @@
                 android:text="Gender" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="">
+                android:layout_margin="0dp"
+                android:hint="@string/gender">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/gender"
+                <AutoCompleteTextView
+                    android:id="@+id/gender_pat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="15"
-                    android:inputType="text" />
-
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/Z2"
+
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
+
+            <!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/gender"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="15"-->
+<!--                    android:inputType="text" />-->
+
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -210,19 +233,34 @@
                 android:text="Marital Status" />
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="">
+                android:layout_margin="0dp"
+                android:hint="@string/status">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/stat"
+                <AutoCompleteTextView
+                    android:id="@+id/status_pat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="15"
-                    android:inputType="text" />
-
+                    android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/stat"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:ems="15"-->
+<!--                    android:inputType="text" />-->
+
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
 
             <View

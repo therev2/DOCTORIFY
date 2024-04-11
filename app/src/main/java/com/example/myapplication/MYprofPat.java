@@ -36,7 +36,7 @@ public class MYprofPat extends AppCompatActivity {
         age_mp = findViewById(R.id.age_mp);
         add_mp = findViewById(R.id.address_mp);
         ms_mp = findViewById(R.id.status_mp);
-        gender_mp =findViewById(R.id.gender);
+        gender_mp =findViewById(R.id.gender_mp);
         textView = findViewById(R.id.edit);
 
         //referencing database for parent "patient"

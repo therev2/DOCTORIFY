@@ -94,10 +94,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.99"
+                    android:maxLines="1"
                     android:fontFamily="@font/regular_italic"
                     android:letterSpacing="0.03"
                     android:paddingStart="5dp"
-                    android:text="Harshit"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold" />
