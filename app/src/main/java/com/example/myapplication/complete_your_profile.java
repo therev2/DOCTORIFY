@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -18,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class complete_your_profile extends AppCompatActivity {
-    TextInputEditText name,age,address,pincode;
+    EditText name,age,address,pincode;
     String Email_of_pat,Name,Age,Address,Pincode;
     Button submit_btn;
 
@@ -59,11 +60,26 @@ public class complete_your_profile extends AppCompatActivity {
                 Age = age.getText().toString().trim();
                 Address = address.getText().toString().trim();
                 Pincode = pincode.getText().toString().trim();
+                if (Name.isEmpty() && Age.isEmpty()){
+                    name.setError("Mandatory field");
+                    age.setError("Mandatory field");
+                }
+                else if (Age.isEmpty()){
+                    age.setError("Mandatory field");
+                }
+                else if (Name.isEmpty()){
+                    name.setError("Mandatory field");
 
-                updateUserData(Email_of_pat, Name, Age, Address, Pincode);
+                }
+                else{
+                    updateUserData(Email_of_pat, Name, Age, Address, Pincode);
+                    Intent intent = new Intent(complete_your_profile.this, HomePage.class);
+                    startActivity(intent);
 
-                Intent intent = new Intent(complete_your_profile.this, HomePage.class);
-                startActivity(intent);
+                }
+
+
+
 
             }
         });

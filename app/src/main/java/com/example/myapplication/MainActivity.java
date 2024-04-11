@@ -32,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
     TextView are_doc;
     TextView signup;
     EditText loginEmail, loginPassword;

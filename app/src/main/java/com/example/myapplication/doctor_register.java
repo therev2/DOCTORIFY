@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +26,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -37,12 +40,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class doctor_register extends AppCompatActivity {
+    private static final String PERMISSION_USE_CAMERA = Manifest.permission.CAMERA;
+    private static final int PERMISSION_REQUIRED_CODE = 100;
 
     String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
 
@@ -56,25 +62,20 @@ public class doctor_register extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteTextView;
     ArrayAdapter<String> adapterItems;
-
+    private ActivityResultLauncher<Intent> activityResultLauncher;
     String item;
-    Button b;
+
     String per[]={"android.permission.READ_MEDIA_IMAGES"};
+    String permission[]={"android.permission.WRITE_EXTERNAL_STORAG"};
     public static final String SHARED_PREFS="sharedPrefs_doc";
+    private static final int CAMERA_PERMISSION_CODE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_doctor_register);
-        b=findViewById(R.id.browse_btn);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestPermissions(per,80);
-            }
-        });
-
+        requestRunTimePermissions();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -114,36 +115,66 @@ public class doctor_register extends AppCompatActivity {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK){
+                        if (result.getResultCode() == Activity.RESULT_OK) {
                             Intent data = result.getData();
-                            uri = data.getData();
-                            try {
-                                InputStream inputStream = getContentResolver().openInputStream(uri);
-                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-
-                                Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
-
-                                uplodedImage.setImageBitmap(resizedBitmap);
-
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
+                            if (data != null && data.getData() != null) {
+                                uri = data.getData();
+                                try {
+                                    InputStream inputStream = getContentResolver().openInputStream(uri);
+                                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                                    Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
+                                    uplodedImage.setImageBitmap(resizedBitmap);
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                Bundle extras = data.getExtras();
+                                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                                uplodedImage.setImageBitmap(imageBitmap);
+                                uri = getImageUri(imageBitmap);
                             }
                         } else {
-                            Toast.makeText(doctor_register.this,"No Image Selected", Toast.LENGTH_SHORT);
+                            Toast.makeText(doctor_register.this, "No Image Selected", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }
         );
 
+
+
         browseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
+                AlertDialog.Builder builder = new AlertDialog.Builder(doctor_register.this);
+                builder.setTitle("Select Image Source")
+                        .setItems(new CharSequence[]{"Gallery", "Camera"}, (dialog, which) -> {
+                            switch (which) {
+                                case 0:
+                                    Intent photoPicker = new Intent(Intent.ACTION_PICK);
+                                    photoPicker.setType("image/*");
+                                    activityResultLauncher.launch(photoPicker);
+                                    break;
+                                case 1:
+                                    if (ActivityCompat.checkSelfPermission(doctor_register.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(doctor_register.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUIRED_CODE);
+                                    } else {
+                                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        activityResultLauncher.launch(cameraIntent);
+                                    }
+                                    break;
+                            }
+                        });
+                builder.create().show();
+
+
+//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+//                photoPicker.setType("image/*");
+//                activityResultLauncher.launch(photoPicker);
             }
         });
+
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,6 +236,66 @@ public class doctor_register extends AppCompatActivity {
             }
         });
     }
+    private Uri getImageUri(Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
+    }
+
+//    private void requestRunTimePermissions() {
+//        if(ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA)
+//                == PackageManager.PERMISSION_GRANTED){
+//            Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+//        }else if(ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_USE_CAMERA)){
+//
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("This app requires record audio permission")
+//                    .setTitle("Permission Required")
+//                    .setCancelable(false)
+//                    .setPositiveButton("ok", (dialog, which) -> {
+//                        ActivityCompat.requestPermissions(doctor_register.this, new String[]{PERMISSION_USE_CAMERA}
+//                                ,PERMISSION_REQUIRED_CODE);
+//                        dialog.dismiss();
+//                    })
+//                    .setNegativeButton("Cancel",((dialog, which) -> dialog.dismiss()));
+//
+//            builder.show();
+//        }
+//        else{
+//            ActivityCompat.requestPermissions(this,new String[]{PERMISSION_USE_CAMERA},PERMISSION_REQUIRED_CODE );
+//        }
+//
+//
+//    }
+
+    private void requestRunTimePermissions() {
+        if (ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            // Permission already granted, open the camera intent
+            Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_USE_CAMERA)) {
+            // Show a rationale dialog to explain why the permission is needed
+            openCamera();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("This app requires camera permission")
+                    .setTitle("Permission Required")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", (dialog, which) -> {
+                        ActivityCompat.requestPermissions(doctor_register.this, new String[]{PERMISSION_USE_CAMERA}, PERMISSION_REQUIRED_CODE);
+                        dialog.dismiss();
+                    })
+                    .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.show();
+        } else {
+            // Request the permission
+            ActivityCompat.requestPermissions(this, new String[]{PERMISSION_USE_CAMERA}, PERMISSION_REQUIRED_CODE);
+        }
+    }
+
+    private void openCamera() {
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        activityResultLauncher.launch(cameraIntent);
+    }
 
     boolean isAlphanumeric(final int codePoint) {
         return (codePoint >= 64 && codePoint <= 90) ||
@@ -236,8 +327,8 @@ public class doctor_register extends AppCompatActivity {
                 signupEmail.setError("Email can only be alphanumberic");
                 return false;
             }
-        }
-    }
+        }   }
+//     }
 
     public Boolean validatePassword() {
         String val = signupPassword.getText().toString();
@@ -278,15 +369,6 @@ public class doctor_register extends AppCompatActivity {
         return matcher.matches();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==80)
-        {
-            if (grantResults[0]== PackageManager.PERMISSION_GRANTED)
-                Toast.makeText(this,"permission granted",Toast.LENGTH_SHORT).show();
-        }
-    }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxWidth, int maxHeight) {
         int width = image.getWidth();
