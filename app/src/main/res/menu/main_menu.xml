@@ -3,11 +3,9 @@
 
     <item android:id="@+id/My_profile"
     android:icon="@drawable/profile_icon"
-    android:title="Hi Revan"/>
-
+    android:title="Hi Revan" />
 
     <group android:checkableBehavior="single">
-
 
         <item android:id="@+id/My_app"
             android:icon="@drawable/appointment"

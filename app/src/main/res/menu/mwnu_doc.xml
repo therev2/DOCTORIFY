@@ -3,7 +3,7 @@
 
     <item android:id="@+id/My_profile"
         android:icon="@drawable/profile_icon"
-        android:title="Hi Revan"/>
+        android:title="Hi, Harshit"/>
 
 
     <group android:checkableBehavior="single">
@@ -12,10 +12,6 @@
         <item android:id="@+id/My_app"
             android:icon="@drawable/appointment"
             android:title="Your Patients"/>
-
-        <item android:id="@+id/My_doctors"
-            android:icon="@drawable/doctor"
-            android:title="Your upcoming Appointments"/>
 
         <item android:id="@+id/Logout_profile"
             android:icon="@drawable/logout_icon"
