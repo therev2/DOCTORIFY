@@ -17,6 +17,7 @@
             app:cardCornerRadius="20dp">
 
             <FrameLayout
+                android:id="@+id/frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -50,7 +51,9 @@
                         android:letterSpacing="0.06"
                         android:text="Dr.Revan Channa"
                         android:textColor="@color/white"
-                        android:textSize="20sp"></TextView>
+                        android:textSize="20sp">
+
+                    </TextView>
 
                     <Button
                         android:layout_width="50dp"
@@ -59,7 +62,9 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="25dp"
                         android:layout_marginEnd="5dp"
+                        android:background="@drawable/scanner"
                         android:backgroundTint="@color/white"
+                        android:clipToOutline="true"
 
                         ></Button>
 
@@ -71,15 +76,18 @@
 
 
 
+
     <TextView
-        android:id="@+id/upcming"
+        android:id="@+id/upcoming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UPCOMING APPOINTMENTS"
         android:textColor="@color/black"
         android:textSize="19sp"
+
         android:layout_below="@id/card123"
         android:fontFamily="@font/regular_bold"
+        android:paddingTop="15dp"
         android:layout_centerHorizontal="true"/>
 
 
@@ -91,7 +99,7 @@
             android:layout_height="match_parent"
             android:id="@+id/recyclerView_doc"
             android:clickable="true"
-            android:layout_below="@id/upcming"
+            android:layout_below="@id/upcoming"
             android:scrollbars="vertical"/>
 
 

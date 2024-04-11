@@ -13,6 +13,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,6 +48,7 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.firebase.messaging)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -59,4 +61,5 @@ dependencies {
     implementation("com.journeyapps:zxing-android-embedded:4.1.0")
     implementation("com.google.zxing:core:3.4.1")
     implementation("id.zelory:compressor:3.0.1")
+    implementation("androidx.multidex:multidex:2.0.1")
 }

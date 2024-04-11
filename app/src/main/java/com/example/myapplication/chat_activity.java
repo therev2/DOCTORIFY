@@ -10,18 +10,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.databinding.ActivityChatBinding;
+
 public class chat_activity extends AppCompatActivity {
+
+    private ActivityChatBinding binding;
     TextView doc_name;
-    TextView status;
-    String chatroomId;
+
     ImageButton back_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chat);
-
-
+        binding = ActivityChatBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //setting the doctor username on chat screen//
         doc_name = findViewById(R.id.doctor_name);
