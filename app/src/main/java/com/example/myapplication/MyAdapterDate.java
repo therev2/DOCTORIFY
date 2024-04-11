@@ -1,11 +1,13 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -17,7 +19,7 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
     private Context context;
     private List<ItemDate> items;
     private int selectedPosition = -1;
-     OnItemClickListener onItemClickListener;
+    OnItemClickListener onItemClickListener;
 
     public MyAdapterDate(Context context, List<ItemDate> items) {
         this.context = context;
@@ -39,8 +41,8 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
         holder.dayView.setText(items.get(position).getDay());
         // Update the background color based on the selected position
         if (position == selectedPosition) {
-            
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.my_primary));
+            Toast.makeText(context.getApplicationContext(),items.get(position).getDay() ,Toast.LENGTH_SHORT).show();
 
         } else {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
@@ -63,7 +65,7 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, String date);
+        void onItemClick(View view, ItemDate itemDate);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -84,6 +86,9 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
                 notifyItemChanged(selectedPosition); // Update the previously selected item
                 selectedPosition = position;
                 notifyItemChanged(selectedPosition); // Update the newly selected item
+            }
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, items.get(position));
             }
         }
     }

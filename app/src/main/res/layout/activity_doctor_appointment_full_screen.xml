@@ -27,11 +27,12 @@
 
             <ImageView
                 android:id="@+id/doc_dp"
+
                 style="@style/roundedImageViewRounded"
                 android:layout_width="130dp"
                 android:scaleType="centerCrop"
                 android:layout_height="130dp"
-                android:background="@drawable/edit_img_rounded_corner"
+                android:background="@drawable/btn_rounded_corner"
                 android:clipToOutline="true"
                 android:src="@drawable/doctor"/>
 

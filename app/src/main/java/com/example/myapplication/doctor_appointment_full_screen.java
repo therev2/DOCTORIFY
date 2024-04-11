@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class doctor_appointment_full_screen extends AppCompatActivity implements View.OnClickListener {
+public class doctor_appointment_full_screen extends AppCompatActivity {
     private TextView doctorName;
     private TextView doctorSpecialist;
     private ImageView docProfile;
@@ -38,12 +38,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String selectedTime = "";
     private String patMail;
     private String docMail;
-
-    @Override
-    public void onClick(View v) {
-        dateForDatabase = (String) v.getTag();
-        Toast.makeText(this, dateForDatabase, Toast.LENGTH_SHORT).show();
-    }
+    private ItemDate selectedDateItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +47,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         RecyclerView recyclerView = findViewById(R.id.recyclerDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         List<ItemDate> items = getDateItems();
-        recyclerView.setAdapter(new MyAdapterDate(this, items));
         MyAdapterDate adapter = new MyAdapterDate(this, items);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener((view, date) -> {
-            dateForDatabase = date;
-            Toast.makeText(doctor_appointment_full_screen.this, dateForDatabase, Toast.LENGTH_SHORT).show();
+
+        adapter.setOnItemClickListener((view, itemDate) -> {
+            selectedDateItem = itemDate;
 
             // Update the selected position
             int clickedPosition = recyclerView.getChildAdapterPosition(view);
@@ -69,6 +63,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         docProfile = findViewById(R.id.doc_dp);
         timeButton = findViewById(R.id.time_btn);
         appointmentButton = findViewById(R.id.Appointment_btn);
+        appointmentButton.setEnabled(false); // Initially disable the button
 
         timeButton.setOnClickListener(v -> openDialog());
 
@@ -86,6 +81,18 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             intent.putExtra("doctor_name", doctorNameString);
             intent.putExtra("timee", selectedTime);
             intent.putExtra("qr_code_data", patMail + "&" + docMail);
+
+            // Check if selectedDateItem and selectedTime are not empty or null
+            if (selectedDateItem != null && !selectedTime.isEmpty()) {
+                dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                reference = database.getReference("appointment");
+
+                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime);
+                reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
+            }
+
             startActivity(intent);
         });
     }
@@ -115,12 +122,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             int hour = hourOfDay % 12;
             String amPm = (hourOfDay / 12) == 0 ? "AM" : "PM";
             selectedTime = String.format("%02d:%02d %s", hour == 0 ? 12 : hour, minute, amPm);
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            reference = database.getReference("appointment");
-            String date = dateForDatabase;
-            HelperClass3 helperClass = new HelperClass3(patMail, docMail, date, selectedTime);
-            reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
+            if (!selectedTime.isEmpty() && selectedDateItem != null) {
+                appointmentButton.setEnabled(true);
+            } else {
+                appointmentButton.setEnabled(false);
+            }
 
             timeButton.setText(selectedTime);
         }, 0, 0, false);
