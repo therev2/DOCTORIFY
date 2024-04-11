@@ -31,7 +31,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.myapplication.firebase.PrefrenceManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +49,6 @@ import java.util.regex.Pattern;
 public class doctor_register extends AppCompatActivity {
     private static final String PERMISSION_USE_CAMERA = Manifest.permission.CAMERA;
     private static final int PERMISSION_REQUIRED_CODE = 100;
-
 
     String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
 
@@ -170,6 +168,9 @@ public class doctor_register extends AppCompatActivity {
                 builder.create().show();
 
 
+//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
+//                photoPicker.setType("image/*");
+//                activityResultLauncher.launch(photoPicker);
             }
         });
 
@@ -208,7 +209,6 @@ public class doctor_register extends AppCompatActivity {
                         String degree = signupDegree.getText().toString();
                         String speacilist = item;
 
-
                         if(validateEmail() && validatePassword()){
                             HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
                             reference.child(email.replace(".",",")).setValue(helperClass);
@@ -223,7 +223,6 @@ public class doctor_register extends AppCompatActivity {
                             Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
                             startActivity(intent);
-                            finish();
 
                         }
                         dialog.dismiss();
@@ -244,6 +243,31 @@ public class doctor_register extends AppCompatActivity {
         return Uri.parse(path);
     }
 
+//    private void requestRunTimePermissions() {
+//        if(ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA)
+//                == PackageManager.PERMISSION_GRANTED){
+//            Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
+//        }else if(ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_USE_CAMERA)){
+//
+//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//            builder.setMessage("This app requires record audio permission")
+//                    .setTitle("Permission Required")
+//                    .setCancelable(false)
+//                    .setPositiveButton("ok", (dialog, which) -> {
+//                        ActivityCompat.requestPermissions(doctor_register.this, new String[]{PERMISSION_USE_CAMERA}
+//                                ,PERMISSION_REQUIRED_CODE);
+//                        dialog.dismiss();
+//                    })
+//                    .setNegativeButton("Cancel",((dialog, which) -> dialog.dismiss()));
+//
+//            builder.show();
+//        }
+//        else{
+//            ActivityCompat.requestPermissions(this,new String[]{PERMISSION_USE_CAMERA},PERMISSION_REQUIRED_CODE );
+//        }
+//
+//
+//    }
 
     private void requestRunTimePermissions() {
         if (ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA) == PackageManager.PERMISSION_GRANTED) {

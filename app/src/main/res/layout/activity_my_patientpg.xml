@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main1"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -13,9 +13,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
+
     </LinearLayout>
 
-
+    <!-- Your existing layout with white card -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="40sp"
@@ -27,7 +29,6 @@
         android:layout_marginRight="20sp"
 
         android:src="@drawable/logo_line_white" />
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -41,42 +42,27 @@
 
 
 
-
-
         <FrameLayout
             android:layout_width="match_parent"
             android:id="@+id/main_chat_screen"
             android:layout_height="match_parent"
             android:gravity="center">
 
-
+            <TextView
+                android:id="@+id/my_patients_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Patients"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:layout_margin="16dp"/>
 
             <RelativeLayout
                 android:id="@+id/bottom_layoutt"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent">
-
                 <!-- Place your bottom layout views here -->
-                <TextView
-                    android:id="@+id/my_patients_text_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:gravity="center"
-                    android:fontFamily="@font/regular_bold"
-                    android:text="Your Patients"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_below="@id/my_patients_text_view"
-                    android:id="@+id/view"
-                    android:layout_height="10dp"/>
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mainuser"
-                    android:layout_below="@+id/view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </RelativeLayout>
@@ -84,9 +70,9 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
-            android:layout_height="677dp">
+            android:layout_height="match_parent"
+            android:id="@+id/bottom_layout">
 
 
         </RelativeLayout>
@@ -96,3 +82,4 @@
 
 
 </RelativeLayout>
+

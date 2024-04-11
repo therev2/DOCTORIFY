@@ -14,7 +14,6 @@ public class HelperClass {
         this.degree = degree;
         this.speacilist = speacilist;
         this.image = image;
-
     }
 
     public String getName() {

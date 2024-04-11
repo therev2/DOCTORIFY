@@ -1,184 +1,267 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".MainActivity"
-    android:id="@+id/main">
-
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        />
-
-    <LinearLayout
-        android:id="@+id/B"
-        android:layout_width="match_parent"
-        android:layout_height="333dp"
-        android:layout_below="@id/view"
-        android:layout_marginTop="-31dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="28dp">
-
-
-        <ImageView
-            android:id="@+id/doc_dp"
-            android:layout_width="316dp"
-            android:layout_height="187dp"
-            android:layout_gravity="center"
-            android:clipToOutline="true"
-
-            android:src="@drawable/doctor_default" />
-
-        <View
-            android:layout_width="428dp"
-            android:layout_height="35dp" />
-
-        <TextView
-            android:id="@+id/docname_profile"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/regular_italic"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/mail_doc"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:fontFamily="@font/regular_italic"
-            android:text=""
-            android:textColor="@color/white"
-            android:textSize="15dp" />
-
-
-    </LinearLayout>
+    android:fitsSystemWindows="true"
+    tools:context=".MYprofPat">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/B"
-        android:layout_marginTop="0dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10sp">
 
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="20sp"
+            android:src="@drawable/logo_line_white"
+
+            />
     </RelativeLayout>
 
-    <View
-        android:id="@+id/view1"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/B"/>
+        android:layout_height="675dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="28dp">
 
-    <TextView
-        android:id="@+id/specialist"
-        android:layout_below="@id/view1"
-        android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text="Specialist"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+        <LinearLayout
+            android:id="@+id/A"
 
-    <TextView
-        android:id="@+id/specialist_mp"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:layout_below="@+id/view1"
-        android:layout_marginStart="4dp"
-        android:layout_toEndOf="@+id/specialist"
-        android:fontFamily="@font/regular_semi_bold"
-        android:paddingLeft="20dp"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="28dp">
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@id/specialist" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular_bold"
+                android:gravity="center"
+                android:text="My Profile"
+                android:textColor="@color/black"
+                android:textSize="34dp" />
 
-    <TextView
-        android:id="@+id/charge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view2"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text="Charges: "
-        android:layout_marginStart="20dp"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
 
-    <TextView
-        android:id="@id/charges"
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_below="@id/view2"
-        android:layout_marginStart="25dp"
-        android:layout_toEndOf="@id/specialist"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text="Rs."
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+            <ImageView
+                android:id="@+id/doc_dp"
+                android:layout_width="222dp"
+                android:layout_height="84dp"
+                android:layout_gravity="center"
+                android:src="@drawable/doctor_default" />
 
-    <TextView
-        android:id="@+id/charges"
-        android:layout_width="212dp"
-        android:layout_height="36dp"
-        android:layout_below="@id/view2"
-        android:layout_marginStart="-213dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/specialist_mp"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
 
-    <View
-        android:id="@+id/view3"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@id/charge" />
 
-    <TextView
-        android:id="@+id/timing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view3"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text="Timings:  "
-        android:layout_marginStart="20dp"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="364dp"
+                android:layout_height="293dp">
 
-    <TextView
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">\
 
-        android:id="@id/time"
-        android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_below="@id/view3"
-        android:layout_marginStart="6dp"
-        android:layout_toEndOf="@id/specialist"
-        android:fontFamily="@font/regular_semi_bold"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp" />
 
-    <View
-        android:layout_below="@+id/time"
-        android:id="@+id/view8"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"/>
+                    <TextView
+                        android:id="@+id/n5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Name:  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
 
+
+                    <TextView
+                        android:id="@+id/n6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="31dp"
+                        android:layout_toEndOf="@+id/n5"
+                        android:text="    Dr."
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:id="@+id/n7"
+                        android:layout_width="321dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_toEndOf="@id/n6"
+                        android:text="Shanu Kumawat"
+
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/n5" />
+
+                    <TextView
+
+                        android:id="@+id/specialist"
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view1"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Specialist  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:layout_width="321dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view1"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n5"
+                        android:text="General Physician"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/specialist" />
+
+                    <TextView
+                        android:id="@+id/charge"
+
+
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view2"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Charges:  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+
+                    <TextView
+
+                        android:id="@id/charge_doc"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view2"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n5"
+                        android:text="Rs."
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <TextView
+
+                        android:id="@+id/charges_doc"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view2"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_toEndOf="@id/n6"
+                        android:text="500"
+                        android:textColor="@color/black"
+
+                        android:textSize="20dp" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/charge" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view3"
+                        android:fontFamily="@font/regular_semi_bold"
+                        android:text="Timings:  "
+                        android:textColor="@color/black"
+                        android:textSize="20dp" />
+
+                    <TextView
+
+                        android:id="@id/time"
+                        android:layout_width="321dp"
+
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/view3"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/n5"
+                        android:text="8 to 10am and 12noon to 4pm"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+
+                        />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/time" />
+
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/time" />
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"/>
+
+            <TextView
+                android:id="@+id/edit_doc"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+
+                android:layout_gravity="center"
+                android:fontFamily="@font/regular_light"
+                android:text="Edit Your Information"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>
-

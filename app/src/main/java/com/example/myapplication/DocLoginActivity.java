@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -56,7 +57,6 @@ public class DocLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DocLoginActivity.this, doctor_register.class);
                 startActivity(intent);
-
             }
         });
 
@@ -120,8 +120,13 @@ public class DocLoginActivity extends AppCompatActivity {
                     loginEmail.setError("Email can only be alphanumberic");
                     return false;
                 }
+
             }
+
+
+
         }
+
     }
 
     //function to validate password
@@ -196,7 +201,6 @@ public class DocLoginActivity extends AppCompatActivity {
                         Toast.makeText(DocLoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DocLoginActivity.this, doc_landing_page.class);
                         startActivity(intent);
-                        finish();
 
 
                     }else {

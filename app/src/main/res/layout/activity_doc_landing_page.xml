@@ -17,7 +17,6 @@
             app:cardCornerRadius="20dp">
 
             <FrameLayout
-                android:id="@+id/frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -51,45 +50,18 @@
                         android:letterSpacing="0.06"
                         android:text="Dr.Revan Channa"
                         android:textColor="@color/white"
-                        android:textSize="20sp">
+                        android:textSize="20sp"></TextView>
 
-                    </TextView>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingTop="10sp"
-                        >
-
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/menu_btn_doc"
-
-                            android:layout_width="70sp"
-                            android:layout_height="70sp"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginTop="6dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_colorFilter="@color/white"
-                            app:lottie_loop="false"
-                            app:lottie_rawRes="@raw/main_menu4"
-                            app:lottie_speed="1" />
-
-
-                    </RelativeLayout>
-
-
-                    <ImageView
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
+                    <Button
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:id="@+id/camera_btn"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="40dp"
-                        android:clickable="true"
-                        android:layout_marginEnd="17dp"
-                        android:background="@drawable/scan"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginEnd="5dp"
                         android:backgroundTint="@color/white"
-                        android:clipToOutline="true"/>
 
+                        ></Button>
 
 
 
@@ -99,18 +71,15 @@
 
 
 
-
     <TextView
-        android:id="@+id/upcoming"
+        android:id="@+id/upcming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UPCOMING APPOINTMENTS"
         android:textColor="@color/black"
         android:textSize="19sp"
-
         android:layout_below="@id/card123"
         android:fontFamily="@font/regular_bold"
-        android:paddingTop="15dp"
         android:layout_centerHorizontal="true"/>
 
 
@@ -122,8 +91,28 @@
             android:layout_height="match_parent"
             android:id="@+id/recyclerView_doc"
             android:clickable="true"
-            android:layout_below="@id/upcoming"
+            android:layout_below="@id/upcming"
             android:scrollbars="vertical"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/logout_doc"
+            android:text="Log out"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/regular_bold"
+            android:textSize="16dp"
+            >
+
+        </Button>
+
+
+
+
+
+
 
 
 
