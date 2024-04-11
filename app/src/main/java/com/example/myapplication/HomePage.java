@@ -146,6 +146,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 if (itemID == R.id.My_doctors){
                     Toast.makeText(HomePage.this, "My Doctors ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, MyDocChat.class);
+                    startActivity(intent);
                 }
 
                 if (itemID == R.id.Logout_profile){

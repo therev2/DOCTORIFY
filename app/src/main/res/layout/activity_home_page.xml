@@ -8,15 +8,12 @@
     android:background="#0B0A07"
     tools:context=".HomePage">
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="10sp"
         >
-
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/menu_btn"

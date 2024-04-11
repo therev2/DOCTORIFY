@@ -33,6 +33,7 @@
             android:layout_height="40dp"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
+            android:layout_marginStart="9dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:clipToOutline="true"
             android:src="@drawable/doctor_default" />
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:text="Dr. Revan Channa"
             android:id="@+id/doctor_name"
+            android:paddingLeft="9dp"
             android:layout_toRightOf="@id/doctor_profile"
             android:gravity=""
             android:layout_marginTop="7dp"
@@ -51,11 +53,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Online"
+            android:text="Status"
             android:layout_toRightOf="@id/doctor_profile"
             android:layout_below="@id/doctor_name"
             android:id="@+id/doctor_status"
             android:textColor="@color/white"
+            android:paddingLeft="9dp"
             android:fontFamily="@font/regular_light"
             android:textSize="12sp"/>
 
