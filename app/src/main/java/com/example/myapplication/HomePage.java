@@ -78,8 +78,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String Email_of_pat = sharedPreferences.getString("patient_email","");
 
-        System.out.println(Email_of_pat);
-
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
 
@@ -134,6 +132,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
                 if (itemID == R.id.My_profile){
                     Toast.makeText(HomePage.this, "My Profile ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, MYprofPat.class);
+                    startActivity(intent);
                 }
 
                 if (itemID == R.id.My_doctors){

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MyPatientpg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+    </LinearLayout>
+
+    <!-- Your existing layout with white card -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="5sp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="20sp"
+
+        android:src="@drawable/logo_line_white" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="70sp"
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="28dp"
+        >
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/main_chat_screen"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/my_patients_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Patients"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:layout_margin="16dp"/>
+
+            <RelativeLayout
+                android:id="@+id/bottom_layoutt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!-- Place your bottom layout views here -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/bottom_layout">
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</RelativeLayout>
+

@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/My_profile"
-    android:icon="@drawable/profile_icon"
-    android:title="Hi Revan"/>
+        android:icon="@drawable/profile_icon"
+        android:title="Hi Revan"/>
 
 
     <group android:checkableBehavior="single">
@@ -11,11 +11,11 @@
 
         <item android:id="@+id/My_app"
             android:icon="@drawable/appointment"
-            android:title="My Appointments"/>
+            android:title="Your Patients"/>
 
         <item android:id="@+id/My_doctors"
             android:icon="@drawable/doctor"
-            android:title="My Doctors"/>
+            android:title="Your upcoming Appointments"/>
 
         <item android:id="@+id/Logout_profile"
             android:icon="@drawable/logout_icon"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".chat_activity"
-    android:background="@color/my_primary">
+    android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/edit_text_rounded_corner"
             android:clipToOutline="true"
-            android:src="@drawable/doctor" />
+            android:src="@drawable/doctor_default" />
 
         <TextView
             android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:hint="Write Message Here"
+                android:hint="Type the Message"
                 android:layout_marginBottom="50dp"
                 android:elevation="4dp"
                 android:padding="10dp"
@@ -113,6 +113,7 @@
             <ImageButton
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:src="@drawable/baseline_send_24"
                 android:background="?android:windowTransitionBackgroundFadeDuration"
                 android:layout_alignParentEnd="true"

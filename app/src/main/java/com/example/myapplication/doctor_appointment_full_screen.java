@@ -74,7 +74,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
 
         docMail = getIntent().getStringExtra("doc_mail");
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        patMail = sharedPreferences.getString("email", "");
+        patMail = sharedPreferences.getString("patient_email", "");
 
         appointmentButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, booked_confirm.class);

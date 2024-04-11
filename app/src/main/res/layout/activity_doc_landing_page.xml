@@ -4,71 +4,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent"
     tools:context=".doc_landing_page">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card123"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="-20dp"
-            android:backgroundTint="@color/my_primary"
-            app:cardCornerRadius="20dp">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card123"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="-20dp"
+        android:backgroundTint="@color/my_primary"
+        app:cardCornerRadius="20dp">
 
-            <FrameLayout
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="157dp"
+                    android:layout_height="154dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:elevation="40dp"
+                    android:scaleType="centerCrop"
+                    android:translationZ="40dp"
+                    android:background="@drawable/btn_total_round"
+                    android:clipToOutline="true"
+                    android:src="@drawable/doctor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="16dp" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="157dp"
-                        android:layout_height="154dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:elevation="40dp"
-                        android:scaleType="centerCrop"
-                        android:translationZ="40dp"
-                        android:background="@drawable/btn_total_round"
-                        android:clipToOutline="true"
-                        android:src="@drawable/doctor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="16dp" />
+                <TextView
+                    android:id="@+id/doccomo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView2"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/regular_light"
+                    android:letterSpacing="0.06"
+                    android:text="Dr.Revan Channa"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
 
-                    <TextView
-                        android:id="@+id/doccomo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/imageView2"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/regular_light"
-                        android:letterSpacing="0.06"
-                        android:text="Dr.Revan Channa"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"></TextView>
+                <Button
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/camera_btn"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginEnd="5dp"
+                    android:backgroundTint="@color/black"
+                    ></Button>
 
-                    <Button
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/camera_btn"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="25dp"
-                        android:layout_marginEnd="5dp"
-                        android:backgroundTint="@color/black"
-                        ></Button>
-
-
-
-                </RelativeLayout>
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
-
-
+            </RelativeLayout>
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/upcming"
@@ -81,39 +76,28 @@
         android:fontFamily="@font/regular_bold"
         android:layout_centerHorizontal="true"/>
 
-
-
-
     <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/recyclerView_doc"
-            android:clickable="true"
-            android:layout_below="@id/upcming"
-            android:scrollbars="vertical"/>
+        android:id="@+id/recyclerView_doc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/logout_doc"
+        android:layout_below="@id/upcming"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="1dp"
+        android:clickable="true"
+        android:scrollbars="vertical" />
 
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/logout_doc"
-            android:text="Log out"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
-            android:fontFamily="@font/regular_bold"
-            android:textSize="16dp"
-            >
-
-        </Button>
-
-
-
-
-
-
-
-
-
+    <Button
+        android:id="@+id/logout_doc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/regular_bold"
+        android:text="Log out"
+        android:textSize="16sp" />
 
 </RelativeLayout>

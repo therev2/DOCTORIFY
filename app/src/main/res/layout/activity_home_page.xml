@@ -94,10 +94,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.99"
+                    android:maxLines="1"
                     android:fontFamily="@font/regular_italic"
                     android:letterSpacing="0.03"
                     android:paddingStart="5dp"
-                    android:text="Harshit"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -355,12 +356,12 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card6"
                         android:layout_width="90dp"
+                        android:tag="Sex"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="30dp"
                         android:clickable="true"
-                        android:tag="General physician"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 

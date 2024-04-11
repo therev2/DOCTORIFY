@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,9 +22,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 
 public class complete_your_profile extends AppCompatActivity {
-    EditText name,age,address,pincode;
-    String Email_of_pat,Name,Age,Address,Pincode;
+    EditText name,age,address;
+    String Email_of_pat,Name,Age,Address,Gender,Status,gender_d,status_d;
     Button submit_btn;
+    String[] gender_array = {"Male","Female","Other"};
+    String[] status_array = {"Bachelor","In relaltionship","Married"};
+    AutoCompleteTextView genderTextView, statusTextView;
+    ArrayAdapter<String> genderItems, statusItems;
+
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs";
@@ -43,13 +51,34 @@ public class complete_your_profile extends AppCompatActivity {
         name = findViewById(R.id.name);
         age = findViewById(R.id.age);
         address = findViewById(R.id.address);
-        pincode = findViewById(R.id.pin);
         submit_btn = findViewById(R.id.reg_complete);
 
-        System.out.println(Name);
-        System.out.println(Age);
-        System.out.println(Address);
-        System.out.println(Pincode);
+        genderTextView = findViewById(R.id.gender_pat);
+        genderItems = new ArrayAdapter<String>(this, R.layout.list_item, gender_array);
+
+        genderTextView.setAdapter(genderItems);
+
+        genderTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                gender_d = adapterView.getItemAtPosition(i).toString().trim();
+                Toast.makeText(complete_your_profile.this,gender_d, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        statusTextView = findViewById(R.id.status_pat);
+        statusItems = new ArrayAdapter<String>(this, R.layout.list_item, status_array);
+
+        statusTextView.setAdapter(statusItems);
+
+        statusTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                 status_d = adapterView.getItemAtPosition(i).toString().trim();
+                Toast.makeText(complete_your_profile.this,status_d, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +88,9 @@ public class complete_your_profile extends AppCompatActivity {
                 Name = name.getText().toString().trim();
                 Age = age.getText().toString().trim();
                 Address = address.getText().toString().trim();
-                Pincode = pincode.getText().toString().trim();
+                Gender = gender_d.trim();
+                Status = status_d.trim();
+
                 if (Name.isEmpty() && Age.isEmpty()){
                     name.setError("Mandatory field");
                     age.setError("Mandatory field");
@@ -72,7 +103,7 @@ public class complete_your_profile extends AppCompatActivity {
 
                 }
                 else{
-                    updateUserData(Email_of_pat, Name, Age, Address, Pincode);
+                    updateUserData(Email_of_pat, Name, Age, Address, Gender,Status);
                     Intent intent = new Intent(complete_your_profile.this, HomePage.class);
                     startActivity(intent);
 
@@ -86,7 +117,7 @@ public class complete_your_profile extends AppCompatActivity {
 
     }
 
-    private void updateUserData(String email, String name, String age, String address, String pincode) {
+    private void updateUserData(String email, String name, String age, String address, String gender, String status) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("patient").child(email.replace(".", ","));
 
@@ -95,7 +126,8 @@ public class complete_your_profile extends AppCompatActivity {
         userData.put("name", name);
         userData.put("age", age);
         userData.put("address", address);
-        userData.put("pincode", pincode);
+        userData.put("gender", gender);
+        userData.put("status",status);
 
         // Update the user data in the database
         reference.updateChildren(userData)

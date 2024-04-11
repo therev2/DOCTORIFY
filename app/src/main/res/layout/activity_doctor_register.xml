@@ -62,7 +62,7 @@
                             android:layout_width="300dp"
                             android:layout_height="200dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/doctor" />
+                            android:src="@drawable/doctor_default" />
 
                         <View
                             android:id="@+id/J76587567"
