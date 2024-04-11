@@ -11,14 +11,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 
 public class complete_your_profile extends AppCompatActivity {
@@ -106,6 +108,7 @@ public class complete_your_profile extends AppCompatActivity {
                     updateUserData(Email_of_pat, Name, Age, Address, Gender,Status);
                     Intent intent = new Intent(complete_your_profile.this, HomePage.class);
                     startActivity(intent);
+                    finish();
 
                 }
 

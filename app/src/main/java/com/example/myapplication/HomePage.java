@@ -7,22 +7,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-
-import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.window.OnBackInvokedDispatcher;
-
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.activity.OnBackPressedDispatcher;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,8 +32,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import io.grpc.LoadBalancer;
-
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
     NavigationView navigationView;
@@ -49,14 +41,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
-    CardView card1, card2, card3, card4, card5,card6;
+    CardView card1, card2, card3, card4, card5, card6;
     TextView patName;
-
-    public static final String SHARED_PREFS="sharedPrefs";
+    ImageView locationbtn;
+    public static final String SHARED_PREFS = "sharedPrefs";
 
 
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
 
         String filterlist = (String) v.getTag();
         System.out.println(filterlist);
@@ -70,13 +62,22 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_drawer);
+        locationbtn = findViewById(R.id.location_btn);
+
+        locationbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, Map.class);
+                startActivity(intent);
+            }
+        });
 
         //initializing variable
         patName = findViewById(R.id.name_of_user);
 
-        //getting doc email from shared preference and storing it in variable
+        //getting patient email from shared preference and storing it in variable
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String Email_of_pat = sharedPreferences.getString("patient_email","");
+        String Email_of_pat = sharedPreferences.getString("patient_email", "");
 
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
@@ -87,15 +88,21 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
+                if (snapshot.exists()) {
 
                     //getting patient name form database
-                    String pat_name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
-
-                    System.out.println(pat_name);
+                    String pat_name = snapshot.child(Email_of_pat.replace(".", ",")).child("name").getValue(String.class);
 
                     //setting patient name
                     patName.setText(pat_name);
+
+                    // Find the "My_profile" MenuItem
+                    MenuItem profileItem = navigationView.getMenu().findItem(R.id.My_profile);
+
+                    // Set the new title
+                    String newTitle = "Hi, " + pat_name;
+                    profileItem.setTitle(newTitle);
+
                 }
             }
 
@@ -107,7 +114,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
         //initializing navigation drawer
         drawerLayout = findViewById(R.id.drawer_layout);
-        menu_toggle_btn  = findViewById(R.id.menu_btn);
+        menu_toggle_btn = findViewById(R.id.menu_btn);
 
 
         menu_toggle_btn.setOnClickListener(v -> {
@@ -124,32 +131,36 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemID = menuItem.getItemId();
 
-                if (itemID ==R.id.My_app)
-                {
+                if (itemID == R.id.My_app) {
                     Toast.makeText(HomePage.this, "MY appointments ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, my_app_list.class);
+                    startActivity(intent);
                 }
 
 
-                if (itemID == R.id.My_profile){
+                if (itemID == R.id.My_profile) {
                     Toast.makeText(HomePage.this, "My Profile ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(HomePage.this, MYprofPat.class);
                     startActivity(intent);
                 }
 
-                if (itemID == R.id.My_doctors){
+                if (itemID == R.id.My_doctors) {
                     Toast.makeText(HomePage.this, "My Doctors ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(HomePage.this, MyDocChat.class);
+                    startActivity(intent);
                 }
 
-                if (itemID == R.id.Logout_profile){
-                    Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                if (itemID == R.id.Logout_profile) {
+                    Toast.makeText(HomePage.this, "Log out Successful", Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("remember", "false");
                     editor.apply();
-                    editor.putString("pat_email","none");
+                    editor.putString("pat_email", "none");
                     editor.apply();
                     Intent intent = new Intent(HomePage.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
 
                 }
 
@@ -159,24 +170,19 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         });
 
 
-
-
-
-
-
         recyclerView = findViewById(R.id.recyclerView);
         database = FirebaseDatabase.getInstance().getReference("doctor");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new Myadapter(this,list);
+        myAdapter = new Myadapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     HelperClass helper = dataSnapshot.getValue(HelperClass.class);
                     list.add(helper);
 
@@ -239,10 +245,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 //        return super.getOnBackInvokedDispatcher();
 //    }
 
-    public void searchList(String text){
+    public void searchList(String text) {
         ArrayList<HelperClass> searchList = new ArrayList<>();
-        for (HelperClass helperClass: list){
-            if (helperClass.getSpeacilist().toLowerCase().contains(text.toLowerCase())){
+        for (HelperClass helperClass : list) {
+            if (helperClass.getSpeacilist().toLowerCase().contains(text.toLowerCase())) {
                 searchList.add(helperClass);
             }
         }

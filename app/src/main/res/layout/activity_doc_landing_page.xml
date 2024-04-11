@@ -4,100 +4,128 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context=".doc_landing_page">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card123"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="-20dp"
-        android:backgroundTint="@color/my_primary"
-        app:cardCornerRadius="20dp">
-
-        <FrameLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card123"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="250dp"
+            android:layout_marginTop="-20dp"
+            android:backgroundTint="@color/black"
+            app:cardCornerRadius="20dp">
 
-            <RelativeLayout
+            <FrameLayout
+                android:id="@+id/frame"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="157dp"
-                    android:layout_height="154dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:elevation="40dp"
-                    android:scaleType="centerCrop"
-                    android:translationZ="40dp"
-                    android:background="@drawable/btn_total_round"
-                    android:clipToOutline="true"
-                    android:src="@drawable/doctor"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="16dp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/doccomo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imageView2"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="@font/regular_light"
-                    android:letterSpacing="0.06"
-                    android:text="Dr.Revan Channa"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"></TextView>
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="157dp"
+                        android:layout_height="154dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:elevation="40dp"
+                        android:scaleType="centerCrop"
+                        android:translationZ="40dp"
+                        android:background="@drawable/btn_total_round"
+                        android:clipToOutline="true"
+                        android:src="@drawable/doctor_default"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="16dp" />
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/camera_btn"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginEnd="5dp"
-                    android:backgroundTint="@color/black"
-                    ></Button>
+                    <TextView
+                        android:id="@+id/doccomo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imageView2"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/regular_light"
+                        android:letterSpacing="0.06"
+                        android:text="Dr.Revan Channa"
+                        android:textColor="@color/white"
+                        android:textSize="20sp">
 
-            </RelativeLayout>
-        </FrameLayout>
-    </androidx.cardview.widget.CardView>
+                    </TextView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="10sp"
+                        >
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/menu_btn_doc"
+
+                            android:layout_width="70sp"
+                            android:layout_height="70sp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="6dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_colorFilter="@color/white"
+                            app:lottie_loop="false"
+                            app:lottie_rawRes="@raw/main_menu4"
+                            app:lottie_speed="1" />
+
+
+                    </RelativeLayout>
+
+
+                    <ImageView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:id="@+id/camera_btn"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="40dp"
+                        android:clickable="true"
+                        android:layout_marginEnd="17dp"
+                        android:background="@drawable/scan"
+                        android:backgroundTint="@color/white"
+                        android:clipToOutline="true"/>
+
+
+
+
+                </RelativeLayout>
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
 
     <TextView
-        android:id="@+id/upcming"
+        android:id="@+id/upcoming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UPCOMING APPOINTMENTS"
         android:textColor="@color/black"
         android:textSize="19sp"
+
         android:layout_below="@id/card123"
         android:fontFamily="@font/regular_bold"
+        android:paddingTop="15dp"
         android:layout_centerHorizontal="true"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_doc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/logout_doc"
-        android:layout_below="@id/upcming"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="1dp"
-        android:clickable="true"
-        android:scrollbars="vertical" />
 
-    <Button
-        android:id="@+id/logout_doc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="1dp"
-        android:fontFamily="@font/regular_bold"
-        android:text="Log out"
-        android:textSize="16sp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerView_doc"
+            android:clickable="true"
+            android:layout_below="@id/upcoming"
+            android:scrollbars="vertical"/>
+
+
+
 
 </RelativeLayout>
