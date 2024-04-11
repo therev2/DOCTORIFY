@@ -49,6 +49,7 @@ public class Myadapter_Doc extends RecyclerView.Adapter<Myadapter_Doc.MyViewHold
         notifyDataSetChanged();
     }
 
+
     public static class MyViewHolder_Doc extends RecyclerView.ViewHolder{
 
         TextView pat_app_mail, app_date, app_time;

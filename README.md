@@ -14,7 +14,7 @@ Features
 
 Tech Stack
 
-- Andorid Studio with Java
+- Android Studio with Java
 
 - Backend : Firebase
 

@@ -32,6 +32,8 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
 
+import io.reactivex.rxjava3.core.Emitter;
+
 public class doc_landing_page extends AppCompatActivity {
 
     RecyclerView recyclerView_doc;
@@ -39,9 +41,8 @@ public class doc_landing_page extends AppCompatActivity {
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
-    String doc_name,image_url;
+    String doc_name,image_url,scanned_patEmail,Email_of_doc;
     Button logoutDoc, camera_btn;
-
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
@@ -57,7 +58,6 @@ public class doc_landing_page extends AppCompatActivity {
 
         logoutDoc = findViewById(R.id.logout_doc);
         camera_btn = findViewById(R.id.camera_btn);
-
         logoutDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +65,7 @@ public class doc_landing_page extends AppCompatActivity {
                 SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences_doc.edit();
                 editor.putString("doc_email", "null");
+                editor.putString("remember", "false");
                 editor.apply();
                 Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
                 startActivity(intent);
@@ -87,7 +88,7 @@ public class doc_landing_page extends AppCompatActivity {
 
         //getting doc email from shared preference and storing it in variable
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
+        Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
 
         //referencing database for parent "doctor"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
@@ -166,7 +167,7 @@ public class doc_landing_page extends AppCompatActivity {
     }
 
 
-    //function to filter all appointment list based upon whatever text is passed in the fucntion
+    //function to filter all appointment list based upon whatever text is passed in the function
     //this one is for email based filtering
     public void searchList(String text){
         ArrayList<HelperClass3> searchList = new ArrayList<>();
@@ -178,22 +179,47 @@ public class doc_landing_page extends AppCompatActivity {
         myadapter_doc.searchDataList(searchList);
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(intentResult != null){
             String content = intentResult.getContents();
             if(content != null){
-                System.out.println(content);
+                scanned_patEmail = content.substring(0,content.indexOf("&"));
+                System.out.println(scanned_patEmail);
+                System.out.println(Email_of_doc);
+                String parent = scanned_patEmail.replace(".",",") + "&" + Email_of_doc.replace(".",",");
+                System.out.println(parent);
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+                reference.child("appointment").orderByKey().equalTo(parent).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Toast.makeText(doc_landing_page.this,"Appointment Exists",Toast.LENGTH_SHORT).show();
+
+                            //harshit tick here
+
+                        } else {
+
+                            //if does not exists in database
+                            Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
             }
         }
-
-
-
         super.onActivityResult(requestCode, resultCode, data);
-
-
-
-
     }
+
+
 }

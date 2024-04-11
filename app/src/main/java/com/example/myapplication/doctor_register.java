@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -16,10 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultCaller;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -38,14 +37,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.net.URL;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class doctor_register extends AppCompatActivity {
 
     String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
-
 
     EditText signupEmail, signupPassword, signupName, signupExp, signupCharge, signupTime, signupDegree;
     Button signupButton, browseBtn;
@@ -66,7 +65,7 @@ public class doctor_register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_doctor_register);
         b=findViewById(R.id.browse_btn);
         b.setOnClickListener(new View.OnClickListener() {
@@ -110,12 +109,6 @@ public class doctor_register extends AppCompatActivity {
         browseBtn = findViewById(R.id.browse_btn);
         uplodedImage = findViewById(R.id.uploaded_img);
 
-//for compressing image
-////        uplodedImage.buildDrawingCache();
-//        Bitmap bmap = uplodedImage.getDrawingCache();
-//        Bitmap bitmap = Bitmap.createScaledBitmap(bmap, 300, 300, true);
-
-
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -124,7 +117,17 @@ public class doctor_register extends AppCompatActivity {
                         if (result.getResultCode() == Activity.RESULT_OK){
                             Intent data = result.getData();
                             uri = data.getData();
-                            uplodedImage.setImageURI(uri);
+                            try {
+                                InputStream inputStream = getContentResolver().openInputStream(uri);
+                                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+
+                                Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
+
+                                uplodedImage.setImageBitmap(resizedBitmap);
+
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                         } else {
                             Toast.makeText(doctor_register.this,"No Image Selected", Toast.LENGTH_SHORT);
                         }
@@ -142,9 +145,6 @@ public class doctor_register extends AppCompatActivity {
             }
         });
 
-
-
-
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,7 +154,6 @@ public class doctor_register extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(doctor_register.this);
                 builder.setCancelable(false);
-//                builder.setView(R.layout.progress_layout)
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
@@ -163,7 +162,7 @@ public class doctor_register extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                         Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                        while (!uriTask.isComplete());
+                        while (!((Task<?>) uriTask).isComplete());
                         Uri urlImage = uriTask.getResult();
                         imageURL = urlImage.toString();
 
@@ -179,8 +178,6 @@ public class doctor_register extends AppCompatActivity {
                         String degree = signupDegree.getText().toString();
                         String speacilist = item;
 
-
-
                         if(validateEmail() && validatePassword()){
                             HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
                             reference.child(email.replace(".",",")).setValue(helperClass);
@@ -195,10 +192,8 @@ public class doctor_register extends AppCompatActivity {
                             Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
                             startActivity(intent);
 
-
                         }
                         dialog.dismiss();
-
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -206,16 +201,8 @@ public class doctor_register extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-
-
-
-
-
             }
         });
-
-
-
     }
 
     boolean isAlphanumeric(final int codePoint) {
@@ -223,8 +210,6 @@ public class doctor_register extends AppCompatActivity {
                 (codePoint >= 97 && codePoint <= 122) ||
                 (codePoint >= 32 && codePoint <= 57);
     }
-
-
 
     public Boolean validateEmail() {
         String val = signupEmail.getText().toString().trim();
@@ -253,7 +238,6 @@ public class doctor_register extends AppCompatActivity {
         }
     }
 
-
     public Boolean validatePassword() {
         String val = signupPassword.getText().toString();
         if (val.isEmpty()) {
@@ -281,23 +265,16 @@ public class doctor_register extends AppCompatActivity {
                     return false;
                 }
             }
-
-
         }
-
     }
 
     public boolean properformat() {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-
         Pattern pattern = Pattern.compile(emailRegex);
         String val = signupEmail.getText().toString().trim();
-
         Matcher matcher = pattern.matcher(val);
-
         return matcher.matches();
-
     }
 
     @Override
@@ -310,6 +287,21 @@ public class doctor_register extends AppCompatActivity {
         }
     }
 
+    public Bitmap getResizedBitmap(Bitmap image, int maxWidth, int maxHeight) {
+        int width = image.getWidth();
+        int height = image.getHeight();
 
+        float ratioBitmap = (float) width / (float) height;
+        float ratioMax = (float) maxWidth / (float) maxHeight;
 
+        int finalWidth = maxWidth;
+        int finalHeight = maxHeight;
+        if (ratioMax > ratioBitmap) {
+            finalWidth = (int) ((float)maxHeight * ratioBitmap);
+        } else {
+            finalHeight = (int) ((float)maxWidth / ratioBitmap);
+        }
+
+        return Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+    }
 }
