@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,7 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
     private Context context;
     private List<ItemDate> items;
     private int selectedPosition = -1;
-    private OnItemClickListener onItemClickListener;
+     OnItemClickListener onItemClickListener;
 
     public MyAdapterDate(Context context, List<ItemDate> items) {
         this.context = context;
@@ -26,17 +27,21 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.recycler_date, parent, false));
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_date, parent, false);
+        MyViewHolder holder = new MyViewHolder(view);
+        view.setOnClickListener(holder);
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.dateView.setText(items.get(position).getDate());
         holder.dayView.setText(items.get(position).getDay());
-
         // Update the background color based on the selected position
         if (position == selectedPosition) {
+            
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.my_primary));
+
         } else {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));
         }
@@ -44,6 +49,7 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
 
     @Override
     public int getItemCount() {
+
         return items.size();
     }
 
@@ -52,7 +58,6 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
         selectedPosition = position;
         notifyItemChanged(selectedPosition); // Update the newly selected item
     }
-
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
@@ -74,10 +79,11 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
 
         @Override
         public void onClick(View v) {
-            if (onItemClickListener != null) {
-                int position = getAdapterPosition();
-                ItemDate itemDate = items.get(position);
-                onItemClickListener.onItemClick(v, itemDate.getDate());
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                notifyItemChanged(selectedPosition); // Update the previously selected item
+                selectedPosition = position;
+                notifyItemChanged(selectedPosition); // Update the newly selected item
             }
         }
     }

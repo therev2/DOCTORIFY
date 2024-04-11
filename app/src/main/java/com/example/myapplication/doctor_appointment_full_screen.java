@@ -3,14 +3,17 @@ package com.example.myapplication;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +34,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String doctorNameString;
     private DatabaseReference reference;
     private String dateForDatabase = "";
-    private String kl;
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedTime = "";
     private String patMail;
@@ -47,13 +49,10 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_appointment_full_screen);
-
         RecyclerView recyclerView = findViewById(R.id.recyclerDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
         List<ItemDate> items = getDateItems();
         recyclerView.setAdapter(new MyAdapterDate(this, items));
-
         MyAdapterDate adapter = new MyAdapterDate(this, items);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((view, date) -> {
