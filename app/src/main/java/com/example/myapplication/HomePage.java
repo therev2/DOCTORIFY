@@ -5,22 +5,29 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.window.OnBackInvokedDispatcher;
 
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,18 +40,15 @@ import io.grpc.LoadBalancer;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
-
-
-    LinearLayout doc1;
-    LinearLayout layout;
-    LinearLayout.LayoutParams params;
-
+    NavigationView navigationView;
+    DrawerLayout drawerLayout;
+    LottieAnimationView menu_toggle_btn;
     RecyclerView recyclerView;
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5;
-    Button logout_btn;
+
     public static final String SHARED_PREFS="sharedPrefs";
 
 
@@ -62,23 +66,57 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.nav_drawer);
 
-        logout_btn = findViewById(R.id.logout_pat);
 
-        logout_btn.setOnClickListener(new View.OnClickListener() {
+        //open navigation drawer
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        menu_toggle_btn  = findViewById(R.id.menu_btn);
+
+
+        menu_toggle_btn.setOnClickListener(v -> {
+            menu_toggle_btn.playAnimation();
+            drawerLayout.open();
+
+        });
+
+        //navigation item selection code part
+
+        navigationView = findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                Intent intent = new Intent(HomePage.this, MainActivity.class);
-                startActivity(intent);
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemID = menuItem.getItemId();
 
+                if (itemID ==R.id.home1){
+                    Toast.makeText(HomePage.this, "Home Selected", Toast.LENGTH_SHORT).show();
+
+                }
+                if (itemID == R.id.My_profile){
+                    Toast.makeText(HomePage.this, "My Profile Selected", Toast.LENGTH_SHORT).show();
+
+                }
+
+                if (itemID == R.id.Logout_profile){
+                    Toast.makeText(HomePage.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Intent intent = new Intent(HomePage.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+
+                drawerLayout.close();
+                return false;
             }
         });
+
+
+
 
 
 
@@ -132,6 +170,29 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
 
 
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//
+//        else{
+//            super.onBackPressed();
+//        }
+//
+//    }
+
+
+//    @NonNull
+//    @Override
+//    public OnBackInvokedDispatcher getOnBackInvokedDispatcher() {
+//        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//        }
+//
+//        return super.getOnBackInvokedDispatcher();
+//    }
 
     public void searchList(String text){
         ArrayList<HelperClass> searchList = new ArrayList<>();

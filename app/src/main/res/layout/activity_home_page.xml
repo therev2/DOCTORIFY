@@ -9,27 +9,42 @@
     tools:context=".HomePage">
 
 
-    <RelativeLayout
-        android:id="@+id/A"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha="0.00"
-        android:background="@color/my_secondary" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
         android:orientation="horizontal"
         android:paddingTop="10sp"
-        android:paddingRight="10dp">
+        >
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/menu_btn"
+
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="-19dp"
+            app:lottie_autoPlay="true"
+            app:lottie_colorFilter="@color/white"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/main_menu4"
+            app:lottie_speed="1" />
 
         <ImageView
+            android:layout_marginRight="20sp"
+            android:layout_marginTop="5sp"
+            android:id="@+id/imageView3"
             android:layout_width="20sp"
             android:layout_height="20sp"
+            android:src="@drawable/logo_line_white"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintStart_toEndOf="@+id/menu_btn"
+             />
+    </RelativeLayout>
 
-            android:src="@drawable/logo_line_white" />
-    </LinearLayout>
+
+
 
 
     <androidx.cardview.widget.CardView
@@ -43,6 +58,11 @@
         android:layout_marginBottom="-20dp"
         app:cardCornerRadius="28dp">
 
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/D"
             android:layout_width="wrap_content"
@@ -50,6 +70,7 @@
             android:animateLayoutChanges="true"
             android:orientation="vertical"
             android:padding="28dp">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -128,12 +149,12 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card1"
-                        android:tag="Cardiologist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
-                        android:clickable="true"
                         android:layout_alignParentBottom="true"
+                        android:clickable="true"
+                        android:tag="Cardiologist"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 
@@ -168,13 +189,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card2"
-                        android:tag="Dentist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="30dp"
                         android:clickable="true"
+                        android:tag="Dentist"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 
@@ -210,13 +231,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card3"
-                        android:tag="Physiotherapist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="30dp"
                         android:clickable="true"
+                        android:tag="Physiotherapist"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 
@@ -251,13 +272,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card4"
-                        android:tag="ENT Specialist"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="30dp"
                         android:clickable="true"
+                        android:tag="ENT Specialist"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 
@@ -296,13 +317,13 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/small_card5"
-                        android:tag="General physician"
                         android:layout_width="90dp"
                         android:layout_height="120dp"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginLeft="30dp"
                         android:clickable="true"
+                        android:tag="General physician"
                         app:cardBackgroundColor="#5C6784"
                         app:cardCornerRadius="4dp">
 
@@ -359,30 +380,28 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_marginTop="10dp"
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/recyclerView"
+                    android:layout_marginTop="10dp"
                     android:clickable="true"
-                    android:scrollbars="vertical"/>
-
-
+                    android:scrollbars="vertical" />
 
 
             </LinearLayout>
 
 
-            <Button
-                android:id="@+id/logout_pat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/regular_semi_bold"
-                android:text="Log Out"
-                android:textSize="16dp"></Button>
 
 
         </LinearLayout>
+        </FrameLayout>
+
+
+
     </androidx.cardview.widget.CardView>
+
+
+
+
 
 </RelativeLayout>
