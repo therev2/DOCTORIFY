@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:animateLayoutChanges="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".chat_activity"
+    android:background="@color/black">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageButton
+            android:id="@+id/back_btn_arrow"
+            android:layout_marginLeft="5sp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="14dp"
+            android:layout_toLeftOf="@id/doctor_profile"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:background="@android:color/transparent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Raman verma"
+                android:id="@+id/patient_name"
+                android:paddingLeft="9dp"
+                android:layout_toRightOf="@id/doctor_profile"
+
+                android:layout_marginTop="7dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/regular_semi_bold"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_toRightOf="@id/doctor_profile"
+                android:layout_below="@id/patient_name"
+                android:id="@+id/patient_status"
+                android:textColor="@color/white"
+                android:paddingLeft="9dp"
+                android:fontFamily="@font/regular_light"
+                android:textSize="12sp"/>
+
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="70sp"
+        android:layout_marginBottom="-20dp"
+        app:cardCornerRadius="28dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/main_chat_screen"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="match_parent"
+                android:id="@+id/view"
+                android:layout_height="30dp"/>
+
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4dp"
+                    android:src="@drawable/add"
+                    android:clickable="true"
+                    android:id="@+id/add_img_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    />
+
+
+                <EditText
+                    android:id="@+id/chat_edittext"
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/regular_medium"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+
+                    android:layout_marginBottom="50dp"
+                    android:layout_toLeftOf="@id/send_btn"
+                    android:layout_toRightOf="@id/add_img_btn"
+                    android:background="@drawable/edit_text_rounded_corner"
+                    android:elevation="4dp"
+                    android:hint="Type the Message"
+                    android:padding="10dp">
+
+                </EditText>
+
+                <ImageButton
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4sp"
+                    android:id="@+id/send_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/circle_shape"
+                    android:src="@drawable/baseline_send_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatRecyclerViewDoc"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_above="@id/chat_edittext"/>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>
