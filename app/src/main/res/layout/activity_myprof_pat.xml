@@ -185,7 +185,7 @@
         />
 
     <View
-        android:id="@+id/view6"
+        android:id="@+id/view0"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:layout_below="@id/gender" />
@@ -205,8 +205,9 @@
         android:layout_width="321dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/view6"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="2dp"
         android:layout_toEndOf="@id/blood_grp"
+
         android:text=""
         android:fontFamily="@font/regular_semi_bold"
         android:textColor="@color/black"

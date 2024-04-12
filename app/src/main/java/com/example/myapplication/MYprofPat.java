@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MYprofPat extends AppCompatActivity {
 
-    TextView textView,name_mp,age_mp,add_mp,ms_mp,gender_mp,phonenumber;
+    TextView textView,name_mp,age_mp,add_mp,ms_mp,gender_mp,phonenumber,bloodgroup;
     public static final String SHARED_PREFS="sharedPrefs";
 
     @Override
@@ -39,6 +39,7 @@ public class MYprofPat extends AppCompatActivity {
         gender_mp =findViewById(R.id.gender_mp);
         textView = findViewById(R.id.edit);
         phonenumber = findViewById(R.id.phone);
+        bloodgroup = findViewById(R.id.blood_grp_mp);
 
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
@@ -58,6 +59,7 @@ public class MYprofPat extends AppCompatActivity {
                     String gender = snapshot.child(Email_of_pat.replace(".",",")).child("gender").getValue(String.class);
                     String status = snapshot.child(Email_of_pat.replace(".",",")).child("status").getValue(String.class);
                     String phoneno = snapshot.child(Email_of_pat.replace(".",",")).child("phoneNumber").getValue(String.class);
+                    String blood_gp = snapshot.child(Email_of_pat.replace(".",",")).child("bloodgroup").getValue(String.class);
 
                     //setting patient name
                     name_mp.setText(name);
@@ -66,6 +68,7 @@ public class MYprofPat extends AppCompatActivity {
                     gender_mp.setText(gender);
                     ms_mp.setText(status);
                     phonenumber.setText(phoneno);
+                    bloodgroup.setText(blood_gp);
 
                 }
             }
