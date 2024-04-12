@@ -28,7 +28,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -247,6 +249,21 @@ public class  MainActivity extends AppCompatActivity {
                             editor.putString("remember", "true");
                             editor.apply();
                         }
+                        //For FireStore
+                        FirebaseFirestore database = FirebaseFirestore.getInstance();
+                        HashMap<String,Object> data = new HashMap<>();
+                        data.put("Email","harshit");
+                        data.put("Password", "userPassword");
+
+                        database.collection("users")
+                                        .add(data).
+                                addOnSuccessListener(documentReference -> {
+                                        Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
+                                })
+                                .addOnFailureListener(exception ->{
+                                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                })
+                        ;
 
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);

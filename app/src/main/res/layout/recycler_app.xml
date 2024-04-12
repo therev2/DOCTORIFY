@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recycler"
+    android:backgroundTint="#F1FAEE"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/doc_img"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/doctor_default"
+            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
+
+
+        <TextView
+            android:id="@+id/doc"
+            android:maxLines="1"
+            android:fontFamily="@font/regular_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/doc_img"
+            android:text="Dr."
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/docName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@id/doc"
+            android:fontFamily="@font/regular_bold"
+            android:maxLines="1"
+            android:text="Harshit Kumar "
+            android:textColor="@color/black"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/time"
+            android:fontFamily="@font/regular_semi_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="12dp"
+            android:layout_toEndOf="@id/date"
+            android:text="12:00 am"
+            android:paddingLeft="10dp"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:fontFamily="@font/regular_semi_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="12dp"
+            android:layout_toEndOf="@id/doc_img"
+            android:text="7th April,2024"
+            android:paddingLeft="10dp"
+            android:textSize="12sp" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/rupees"-->
+<!--            android:fontFamily="@font/regular_semi_bold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginStart="26dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:layout_toEndOf="@id/time"-->
+<!--            android:text="Rs."-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:textSize="12sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/charges"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="-6dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:layout_toEndOf="@id/rupees"-->
+<!--            android:fontFamily="@font/regular_semi_bold"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:text="500"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="12sp" />-->
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

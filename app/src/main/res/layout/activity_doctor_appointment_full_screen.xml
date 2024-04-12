@@ -34,7 +34,7 @@
                 android:layout_height="130dp"
                 android:background="@drawable/btn_rounded_corner"
                 android:clipToOutline="true"
-                android:src="@drawable/doctor"/>
+                android:src="@drawable/doctor_default"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -48,8 +48,12 @@
                     android:fontFamily="@font/regular_bold"
                     android:paddingLeft="7dp"
                     android:text="Dr.Revan Channa"
+                    android:padding="10dp"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
+
+
+
                 <TextView
                     android:id="@+id/doc_specialistt"
                     android:layout_width="match_parent"
@@ -57,6 +61,7 @@
                     android:fontFamily="@font/regular_semi_bold"
                     android:paddingLeft="7dp"
                     android:text="Heart Surgeon"
+                    android:padding="10dp"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
 
@@ -80,6 +85,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"/>
+
             <TextView
                 android:layout_marginTop="10sp"
                 android:layout_width="match_parent"
@@ -98,6 +107,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/recyclerDate"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+
             <TextView
                 android:layout_marginTop="10sp"
                 android:layout_width="match_parent"

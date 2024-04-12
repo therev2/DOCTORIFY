@@ -41,8 +41,9 @@ public class doc_landing_page extends AppCompatActivity {
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
-    String doc_name,image_url,scanned_patEmail,Email_of_doc;
-    Button logoutDoc, camera_btn;
+    String doc_name,image_url,scanned_patEmail,scanned_docEmail,Email_of_doc;
+    Button logoutDoc;
+    ImageView camera_btn;
 
     //initialised shared storage for doc
     public static final String SHARED_PREFS="sharedPrefs_doc";
@@ -189,34 +190,39 @@ public class doc_landing_page extends AppCompatActivity {
             String content = intentResult.getContents();
             if(content != null){
                 scanned_patEmail = content.substring(0,content.indexOf("&"));
-                System.out.println(scanned_patEmail);
+                scanned_docEmail = content.substring(content.indexOf("&")+1);
+                System.out.println(scanned_docEmail);
                 System.out.println(Email_of_doc);
                 String parent = scanned_patEmail.replace(".",",") + "&" + Email_of_doc.replace(".",",");
                 System.out.println(parent);
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                reference.child("appointment").orderByKey().equalTo(parent).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            Toast.makeText(doc_landing_page.this,"Appointment Exists",Toast.LENGTH_SHORT).show();
+                if (scanned_docEmail.equals(Email_of_doc)){
+                    reference.child("appointment").orderByKey().equalTo(parent).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                Toast.makeText(doc_landing_page.this,"Appointment Exists",Toast.LENGTH_SHORT).show();
 
-                            //harshit tick here
+                                //harshit tick here
 
-                        } else {
+                            } else {
 
-                            //if does not exists in database
-                            Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+                                //if does not exists in database
+                                Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+
+                            }
 
                         }
 
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }else {
+                    Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
 
-                    }
-                });
-
+                }
 
             }
         }
