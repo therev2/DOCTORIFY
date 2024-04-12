@@ -210,10 +210,10 @@ public class doctor_register extends AppCompatActivity {
                         String time = signupTime.getText().toString();
                         String degree = signupDegree.getText().toString();
                         String speacilist = item;
-                        String visibility = "1";
+
 
                         if(validateEmail() && validatePassword()){
-                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL,visibility);
+                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
                             reference.child(email.replace(".",",")).setValue(helperClass);
 
                             SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);

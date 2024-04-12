@@ -48,13 +48,12 @@ public class doc_landing_page extends AppCompatActivity {
     Myadapter_Doc myadapter_doc;
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
-    String doc_name,image_url,scanned_patEmail,scanned_docEmail,Email_of_doc;
+    String doc_name, image_url, scanned_patEmail, scanned_docEmail, Email_of_doc;
     Button logoutDoc;
     ImageView camera_btn;
 
     //initialised shared storage for doc
-    public static final String SHARED_PREFS="sharedPrefs_doc";
-
+    public static final String SHARED_PREFS = "sharedPrefs_doc";
 
 
     @SuppressLint("MissingInflatedId")
@@ -69,7 +68,7 @@ public class doc_landing_page extends AppCompatActivity {
         logoutDoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(doc_landing_page.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                Toast.makeText(doc_landing_page.this, "Log out Successful", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -87,7 +86,6 @@ public class doc_landing_page extends AppCompatActivity {
         });
 
 
-
         //getting doc email from shared preference and storing it in variable
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         Email_of_doc = sharedPreferences_doc.getString("doc_email", "");
@@ -101,13 +99,13 @@ public class doc_landing_page extends AppCompatActivity {
         checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    doc_name = snapshot.child(Email_of_doc.replace(".",",")).child("name").getValue(String.class);
-                    image_url = snapshot.child(Email_of_doc.replace(".",",")).child("image").getValue(String.class);
+                if (snapshot.exists()) {
+                    doc_name = snapshot.child(Email_of_doc.replace(".", ",")).child("name").getValue(String.class);
+                    image_url = snapshot.child(Email_of_doc.replace(".", ",")).child("image").getValue(String.class);
 
                     //getting doc name form intent and setting it up
                     doctorName = findViewById(R.id.doccomo);
-                    doctorName.setText("Dr."+doc_name);
+                    doctorName.setText("Dr." + doc_name);
 
                     //setting doc image from database
                     ImageView doc_photo = findViewById(R.id.imageView2);
@@ -123,7 +121,7 @@ public class doc_landing_page extends AppCompatActivity {
         });
 
         drawerLayoutDoc = findViewById(R.id.drawer_layout_doc);
-        menu_toggle_btn_doc  = findViewById(R.id.menu_btn_doc);
+        menu_toggle_btn_doc = findViewById(R.id.menu_btn_doc);
 
 
         menu_toggle_btn_doc.setOnClickListener(v -> {
@@ -140,23 +138,22 @@ public class doc_landing_page extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemID = menuItem.getItemId();
 
-                if (itemID ==R.id.My_app_doc)
-                {
+                if (itemID == R.id.My_app_doc) {
                     Toast.makeText(doc_landing_page.this, "MY appointments ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(doc_landing_page.this, my_app_list.class);
                     startActivity(intent);
                 }
 
 
-                if (itemID == R.id.My_profile_doc){
+                if (itemID == R.id.My_profile_doc) {
                     Toast.makeText(doc_landing_page.this, "My Profile ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(doc_landing_page.this, Myprof_doc.class);
                     startActivity(intent);
                 }
 //
 
-                if (itemID == R.id.Logout_profile_doc){
-                    Toast.makeText(doc_landing_page.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                if (itemID == R.id.Logout_profile_doc) {
+                    Toast.makeText(doc_landing_page.this, "Log out Successful", Toast.LENGTH_SHORT).show();
                     SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences_doc.edit();
                     editor.putString("doc_email", "null");
@@ -178,9 +175,8 @@ public class doc_landing_page extends AppCompatActivity {
         recyclerView_doc.setLayoutManager(new LinearLayoutManager(this));
 
         list_doc = new ArrayList<>();
-        myadapter_doc = new Myadapter_Doc(this,list_doc);
+        myadapter_doc = new Myadapter_Doc(this, list_doc);
         recyclerView_doc.setAdapter(myadapter_doc);
-
 
 
         // getting all appointments from database
@@ -190,9 +186,9 @@ public class doc_landing_page extends AppCompatActivity {
                 // Clear the list before adding new data
                 list_doc.clear();
 
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     HelperClass3 helper = dataSnapshot.getValue(HelperClass3.class);
-                    if (helper.getDoc_email().toLowerCase().contains(Email_of_doc.toLowerCase())){
+                    if (helper.getDoc_email().toLowerCase().contains(Email_of_doc.toLowerCase())) {
                         list_doc.add(helper);
                     }
 
@@ -231,30 +227,30 @@ public class doc_landing_page extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
-        if(intentResult != null){
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
             String content = intentResult.getContents();
-            if(content != null){
-                scanned_patEmail = content.substring(0,content.indexOf("&"));
-                scanned_docEmail = content.substring(content.indexOf("&")+1);
+            if (content != null) {
+                scanned_patEmail = content.substring(0, content.indexOf("&"));
+                scanned_docEmail = content.substring(content.indexOf("&") + 1);
                 System.out.println(scanned_docEmail);
                 System.out.println(Email_of_doc);
-                String parent = scanned_patEmail.replace(".",",") + "&" + Email_of_doc.replace(".",",");
+                String parent = scanned_patEmail.replace(".", ",") + "&" + Email_of_doc.replace(".", ",");
                 System.out.println(parent);
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-                if (scanned_docEmail.equals(Email_of_doc)){
+                if (scanned_docEmail.equals(Email_of_doc)) {
                     reference.child("appointment").orderByKey().equalTo(parent).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Toast.makeText(doc_landing_page.this,"Appointment Exists",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(doc_landing_page.this, "Appointment Exists", Toast.LENGTH_SHORT).show();
 
                                 //harshit tick here
 
                             } else {
 
                                 //if does not exists in database
-                                Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(doc_landing_page.this, "Appointment does not exists", Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -265,8 +261,8 @@ public class doc_landing_page extends AppCompatActivity {
 
                         }
                     });
-                }else {
-                    Toast.makeText(doc_landing_page.this,"Appointment does not exists",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(doc_landing_page.this, "Appointment does not exists", Toast.LENGTH_SHORT).show();
 
                 }
 

@@ -164,7 +164,7 @@ public class otp_screen extends AppCompatActivity {
                     String phoneNumber = getIntent().getStringExtra("phone");
 
                     // Store the user data in Firebase Database
-                    storeUserData(phoneNumber, email, password,status);
+                    storeUserData(phoneNumber, email, password);
                     startActivity(intent);
                     finish();
 
@@ -179,7 +179,7 @@ public class otp_screen extends AppCompatActivity {
         });
     }
 
-    private void storeUserData(String phoneNumber, String email, String password,String status) {
+    private void storeUserData(String phoneNumber, String email, String password) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("patient");
 
@@ -188,7 +188,6 @@ public class otp_screen extends AppCompatActivity {
         userData.put("phoneNumber", phoneNumber);
         userData.put("email", email);
         userData.put("password", password);
-        userData.put("visibility",status);
 
         // Store the user data in the database
         reference.child(email.replace(".", ",")).setValue(userData)

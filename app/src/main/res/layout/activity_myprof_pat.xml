@@ -36,7 +36,7 @@
             android:layout_width="266dp"
             android:layout_height="58dp"
             android:fontFamily="@font/regular_italic"
-            android:text="Revan Channa"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="30dp" />
 
