@@ -48,8 +48,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String selectedTime = "";
     private String patMail;
     private String docMail;
-    String pat_name,doc_name,doc_image,doc_charges;
-
+    String pat_name,doc_name,doc_image;
     private ItemDate selectedDateItem;
 
     @Override
@@ -103,7 +102,6 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
                 if (snapshot.exists()){
                     doc_name = snapshot.child(docMail.replace(".",",")).child("name").getValue(String.class);
                     doc_image = snapshot.child(docMail.replace(".",",")).child("image").getValue(String.class);
-                    doc_charges = snapshot.child(docMail.replace(".",",")).child("charge").getValue(String.class);
                 }
             }
 
@@ -160,7 +158,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
             options.put("theme.color", "#08A045");
             options.put("currency", "INR");
-            options.put("amount", doc_charges+"00");//pass amount in currency subunits-->500
+            options.put("amount", "50000");//pass amount in currency subunits-->500
             options.put("prefill.email", "gaurav.kumar@example.com");
             options.put("prefill.contact","9988776655");
             JSONObject retryObj = new JSONObject();
