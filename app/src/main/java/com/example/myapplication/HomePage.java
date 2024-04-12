@@ -42,9 +42,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     DatabaseReference database;
     Myadapter myAdapter;
     ArrayList<HelperClass> list;
-    CardView card1, card2, card3, card4, card5, card6;
+    CardView card1, card2, card3, card4, card5, card6,card7,card8,card9,card10;
     TextView patName;
-    SearchView searchView;
     ImageView locationbtn;
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -65,20 +64,9 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_drawer);
         locationbtn = findViewById(R.id.location_btn);
-        searchView = findViewById(R.id.searchview);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                searchList_Name(newText);
-                return true;
-            }
-        });
+
 
         locationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,6 +207,10 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4 = findViewById(R.id.small_card4);
         card5 = findViewById(R.id.small_card5);
         card6 = findViewById(R.id.small_card6);
+        card7 = findViewById(R.id.small_card7);
+        card8 = findViewById(R.id.small_card8);
+        card9 = findViewById(R.id.small_card9);
+        card10 = findViewById(R.id.small_card10);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
@@ -226,6 +218,11 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         card4.setOnClickListener(this);
         card5.setOnClickListener(this);
         card6.setOnClickListener(this);
+        card7.setOnClickListener(this);
+        card8.setOnClickListener(this);
+        card9.setOnClickListener(this);
+        card10.setOnClickListener(this);
+
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
