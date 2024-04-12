@@ -79,8 +79,6 @@ public class chat_activity extends AppCompatActivity {
         init();
         listenMessages();
 
-
-
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
 
@@ -99,9 +97,7 @@ public class chat_activity extends AppCompatActivity {
                     }
                     else{
                         doct_staus.setText("Offline");
-
                     }
-                    // Find the "My_profile" MenuItem
 
 
                 }

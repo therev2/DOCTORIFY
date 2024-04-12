@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,10 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +39,9 @@ import java.util.ArrayList;
 import io.reactivex.rxjava3.core.Emitter;
 
 public class doc_landing_page extends AppCompatActivity {
+    NavigationView navigationViewDoc;
+    DrawerLayout drawerLayoutDoc;
+    LottieAnimationView menu_toggle_btn_doc;
 
     RecyclerView recyclerView_doc;
     DatabaseReference database;
@@ -55,7 +62,7 @@ public class doc_landing_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_doc_landing_page);
+        setContentView(R.layout.nav_doc);
 
         logoutDoc = findViewById(R.id.logout_doc);
         camera_btn = findViewById(R.id.camera_btn);
@@ -63,13 +70,7 @@ public class doc_landing_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(doc_landing_page.this,"Log out Successful",Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences_doc.edit();
-                editor.putString("doc_email", "null");
-                editor.putString("remember", "false");
-                editor.apply();
-                Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
-                startActivity(intent);
+
 
             }
         });
@@ -121,9 +122,54 @@ public class doc_landing_page extends AppCompatActivity {
             }
         });
 
+        drawerLayoutDoc = findViewById(R.id.drawer_layout_doc);
+        menu_toggle_btn_doc  = findViewById(R.id.menu_btn_doc);
 
 
+        menu_toggle_btn_doc.setOnClickListener(v -> {
+            menu_toggle_btn_doc.playAnimation();
+            drawerLayoutDoc.open();
 
+        });
+
+        //navigation item selection code part
+        navigationViewDoc = findViewById(R.id.nav_view_doc);
+
+        navigationViewDoc.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int itemID = menuItem.getItemId();
+
+                if (itemID ==R.id.My_app_doc)
+                {
+                    Toast.makeText(doc_landing_page.this, "MY appointments ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(doc_landing_page.this, my_app_list.class);
+                    startActivity(intent);
+                }
+
+
+                if (itemID == R.id.My_profile_doc){
+                    Toast.makeText(doc_landing_page.this, "My Profile ", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(doc_landing_page.this, Myprof_doc.class);
+                    startActivity(intent);
+                }
+//
+
+                if (itemID == R.id.Logout_profile_doc){
+                    Toast.makeText(doc_landing_page.this,"Log out Successful",Toast.LENGTH_SHORT).show();
+                    SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences_doc.edit();
+                    editor.putString("doc_email", "null");
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
+                    startActivity(intent);
+                }
+
+                drawerLayoutDoc.close();
+                return false;
+            }
+        });
 
         //recycler to get all appointment list
         recyclerView_doc = findViewById(R.id.recyclerView_doc);

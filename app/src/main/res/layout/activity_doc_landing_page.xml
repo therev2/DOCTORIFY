@@ -54,6 +54,28 @@
                         android:textSize="20sp">
 
                     </TextView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="10sp"
+                        >
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/menu_btn_doc"
+
+                            android:layout_width="70sp"
+                            android:layout_height="70sp"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginTop="6dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_colorFilter="@color/white"
+                            app:lottie_loop="false"
+                            app:lottie_rawRes="@raw/main_menu4"
+                            app:lottie_speed="1" />
+
+
+                    </RelativeLayout>
 
 
                     <ImageView
@@ -61,9 +83,9 @@
                         android:layout_height="23dp"
                         android:id="@+id/camera_btn"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="35dp"
+                        android:layout_marginTop="40dp"
                         android:clickable="true"
-                        android:layout_marginEnd="13dp"
+                        android:layout_marginEnd="17dp"
                         android:background="@drawable/scan"
                         android:backgroundTint="@color/white"
                         android:clipToOutline="true"/>
