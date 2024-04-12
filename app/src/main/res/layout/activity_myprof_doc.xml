@@ -108,9 +108,7 @@
         android:textColor="@color/black"
         android:textSize="20dp" />
 
-
     <TextView
-
         android:id="@id/charges"
         android:layout_width="49dp"
         android:layout_height="37dp"
@@ -123,7 +121,7 @@
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/charges_doc"
+        android:id="@+id/charges"
         android:layout_width="228dp"
         android:layout_height="37dp"
         android:layout_below="@id/view2"
