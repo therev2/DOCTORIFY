@@ -39,7 +39,7 @@ public class Myadapter_Doc extends RecyclerView.Adapter<Myadapter_Doc.MyViewHold
         holder.app_time.setText(helperclass.getTime());
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, chat_activity.class);
+            Intent intent = new Intent(context, chat_activity_doctor.class);
             context.startActivity(intent);
 
         });

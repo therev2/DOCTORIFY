@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".chat_activity"
-    android:background="@color/black"
-   >
+    android:background="@color/black">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,51 +22,40 @@
             android:layout_toLeftOf="@id/doctor_profile"
             android:src="@drawable/baseline_arrow_back_24"
             android:background="@android:color/transparent" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        >
-
-
-        <ImageView
-            android:id="@+id/doctor_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="9dp"
-            android:background="@drawable/edit_text_rounded_corner"
-            android:clipToOutline="true"
-            android:src="@drawable/doctor_default" />
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dr. Revan Channa"
-            android:id="@+id/doctor_name"
-            android:paddingLeft="9dp"
-            android:layout_toRightOf="@id/doctor_profile"
 
-            android:layout_marginTop="7dp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/regular_semi_bold"
-            android:textSize="16sp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:layout_toRightOf="@id/doctor_profile"
-            android:layout_below="@id/doctor_name"
-            android:id="@+id/doctor_status"
-            android:textColor="@color/white"
-            android:paddingLeft="9dp"
-            android:fontFamily="@font/regular_light"
-            android:textSize="12sp"/>
+            >
 
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Raman verma"
+                android:id="@+id/patient_name"
+                android:paddingLeft="9dp"
+                android:layout_toRightOf="@id/doctor_profile"
 
-    </RelativeLayout>
+                android:layout_marginTop="7dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/regular_semi_bold"
+                android:textSize="16sp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:layout_toRightOf="@id/doctor_profile"
+                android:layout_below="@id/patient_name"
+                android:id="@+id/doctor_status"
+                android:textColor="@color/white"
+                android:paddingLeft="9dp"
+                android:fontFamily="@font/regular_light"
+                android:textSize="12sp"/>
+
+
+
+        </RelativeLayout>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -93,8 +81,6 @@
             <RelativeLayout
                 android:id="@+id/bottom_layout"
                 android:layout_width="match_parent"
-                android:windowSoftInputMode="adjustResize"
-
                 android:layout_height="match_parent">
 
                 <EditText
@@ -124,8 +110,7 @@
                     android:src="@drawable/baseline_send_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
-
-                    android:id="@+id/chatRecyclerView"
+                    android:id="@+id/chatRecyclerViewDoc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
