@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/B"
         android:layout_width="match_parent"
-        android:layout_height="369dp"
+        android:layout_height="349dp"
 
         android:gravity="center"
         android:orientation="vertical"
@@ -187,15 +187,56 @@
     <View
         android:id="@+id/view6"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/gender" />
+
+    <TextView
+        android:id="@+id/blood_grp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular_semi_bold"
+        android:layout_below="@id/view6"
+        android:layout_marginStart="20dp"
+        android:text="Blood Group:  "
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/blood_grp_mp"
+        android:layout_width="321dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view6"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@id/blood_grp"
+        android:text=""
+        android:fontFamily="@font/regular_semi_bold"
+        android:textColor="@color/black"
+        android:paddingLeft="10dp"
+        android:textSize="20dp"
+        />
+
+
+
+
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_below="@id/status" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_below="@id/blood_grp" />
+
 
     <TextView
         android:id="@+id/edit"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_gravity="center"
-        android:layout_below="@+id/view6"
+        android:layout_below="@+id/view7"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/regular_light"
         android:text="Edit Your Information"

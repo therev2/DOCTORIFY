@@ -162,8 +162,10 @@ public class otp_screen extends AppCompatActivity {
                     String password = getIntent().getStringExtra("password");
                     String phoneNumber = getIntent().getStringExtra("phone");
 
+                    String hashedpassword = Hash.hashedPassword(password);
+
                     // Store the user data in Firebase Database
-                    storeUserData(phoneNumber, email, password);
+                    storeUserData(phoneNumber, email, hashedpassword);
                     startActivity(intent);
                     finish();
 

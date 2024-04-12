@@ -208,9 +208,11 @@ public class doctor_register extends AppCompatActivity {
                         String degree = signupDegree.getText().toString();
                         String speacilist = item;
 
+                        String hashedpass = Hash.hashedPassword(password);
+
 
                         if(validateEmail() && validatePassword()){
-                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
+                            HelperClass helperClass = new HelperClass(email, hashedpass, name, exp, charge, time, degree, speacilist, imageURL);
                             reference.child(email.replace(".",",")).setValue(helperClass);
 
                             SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -254,7 +256,7 @@ public class doctor_register extends AppCompatActivity {
             openCamera();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("This app requires camera permission")
-                    .setTitle("Permission Required")
+                    .setTitle("Permission Requiared")
                     .setCancelable(false)
                     .setPositiveButton("OK", (dialog, which) -> {
                         ActivityCompat.requestPermissions(doctor_register.this, new String[]{PERMISSION_USE_CAMERA}, PERMISSION_REQUIRED_CODE);

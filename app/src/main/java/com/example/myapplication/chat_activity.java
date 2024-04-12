@@ -62,7 +62,7 @@ public class chat_activity extends AppCompatActivity implements ChatAdapter.OnIm
     @Override
     public void onImageClick(String imageUrl) {
 
-        Toast.makeText(this,imageUrl,Toast.LENGTH_SHORT).show();
+
         openImageViewer(imageUrl);
     }
 

@@ -236,7 +236,7 @@ public class  MainActivity extends AppCompatActivity {
                     loginEmail.setError(null);
                     String passwordFromDB = snapshot.child(userUseremail.replace(".", ",")).child("password").getValue(String.class);
 
-                    if (passwordFromDB.equals(userPassword)) {
+                    if (passwordFromDB.equals(Hash.hashedPassword(userPassword))) {
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();

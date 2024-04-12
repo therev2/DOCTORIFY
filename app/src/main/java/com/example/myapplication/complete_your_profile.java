@@ -25,12 +25,13 @@ import java.util.HashMap;
 
 public class complete_your_profile extends AppCompatActivity {
     EditText name,age,address;
-    String Email_of_pat,Name,Age,Address,Gender,Status,gender_d,status_d;
+    String Email_of_pat,Name,Age,Address,Gender,Status,BloodGroup,gender_d,status_d,blood_d;
     Button submit_btn;
+    String [] blood_group_array = {"A+","A-","B+","B-","O+","O-","AB+","AB-"};
     String[] gender_array = {"Male","Female","Other"};
     String[] status_array = {"Bachelor","In relaltionship","Married"};
-    AutoCompleteTextView genderTextView, statusTextView;
-    ArrayAdapter<String> genderItems, statusItems;
+    AutoCompleteTextView genderTextView, statusTextView,bloodgroupTextView;
+    ArrayAdapter<String> genderItems, statusItems,bloodgroupItems;
 
 
     //initialised shared storage for doc
@@ -82,6 +83,23 @@ public class complete_your_profile extends AppCompatActivity {
         });
 
 
+
+        bloodgroupTextView = findViewById(R.id.blood_group_pat);
+
+        bloodgroupItems = new ArrayAdapter<String>(this, R.layout.list_item, blood_group_array);
+        bloodgroupTextView.setAdapter(bloodgroupItems);
+
+        bloodgroupTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                blood_d = adapterView.getItemAtPosition(i).toString().trim();
+                Toast.makeText(complete_your_profile.this, blood_d, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        bloodgroupTextView.setAdapter(bloodgroupItems);
+
+
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +110,7 @@ public class complete_your_profile extends AppCompatActivity {
                 Address = address.getText().toString().trim();
                 Gender = gender_d.trim();
                 Status = status_d.trim();
+                BloodGroup = blood_d.trim();
 
                 if (Name.isEmpty() && Age.isEmpty()){
                     name.setError("Mandatory field");
@@ -105,7 +124,7 @@ public class complete_your_profile extends AppCompatActivity {
 
                 }
                 else{
-                    updateUserData(Email_of_pat, Name, Age, Address, Gender,Status);
+                    updateUserData(Email_of_pat, Name, Age, Address, Gender,Status,BloodGroup);
                     Intent intent = new Intent(complete_your_profile.this, HomePage.class);
                     startActivity(intent);
                     finish();
@@ -120,7 +139,7 @@ public class complete_your_profile extends AppCompatActivity {
 
     }
 
-    private void updateUserData(String email, String name, String age, String address, String gender, String status) {
+    private void updateUserData(String email, String name, String age, String address, String gender, String status,String bloodgroup) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("patient").child(email.replace(".", ","));
 
@@ -131,6 +150,7 @@ public class complete_your_profile extends AppCompatActivity {
         userData.put("address", address);
         userData.put("gender", gender);
         userData.put("status",status);
+        userData.put("bloodgroup",bloodgroup);
 
         // Update the user data in the database
         reference.updateChildren(userData)

@@ -46,7 +46,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private String dateForDatabase = "";
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedTime = "";
-    private String patMail;
+    private String patMail,pat_number;
     private String docMail;
     String pat_name,doc_name,doc_image,doc_charges;
 
@@ -126,6 +126,8 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
 
                     //getting patient name form database
                     pat_name = snapshot.child(patMail.replace(".", ",")).child("name").getValue(String.class);
+                    pat_number = snapshot.child(patMail.replace(".", ",")).child("phoneNumber").getValue(String.class);
+
                 }
 
             }
@@ -161,8 +163,8 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             options.put("theme.color", "#08A045");
             options.put("currency", "INR");
             options.put("amount", doc_charges+"00");//pass amount in currency subunits-->500
-            options.put("prefill.email", "gaurav.kumar@example.com");
-            options.put("prefill.contact","9988776655");
+            options.put("prefill.email", patMail);
+            options.put("prefill.contact",pat_number);
             JSONObject retryObj = new JSONObject();
             retryObj.put("enabled", true);
             retryObj.put("max_count", 4);

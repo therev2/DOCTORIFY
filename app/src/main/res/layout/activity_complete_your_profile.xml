@@ -28,6 +28,10 @@
         android:layout_marginBottom="-20dp"
         >
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/lin"
 
@@ -179,6 +183,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="10dp" />
 
+            <!-- Add this code after the Marital Status field -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.9"
+                android:fontFamily="@font/regular_semi_bold"
+                android:text="Blood Group" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:hint="@string/blood_group_pat">
+
+                <AutoCompleteTextView
+                    android:id="@+id/blood_group_pat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="10dp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -280,6 +311,7 @@
 
 
         </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 

@@ -2,6 +2,7 @@
     <string name="app_name">Doctorify</string>
     <string name="specialist">Select specialist</string>
     <string name="gender">Select Gender</string>
+    <string name="blood_group_pat">Select Blood Group </string>
     <string name="status">Select Status</string>
     <string name="resend_otp_message">Resend OTP in %1$d seconds</string>
     <string name="open">Open Navigation Drawer</string>

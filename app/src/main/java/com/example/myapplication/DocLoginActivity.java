@@ -179,7 +179,7 @@ public class DocLoginActivity extends AppCompatActivity {
                     loginEmail.setError(null);
                     //getting password from Database
                     String passwordFromDB = snapshot.child(userUseremail.replace(".",",")).child("password").getValue(String.class);
-                    if(passwordFromDB.equals(userPassword)){
+                    if(passwordFromDB.equals(Hash.hashedPassword(userPassword))){
                         loginEmail.setError(null);
                         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences_doc.edit();
