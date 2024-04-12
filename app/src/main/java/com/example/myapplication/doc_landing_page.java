@@ -49,7 +49,7 @@ public class doc_landing_page extends AppCompatActivity {
     ArrayList<HelperClass3> list_doc;
     TextView doctorName;
     String doc_name, image_url, scanned_patEmail, scanned_docEmail, Email_of_doc;
-    Button logoutDoc;
+
     ImageView camera_btn;
 
     //initialised shared storage for doc
@@ -63,16 +63,9 @@ public class doc_landing_page extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_doc);
 
-        logoutDoc = findViewById(R.id.logout_doc);
+
         camera_btn = findViewById(R.id.camera_btn);
-        logoutDoc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(doc_landing_page.this, "Log out Successful", Toast.LENGTH_SHORT).show();
 
-
-            }
-        });
 
         camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +49,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5, card6;
     TextView patName;
+    ImageView locationbtn;
     public static final String SHARED_PREFS = "sharedPrefs";
 
 
@@ -64,6 +68,15 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_drawer);
+        locationbtn = findViewById(R.id.location_btn);
+
+        locationbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, Map.class);
+                startActivity(intent);
+            }
+        });
 
         //initializing variable
         patName = findViewById(R.id.name_of_user);

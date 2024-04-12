@@ -36,7 +36,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginBottom="12dp"
             android:text="Date"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
         <TextView
             android:id="@+id/app_time"
             android:fontFamily="@font/regular_semi_bold"
@@ -48,14 +48,14 @@
             android:layout_marginBottom="12dp"
             android:layout_toEndOf="@id/app_date"
             android:text="Time"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
         <ImageButton
             android:id="@+id/chat_icon_doc"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:backgroundTint="@color/colorAccent"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="2dp"
             android:layout_toEndOf="@id/patEmail"

@@ -15,6 +15,7 @@
         >
         <ImageButton
             android:id="@+id/back_btn_arrow"
+            android:layout_marginLeft="5sp"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_centerHorizontal="true"
@@ -88,6 +89,7 @@
                 <EditText
                     android:id="@+id/chat_edittext"
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/regular_medium"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_marginLeft="10dp"
@@ -101,6 +103,9 @@
                 </EditText>
 
                 <ImageButton
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4sp"
                     android:id="@+id/send_btn"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
@@ -108,7 +113,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="center"
                     android:layout_marginBottom="50dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/circle_shape"
                     android:src="@drawable/baseline_send_24" />
 
                 <androidx.recyclerview.widget.RecyclerView

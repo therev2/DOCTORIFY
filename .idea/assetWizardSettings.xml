@@ -301,8 +301,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="chat_icon2" />
-                            <entry key="sourceFile" value="C:\Users\revan\Downloads\vector-chat-icon.svg" />
+                            <entry key="outputName" value="location" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../location.svg" />
                           </map>
                         </option>
                       </PersistentState>

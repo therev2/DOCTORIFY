@@ -48,7 +48,6 @@ import java.util.Locale;
 
 
 public class chat_activity extends AppCompatActivity {
-    private User receiverUser;
     private List<ChatMessage> chatMessages;
 
     private ChatAdapter chatAdapter;
