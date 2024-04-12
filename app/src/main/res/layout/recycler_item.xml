@@ -53,12 +53,16 @@
             android:textSize="12sp" />
         <ImageButton
             android:id="@+id/chat_icon"
-            android:layout_width="47dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:elevation="4dp"
+            android:hapticFeedbackEnabled="true"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="2dp"
             android:layout_toEndOf="@id/docName"
-            android:background="@drawable/chat_icon2" />
+            android:background="@drawable/chat_icon" />
 
     </RelativeLayout>
 

@@ -103,34 +103,6 @@ public class chat_activity_doctor extends AppCompatActivity {
             });
         });
 
-        //referencing database for parent "patient"
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
-
-        //matching input email with database email
-        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_pat);
-
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String visibility = snapshot.child(Email_of_pat.replace(".", ",")).child("visibility").getValue(String.class);
-
-                    if (visibility != null) {
-                        if (visibility.equals("1")) {
-                            patient_status.setText("Online");
-                        } else {
-                            patient_status.setText("Offline");
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

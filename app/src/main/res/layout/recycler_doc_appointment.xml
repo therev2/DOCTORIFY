@@ -49,14 +49,17 @@
             android:layout_toEndOf="@id/app_date"
             android:text="Time"
             android:textSize="16sp" />
+
         <ImageButton
             android:id="@+id/chat_icon_doc"
-            android:layout_width="47dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="2dp"
             android:layout_toEndOf="@id/patEmail"
-            android:background="@drawable/chat_icon2" />
+            android:background="@drawable/chat_icon" />
 
 
     </RelativeLayout>

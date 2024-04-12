@@ -79,35 +79,6 @@ public class chat_activity extends AppCompatActivity {
         init();
         listenMessages();
 
-        //referencing database for parent "patient"
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
-
-        //matching input email with database email
-        Query checkUserDatabase = reference.orderByChild("email").equalTo(getIntent().getStringExtra("email_doc"));
-
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    //getting patient name form database
-                    String visibility = snapshot.child(getIntent().getStringExtra("email_doc").replace(".",",")).child("visibility").getValue(String.class);
-                    //setting patient name
-                    if (visibility.equals("1")){
-                        doct_staus.setText("Online");
-                    }
-                    else{
-                        doct_staus.setText("Offline");
-                    }
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
         //setting doctor image on chat screen
@@ -157,13 +128,16 @@ public class chat_activity extends AppCompatActivity {
     private void sendMessage(){
         HashMap<String, Object> message = new HashMap<>();
         editText = findViewById(R.id.chat_edittext);
+        String messageText = editText.getText().toString().trim();
+
+        if (!messageText.isEmpty()){
         message.put(Constants.KEY_SENDER_ID,Email_of_pat);
         message.put(Constants.KEY_RECEIVER_ID,getIntent().getStringExtra("email_doc"));
         message.put(Constants.KEY_MESSAGE,editText.getText().toString());
         message.put(Constants.KEY_TIMESTAMP,new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
         editText.setText(null);
-    }
+    }}
 
     private void listenMessages(){
 

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +43,14 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         holder.Spec.setText(helperclass.getSpeacilist());
         Glide.with(context).load(list.get(position).getImage()).into(holder.doc_photo);
 
+        holder.chat.setOnClickListener(v -> {
+            Intent intent = new Intent(context, chat_activity.class);
+            intent.putExtra("username","Dr."+helperclass.getName());
+            intent.putExtra("Image",list.get(position).getImage());
+            intent.putExtra("email_doc",helperclass.getEmail());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
 
         holder.itemView.setOnClickListener(v -> {
             //navigate to chat activity;
@@ -70,13 +80,14 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
 
         TextView Name, Spec;
         ImageView doc_photo;
+        ImageButton chat;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             Name = itemView.findViewById(R.id.docName);
             Spec = itemView.findViewById(R.id.docSpec);
             doc_photo = itemView.findViewById(R.id.recImage);
-
+            chat = itemView.findViewById(R.id.chat_icon);
 
         }
     }

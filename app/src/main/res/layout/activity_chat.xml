@@ -35,6 +35,7 @@
             android:id="@+id/doctor_profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:scaleType="centerCrop"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
             android:layout_marginStart="9dp"
