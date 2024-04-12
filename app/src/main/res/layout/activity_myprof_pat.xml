@@ -46,7 +46,7 @@
             android:layout_width="274dp"
             android:layout_height="21dp"
             android:fontFamily="@font/regular_italic"
-            android:text="9935873031"
+            android:text=""
             android:textColor="@color/white" />
 
     </LinearLayout>

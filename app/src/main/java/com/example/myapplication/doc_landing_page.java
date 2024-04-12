@@ -111,6 +111,12 @@ public class doc_landing_page extends AppCompatActivity {
                     ImageView doc_photo = findViewById(R.id.imageView2);
                     Glide.with(doc_landing_page.this).load(image_url).into(doc_photo);
 
+                    MenuItem profileItem = navigationViewDoc.getMenu().findItem(R.id.My_profile_doc);
+
+                    // Set the new title
+                    String newTitle = "Hi, " + doc_name;
+                    profileItem.setTitle(newTitle);
+
                 }
             }
 
@@ -140,8 +146,8 @@ public class doc_landing_page extends AppCompatActivity {
 
                 if (itemID == R.id.My_app_doc) {
                     Toast.makeText(doc_landing_page.this, "MY appointments ", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(doc_landing_page.this, my_app_list.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(doc_landing_page.this, my_app_list.class);
+//                    startActivity(intent);
                 }
 
 
@@ -211,18 +217,6 @@ public class doc_landing_page extends AppCompatActivity {
         });
     }
 
-
-    //function to filter all appointment list based upon whatever text is passed in the function
-    //this one is for email based filtering
-//    public void searchList(String text){
-//        ArrayList<HelperClass3> searchList = new ArrayList<>();
-//        for (HelperClass3 helperClass: list_doc){
-//            if (helperClass.getDoc_email().toLowerCase().contains(text.toLowerCase())){
-//                searchList.add(helperClass);
-//            }
-//        }
-//        myadapter_doc.searchDataList(searchList);
-//    }
 
 
     @Override

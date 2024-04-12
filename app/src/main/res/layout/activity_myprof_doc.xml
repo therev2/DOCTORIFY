@@ -40,21 +40,21 @@
             android:layout_height="35dp" />
 
         <TextView
-            android:id="@+id/n7"
-            android:layout_width="274dp"
+            android:id="@+id/docname_profile"
+            android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/regular_italic"
-            android:text="DR.Revan Channa"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="25dp" />
 
         <TextView
             android:id="@+id/mail_doc"
-            android:layout_width="258dp"
+            android:layout_width="match_parent"
             android:layout_height="33dp"
             android:fontFamily="@font/regular_italic"
-            android:text="Rajeev@gmail.com"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="15dp" />
 
@@ -89,14 +89,14 @@
 
     <TextView
         android:id="@+id/specialist_mp"
-        android:layout_width="286dp"
+        android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_below="@+id/view1"
         android:layout_marginStart="4dp"
         android:layout_toEndOf="@+id/specialist"
         android:fontFamily="@font/regular_semi_bold"
         android:paddingLeft="20dp"
-        android:text="General Physician"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -119,7 +119,7 @@
 
     <TextView
         android:id="@id/charges"
-        android:layout_width="49dp"
+        android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_below="@id/view2"
         android:layout_marginStart="25dp"
@@ -138,7 +138,7 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/specialist_mp"
         android:fontFamily="@font/regular_semi_bold"
-        android:text="500"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -149,7 +149,7 @@
         android:layout_below="@id/charge" />
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/timing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/view3"
@@ -162,13 +162,13 @@
     <TextView
 
         android:id="@id/time"
-        android:layout_width="284dp"
+        android:layout_width="match_parent"
         android:layout_height="29dp"
         android:layout_below="@id/view3"
         android:layout_marginStart="6dp"
         android:layout_toEndOf="@id/specialist"
         android:fontFamily="@font/regular_semi_bold"
-        android:text="8 to 10am and 12noon to 4pm"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20dp" />
 

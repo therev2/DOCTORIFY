@@ -68,7 +68,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         //initializing variable
         patName = findViewById(R.id.name_of_user);
 
-        //getting doc email from shared preference and storing it in variable
+        //getting patient email from shared preference and storing it in variable
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String Email_of_pat = sharedPreferences.getString("patient_email", "");
 
