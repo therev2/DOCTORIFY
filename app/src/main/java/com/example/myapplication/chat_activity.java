@@ -14,7 +14,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.databinding.ActivityChatBinding;
 
+
 public class chat_activity extends AppCompatActivity {
+
 
     private ActivityChatBinding binding;
     TextView doc_name;
