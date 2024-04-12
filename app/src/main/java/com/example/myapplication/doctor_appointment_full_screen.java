@@ -41,6 +41,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private ImageView docProfile;
     private Button appointmentButton;
     private Button timeButton;
+    private String will_play = "1";
     private String doctorNameString;
     private DatabaseReference reference;
     private String dateForDatabase = "";
@@ -183,6 +184,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         intent.putExtra("doctor_name", doctorNameString);
         intent.putExtra("timee", selectedTime);
         intent.putExtra("qr_code_data", patMail + "&" + docMail);
+        intent.putExtra("first_time_sound_effect",will_play);
 
         // Check if selectedDateItem and selectedTime are not empty or null
         if (selectedDateItem != null && !selectedTime.isEmpty()) {

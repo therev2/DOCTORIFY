@@ -47,6 +47,8 @@ public class MyAppointmentsPat_Adapter extends RecyclerView.Adapter<MyAppointmen
             Intent intent = new Intent(context, booked_confirm.class);
             intent.putExtra("doctor_name", helperclass.getDoc_name());
             intent.putExtra("timee", helperclass.getTime());
+            String will_not_play="0";
+            intent.putExtra("first_time_sound_effect", will_not_play);
             intent.putExtra("qr_code_data", helperclass.getPat_email() + "&" + helperclass.getDoc_email());
             context.startActivity(intent);
         });

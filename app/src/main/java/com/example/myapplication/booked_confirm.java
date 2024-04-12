@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public class booked_confirm extends AppCompatActivity{
     TextView doctor_namee;
     TextView timeee;
     ImageView qrcode;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,21 @@ public class booked_confirm extends AppCompatActivity{
         setContentView(R.layout.activity_booked_confirm);
         Checkout.preload(getApplicationContext());
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.sound_effect);
+//
+
+        if (getIntent().getStringExtra("first_time_sound_effect").equals("1")){
+            mediaPlayer.start();
+        }
+
 
 
         done1 = findViewById(R.id.done);
         done1.setOnClickListener(v -> {
+            if (mediaPlayer != null) {
+                mediaPlayer.release();
+                mediaPlayer = null;
+            }
             
 
             Intent intent = new Intent(booked_confirm.this,my_app_list.class);
