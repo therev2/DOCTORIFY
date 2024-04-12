@@ -52,7 +52,7 @@ public class doctor_register extends AppCompatActivity {
     private static final int PERMISSION_REQUIRED_CODE = 100;
 
 
-    String[] specialist_array = {"Diabetes Management", "Diet and Nutrition", "Physiotherapist", "ENT Specialist",  "Eyes specialist", "Pulmonologist", "Dentist", "Sexual Health",  "Women's Health ",  "Gastroenterologist", "Cardiologist", "Skin and Hair",  "Child Specialist", "General physician"};
+    String[] specialist_array = {"Skin and Hair",  "Eyes specialist", "Physiotherapist", "ENT Specialist", "Orthopedic", "Dentist", "Sexual Health",  "Gastroenterologist", "Cardiologist", "Child Specialist"};
 
     EditText signupEmail, signupPassword, signupName, signupExp, signupCharge, signupTime, signupDegree;
     Button signupButton, browseBtn;
