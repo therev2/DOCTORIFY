@@ -45,10 +45,10 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Status"
+                android:text=""
                 android:layout_toRightOf="@id/doctor_profile"
                 android:layout_below="@id/patient_name"
-                android:id="@+id/doctor_status"
+                android:id="@+id/patient_status"
                 android:textColor="@color/white"
                 android:paddingLeft="9dp"
                 android:fontFamily="@font/regular_light"
@@ -60,6 +60,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

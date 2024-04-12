@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status"
+            android:text=""
             android:layout_toRightOf="@id/doctor_profile"
             android:layout_below="@id/doctor_name"
             android:id="@+id/doctor_status"

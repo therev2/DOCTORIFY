@@ -210,9 +210,10 @@ public class doctor_register extends AppCompatActivity {
                         String time = signupTime.getText().toString();
                         String degree = signupDegree.getText().toString();
                         String speacilist = item;
+                        String visibility = "1";
 
                         if(validateEmail() && validatePassword()){
-                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL);
+                            HelperClass helperClass = new HelperClass(email, password, name, exp, charge, time, degree, speacilist, imageURL,visibility);
                             reference.child(email.replace(".",",")).setValue(helperClass);
 
                             SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
@@ -245,31 +246,6 @@ public class doctor_register extends AppCompatActivity {
         return Uri.parse(path);
     }
 
-//    private void requestRunTimePermissions() {
-//        if(ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA)
-//                == PackageManager.PERMISSION_GRANTED){
-//            Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
-//        }else if(ActivityCompat.shouldShowRequestPermissionRationale(this, PERMISSION_USE_CAMERA)){
-//
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setMessage("This app requires record audio permission")
-//                    .setTitle("Permission Required")
-//                    .setCancelable(false)
-//                    .setPositiveButton("ok", (dialog, which) -> {
-//                        ActivityCompat.requestPermissions(doctor_register.this, new String[]{PERMISSION_USE_CAMERA}
-//                                ,PERMISSION_REQUIRED_CODE);
-//                        dialog.dismiss();
-//                    })
-//                    .setNegativeButton("Cancel",((dialog, which) -> dialog.dismiss()));
-//
-//            builder.show();
-//        }
-//        else{
-//            ActivityCompat.requestPermissions(this,new String[]{PERMISSION_USE_CAMERA},PERMISSION_REQUIRED_CODE );
-//        }
-//
-//
-//    }
 
     private void requestRunTimePermissions() {
         if (ActivityCompat.checkSelfPermission(this, PERMISSION_USE_CAMERA) == PackageManager.PERMISSION_GRANTED) {

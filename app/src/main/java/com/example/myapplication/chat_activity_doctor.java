@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -27,6 +29,12 @@ import com.example.myapplication.adapters.ChatAdapter;
 import com.example.myapplication.databinding.ActivityChatBinding;
 import com.example.myapplication.databinding.ActivityChatDoctorBinding;
 import com.example.myapplication.firebase.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -56,6 +64,7 @@ public class chat_activity_doctor extends AppCompatActivity {
 
     EditText editText;
     ImageButton sendBtn;
+    TextView patient_status;
 
     private ActivityChatDoctorBinding binding;
     TextView patinet_name;
@@ -67,12 +76,11 @@ public class chat_activity_doctor extends AppCompatActivity {
         binding = ActivityChatDoctorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         EdgeToEdge.enable(this);
+        patient_status = findViewById(R.id.patient_status);
+
         SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         Email_of_doct = sharedPreferences_doc.getString("doc_email", "");
         Email_of_pat = getIntent().getStringExtra("pat_email");
-//        System.out.println(Email_of_doct);
-//        System.out.println(Email_of_pat);
-        Toast.makeText(chat_activity_doctor.this,Email_of_pat,Toast.LENGTH_SHORT).show();
         init();
         listenMessages();
 
@@ -95,6 +103,34 @@ public class chat_activity_doctor extends AppCompatActivity {
             });
         });
 
+        //referencing database for parent "patient"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(Email_of_pat);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String visibility = snapshot.child(Email_of_pat.replace(".", ",")).child("visibility").getValue(String.class);
+
+                    if (visibility != null) {
+                        if (visibility.equals("1")) {
+                            patient_status.setText("Online");
+                        } else {
+                            patient_status.setText("Offline");
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -103,6 +139,7 @@ public class chat_activity_doctor extends AppCompatActivity {
 
         sendBtn = findViewById(R.id.send_btn);
         sendBtn.setOnClickListener(v->{
+
             sendMessage();
         });
 
@@ -115,15 +152,18 @@ public class chat_activity_doctor extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
     }
 
-    private void sendMessage(){
+    private void sendMessage() {
         HashMap<String, Object> message = new HashMap<>();
         editText = findViewById(R.id.chat_edittext);
-        message.put(Constants.KEY_SENDER_ID,Email_of_doct);//doct->email
-        message.put(Constants.KEY_RECEIVER_ID,Email_of_pat);//pat-email
-        message.put(Constants.KEY_MESSAGE,editText.getText().toString());
-        message.put(Constants.KEY_TIMESTAMP,new Date());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
-        editText.setText(null);
+        String messageText = editText.getText().toString().trim(); // Get the trimmed message text
+        if (!messageText.isEmpty()) { // Check if the message is not empty
+            message.put(Constants.KEY_SENDER_ID, Email_of_doct); //doct->email
+            message.put(Constants.KEY_RECEIVER_ID, Email_of_pat); //pat-email
+            message.put(Constants.KEY_MESSAGE, messageText);
+            message.put(Constants.KEY_TIMESTAMP, new Date());
+            database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+            editText.setText(""); // Clear the EditText after sending the message
+        }
     }
 
     private void listenMessages(){

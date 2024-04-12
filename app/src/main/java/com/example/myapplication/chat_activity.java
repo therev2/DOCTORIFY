@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,6 +25,12 @@ import com.bumptech.glide.Glide;
 import com.example.myapplication.adapters.ChatAdapter;
 import com.example.myapplication.databinding.ActivityChatBinding;
 import com.example.myapplication.firebase.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -51,23 +59,59 @@ public class chat_activity extends AppCompatActivity {
 
     EditText editText;
     ImageButton sendBtn;
-    ImageButton imageButton;
+
     String Email_of_pat;
 
     private ActivityChatBinding binding;
     TextView doc_name;
     ImageView docImage;
     ImageButton back_btn;
+    TextView doct_staus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         EdgeToEdge.enable(this);
+        doct_staus = findViewById(R.id.doctor_status);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         Email_of_pat = sharedPreferences.getString("patient_email", "");
         init();
         listenMessages();
+
+
+
+        //referencing database for parent "patient"
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("doctor");
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.orderByChild("email").equalTo(getIntent().getStringExtra("email_doc"));
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    //getting patient name form database
+                    String visibility = snapshot.child(getIntent().getStringExtra("email_doc").replace(".",",")).child("visibility").getValue(String.class);
+                    //setting patient name
+                    if (visibility.equals("1")){
+                        doct_staus.setText("Online");
+                    }
+                    else{
+                        doct_staus.setText("Offline");
+
+                    }
+                    // Find the "My_profile" MenuItem
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         //setting doctor image on chat screen
