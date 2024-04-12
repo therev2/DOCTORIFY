@@ -1,13 +1,10 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -42,7 +39,6 @@ public class MyAdapterDate extends RecyclerView.Adapter<MyAdapterDate.MyViewHold
         // Update the background color based on the selected position
         if (position == selectedPosition) {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.my_primary));
-//            Toast.makeText(context.getApplicationContext(),items.get(position).getDay() ,Toast.LENGTH_SHORT).show();
 
         } else {
             holder.itemView.setBackgroundColor(ContextCompat.getColor(context, R.color.colorAccent));

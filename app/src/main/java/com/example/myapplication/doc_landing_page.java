@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +34,6 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
-
-import io.reactivex.rxjava3.core.Emitter;
 
 public class doc_landing_page extends AppCompatActivity {
     NavigationView navigationViewDoc;
@@ -160,6 +157,7 @@ public class doc_landing_page extends AppCompatActivity {
                     editor.apply();
                     Intent intent = new Intent(doc_landing_page.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
                 drawerLayoutDoc.close();

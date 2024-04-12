@@ -1,13 +1,10 @@
 package com.example.myapplication;
 
-import static android.service.controls.ControlsProviderService.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -258,7 +255,7 @@ public class  MainActivity extends AppCompatActivity {
                         database.collection("users")
                                         .add(data).
                                 addOnSuccessListener(documentReference -> {
-                                        Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getApplicationContext(),"Data Inserted",Toast.LENGTH_SHORT).show();
                                 })
                                 .addOnFailureListener(exception ->{
                                     Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
@@ -268,6 +265,7 @@ public class  MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this, HomePage.class);
                         startActivity(intent);
+                        finish();
                     }
                     else {
                         loginPassword.setError("invalid Credentials");

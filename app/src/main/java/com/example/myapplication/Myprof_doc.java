@@ -1,25 +1,16 @@
 package com.example.myapplication;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.bumptech.glide.Glide;
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.databinding.ActivityMyprofDocBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +21,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Myprof_doc extends AppCompatActivity {
 
-    TextView textView;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMyprofDocBinding binding;
 
@@ -92,10 +82,5 @@ public class Myprof_doc extends AppCompatActivity {
         });
 
 
-            textView=findViewById(R.id.edit_doc);
-        textView.setOnClickListener(v->{
-            Intent intent = new Intent(this, complete_your_profile.class);
-            startActivity(intent);
-        });
     }
 }

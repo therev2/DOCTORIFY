@@ -62,6 +62,7 @@ public class my_app_list extends AppCompatActivity {
                 appointment_list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     HelperClass3 helper = dataSnapshot.getValue(HelperClass3.class);
+                    assert helper != null;
                     if (helper.getPat_email().toLowerCase().contains(Email_of_pat.toLowerCase())) {
                         appointment_list.add(helper);
                     }
@@ -77,23 +78,6 @@ public class my_app_list extends AppCompatActivity {
         });
 
 
-//        binding = ActivityMyAppListBinding.inflate(getLayoutInflater());
-//        setContentView(binding.getRoot());
-//
-//        setSupportActionBar(binding.toolbar);
-//
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_my_app_list);
-//        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-//        binding.fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAnchorView(R.id.fab)
-//                        .setAction("Action", null).show();
-//            }
-//        });
     }
 
     @Override

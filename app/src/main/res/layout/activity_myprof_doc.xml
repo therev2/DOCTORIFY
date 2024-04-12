@@ -178,15 +178,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"/>
 
-    <TextView
-        android:id="@+id/edit_doc"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_below="@id/view8"
-        android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/regular_light"
-        android:text="                                Edit Your Information"
-        android:textColor="@color/navy_blue" />
+
 
 </RelativeLayout>
 

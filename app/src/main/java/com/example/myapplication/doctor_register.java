@@ -170,9 +170,6 @@ public class doctor_register extends AppCompatActivity {
                 builder.create().show();
 
 
-//                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-//                photoPicker.setType("image/*");
-//                activityResultLauncher.launch(photoPicker);
             }
         });
 
@@ -226,6 +223,7 @@ public class doctor_register extends AppCompatActivity {
                             Toast.makeText(doctor_register.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(doctor_register.this, doc_landing_page.class);
                             startActivity(intent);
+                            finish();
 
                         }
                         dialog.dismiss();
