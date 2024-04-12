@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:animateLayoutChanges="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".chat_activity"
-    android:background="@color/black">
+    android:background="@color/black"
+   >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +18,7 @@
             android:id="@+id/back_btn_arrow"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="5sp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="14dp"
@@ -33,6 +36,7 @@
             android:id="@+id/doctor_profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:scaleType="centerCrop"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
             android:layout_marginStart="9dp"
@@ -55,7 +59,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status"
+            android:text=""
             android:layout_toRightOf="@id/doctor_profile"
             android:layout_below="@id/doctor_name"
             android:id="@+id/doctor_status"
@@ -89,49 +93,77 @@
                 android:id="@+id/view"
                 android:layout_height="30dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="14dp"
-                android:layout_below="@+id/view"
-                android:layout_height="match_parent"
-                >
+                android:windowSoftInputMode="adjustResize"
+                android:animateLayoutChanges="true"
+                android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+
+                <ImageView
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4dp"
+                    android:src="@drawable/add"
+                    android:clickable="true"
+                    android:id="@+id/add_img_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    />
+
+                <EditText
+                    android:id="@+id/chat_edittext"
+                    android:fontFamily="@font/regular_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+
+                    android:layout_toRightOf="@id/add_img_btn"
+                    android:layout_marginBottom="50dp"
+                    android:layout_toLeftOf="@id/send_btn"
+                    android:background="@drawable/edit_text_rounded_corner"
+                    android:elevation="4dp"
+                    android:hint="Type the Message"
+                    android:padding="10dp">
+
+                </EditText>
+
+                <ImageButton
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4dp"
+
+                    android:id="@+id/send_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    android:background="@drawable/circle_shape"
+                    android:src="@drawable/baseline_send_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/chatRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_above="@id/chat_edittext"/>
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/bottom_layout">
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:hint="Type the Message"
-                android:layout_marginBottom="50dp"
-                android:elevation="4dp"
-                android:padding="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/edit_text_rounded_corner"
-                android:layout_toLeftOf="@id/send_btn">
-
-            </EditText>
-            <ImageButton
-                android:id="@+id/send_btn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="50dp"
-                android:src="@drawable/baseline_send_24"
-                android:background="@android:color/transparent" />
-
-        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 
 

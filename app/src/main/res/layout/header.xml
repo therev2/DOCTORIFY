@@ -25,12 +25,6 @@
             android:padding="100px"
             app:srcCompat="@drawable/logo_line_white" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:text="contact us at revanchanna@gmail.com "
-            android:textColor="@color/white"/>
-
 
     </LinearLayout>
 </RelativeLayout>

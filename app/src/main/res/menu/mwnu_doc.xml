@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/My_profile"
+    <item android:id="@+id/My_profile_doc"
         android:icon="@drawable/profile_icon"
         android:title="Hi, Harshit"/>
 
@@ -9,11 +9,11 @@
     <group android:checkableBehavior="single">
 
 
-        <item android:id="@+id/My_app"
+        <item android:id="@+id/My_app_doc"
             android:icon="@drawable/appointment"
             android:title="Your Patients"/>
 
-        <item android:id="@+id/Logout_profile"
+        <item android:id="@+id/Logout_profile_doc"
             android:icon="@drawable/logout_icon"
             android:title="LogOut"/>
     </group>

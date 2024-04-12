@@ -3,7 +3,7 @@ package com.example.myapplication;
 public class HelperClass2 {
 
 
-    String email, password;
+    String email, password,status;
 
     public String getEmail() {
         return email;
@@ -21,9 +21,18 @@ public class HelperClass2 {
         this.password = password;
     }
 
-    public HelperClass2(String email, String password) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public HelperClass2(String email, String password,String status) {
         this.email = email;
         this.password = password;
+        this.status = status;
     }
 
     public HelperClass2() {

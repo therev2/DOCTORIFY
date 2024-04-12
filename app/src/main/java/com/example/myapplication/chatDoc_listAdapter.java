@@ -40,10 +40,12 @@ public class chatDoc_listAdapter extends RecyclerView.Adapter<chatDoc_listAdapte
         holder.DocName.setText(helperclass.getName());
         Glide.with(context).load(list_doc.get(position).getImage()).into(holder.DocImage);
 
+
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, chat_activity.class);
             intent.putExtra("username","Dr."+helperclass.getName());
             intent.putExtra("Image",list_doc.get(position).getImage());
+            intent.putExtra("email_doc",helperclass.getEmail());
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
 
