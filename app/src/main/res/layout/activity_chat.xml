@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <ImageButton
             android:id="@+id/back_btn_arrow"
             android:layout_width="20dp"
@@ -24,6 +25,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         >
 
 
@@ -114,7 +116,7 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/edit_text_rounded_corner"
                 android:layout_toLeftOf="@id/send_btn">
-                
+
             </EditText>
             <ImageButton
                 android:id="@+id/send_btn"

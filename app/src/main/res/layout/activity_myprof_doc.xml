@@ -58,9 +58,13 @@
 
             <ImageView
                 android:id="@+id/doc_dp"
-                android:layout_width="222dp"
-                android:layout_height="84dp"
+                style="@style/roundedImageViewRounded"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
                 android:layout_gravity="center"
+                android:background="@drawable/btn_rounded_corner"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/doctor_default" />
 
             <View

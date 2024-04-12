@@ -114,9 +114,11 @@
                     android:fontFamily="@font/regular_light"
                     android:layout_above="@id/verify"/>
                 <Button
-
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:id="@+id/verify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:text="Verify"
                     android:textAllCaps="false"
@@ -124,9 +126,7 @@
                     android:fontFamily="@font/regular_semi_bold"
                     android:elevation="8dp"
                     android:translationZ="8dp"
-                    android:id="@+id/verify"
                     app:cornerRadius="32dp"/>
-
 
 
 

@@ -267,7 +267,8 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/regular_light"
                 android:text="Edit Your Information"
-                android:textColor="@color/black" />
+                android:textColor="@color/navy_blue" />
+
 
         </LinearLayout>
 

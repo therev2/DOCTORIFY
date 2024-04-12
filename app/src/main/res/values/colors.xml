@@ -5,6 +5,7 @@
     <color name="white">#FFFF </color>
     <color name="my_secondary">#00838F</color>
     <color name="colorAccent">#5C6784</color>
+    <color name="navy_blue">#000080</color>
 
 
 </resources>

@@ -120,13 +120,8 @@ public class DocLoginActivity extends AppCompatActivity {
                     loginEmail.setError("Email can only be alphanumberic");
                     return false;
                 }
-
             }
-
-
-
         }
-
     }
 
     //function to validate password
