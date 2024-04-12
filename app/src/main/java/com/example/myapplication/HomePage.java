@@ -69,6 +69,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, Map.class);
                 startActivity(intent);
+//                myAdapter.searchDataList(list);  <------ harshit reset button kardena
             }
         });
 
