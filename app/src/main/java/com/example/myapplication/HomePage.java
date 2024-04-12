@@ -16,6 +16,7 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +44,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5, card6;
     TextView patName;
+    SearchView searchView;
     ImageView locationbtn;
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -63,12 +65,27 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         EdgeToEdge.enable(this);
         setContentView(R.layout.nav_drawer);
         locationbtn = findViewById(R.id.location_btn);
+        searchView = findViewById(R.id.searchview);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchList_Name(newText);
+                return true;
+            }
+        });
 
         locationbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomePage.this, Map.class);
                 startActivity(intent);
+//                myAdapter.searchDataList(list);  <------ harshit reset button kardena
             }
         });
 
@@ -255,5 +272,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         myAdapter.searchDataList(searchList);
     }
 
+    public void searchList_Name(String text) {
+        ArrayList<HelperClass> searchList_name = new ArrayList<>();
+        for (HelperClass helperClass : list) {
+            if (helperClass.getName().toLowerCase().contains(text.toLowerCase())) {
+                searchList_name.add(helperClass);
+            }
+        }
+        myAdapter.searchDataList_Name(searchList_name);
+    }
 
 }

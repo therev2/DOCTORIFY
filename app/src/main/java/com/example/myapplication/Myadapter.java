@@ -75,6 +75,13 @@ public class Myadapter extends RecyclerView.Adapter<Myadapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void searchDataList_Name(ArrayList<HelperClass> filterlist){
+        list = filterlist;
+        notifyDataSetChanged();
+    }
+
+
+
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView Name, Spec;
