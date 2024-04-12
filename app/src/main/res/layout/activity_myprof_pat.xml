@@ -228,7 +228,7 @@
     <View
         android:id="@+id/view7"
         android:layout_width="wrap_content"
-        android:layout_height="10dp"
+        android:layout_height="20dp"
         android:layout_below="@id/blood_grp" />
 
 

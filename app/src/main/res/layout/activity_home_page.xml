@@ -117,6 +117,17 @@
                 android:layout_height="20dp"
 
                 android:src="@drawable/location"/>
+            <View
+                android:id="@+id/Gasd"
+
+                android:layout_width="wrap_content"
+                android:layout_height="15dp" />
+
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                app:queryHint="Search "
+                />
 
             <View
                 android:id="@+id/G"
