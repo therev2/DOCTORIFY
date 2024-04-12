@@ -86,15 +86,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+
+                <ImageView
+                    android:layout_marginLeft="6sp"
+                    android:layout_marginRight="6sp"
+                    android:elevation="4dp"
+                    android:src="@drawable/add"
+                    android:clickable="true"
+                    android:id="@+id/add_img_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    />
+
+
                 <EditText
                     android:id="@+id/chat_edittext"
                     android:layout_width="match_parent"
                     android:fontFamily="@font/regular_medium"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="10dp"
+
                     android:layout_marginBottom="50dp"
                     android:layout_toLeftOf="@id/send_btn"
+                    android:layout_toRightOf="@id/add_img_btn"
                     android:background="@drawable/edit_text_rounded_corner"
                     android:elevation="4dp"
                     android:hint="Type the Message"

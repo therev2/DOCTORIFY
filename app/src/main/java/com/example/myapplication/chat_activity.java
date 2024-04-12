@@ -39,6 +39,8 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -105,18 +107,19 @@ public class chat_activity extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
+                            Intent data = result.getData();//for gallery
                             if (data != null && data.getData() != null) {
                                 uri = data.getData();
                                 try {
                                     InputStream inputStream = getContentResolver().openInputStream(uri);
                                     Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                                     Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
-//                                    uplodedImage.setImageBitmap(resizedBitmap);     <-here we have to send to the bubble
+//                                      <-here we have to send to the bubble
+
                                 } catch (FileNotFoundException e) {
                                     e.printStackTrace();
                                 }
-                            } else {
+                            } else {// for camera
                                 Bundle extras = data.getExtras();
                                 Bitmap imageBitmap = (Bitmap) extras.get("data");
 //                                uplodedImage.setImageBitmap(imageBitmap);
@@ -125,6 +128,7 @@ public class chat_activity extends AppCompatActivity {
                         } else {
                             Toast.makeText(chat_activity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
                         }
+                        sendImageMessage(uri);
 
                     }
                 }
@@ -290,6 +294,28 @@ public class chat_activity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title", null);
         return Uri.parse(path);
+    }
+
+    private void sendImageMessage(Uri imageUri) {
+        // Upload the image to Firebase Storage
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("chat_images/" + System.currentTimeMillis() + ".jpg");
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    taskSnapshot.getMetadata().getReference().getDownloadUrl()
+                            .addOnSuccessListener(uri -> {
+                                // Send the download URL as a chat message
+                                HashMap<String, Object> message = new HashMap<>();
+                                message.put(Constants.KEY_SENDER_ID, Email_of_pat);
+                                message.put(Constants.KEY_RECEIVER_ID, getIntent().getStringExtra("email_doc"));
+                                message.put(Constants.KEY_MESSAGE, uri.toString());
+                                message.put(Constants.KEY_TIMESTAMP, new Date());
+                                database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    // Handle any errors
+                    Toast.makeText(this, "Failure", Toast.LENGTH_SHORT).show();
+                });
     }
 
 }
