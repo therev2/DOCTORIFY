@@ -51,8 +51,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
     ArrayList<HelperClass> list;
     CardView card1, card2, card3, card4, card5,card6;
     TextView patName;
-
     public static final String SHARED_PREFS="sharedPrefs";
+
 
 
     @Override

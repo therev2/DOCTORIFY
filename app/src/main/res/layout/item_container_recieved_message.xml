@@ -13,7 +13,8 @@
         android:padding="12dp"
         android:textColor="@color/white"
         android:textSize="13sp"
-        android:text="Your text message goes here"
+        app:layout_constraintWidth_max="wrap"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

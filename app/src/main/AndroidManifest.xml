@@ -72,7 +72,9 @@
             android:exported="false" />
         <activity
             android:name=".chat_activity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity
             android:name=".doc_landing_page"
             android:exported="false" />

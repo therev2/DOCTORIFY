@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,12 @@ public class Myadapter_Doc extends RecyclerView.Adapter<Myadapter_Doc.MyViewHold
         holder.pat_name.setText(helperclass.getPat_name());
         holder.app_date.setText(helperclass.getDate());
         holder.app_time.setText(helperclass.getTime());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, chat_activity.class);
+            context.startActivity(intent);
+
+        });
 
     }
 

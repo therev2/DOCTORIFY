@@ -9,15 +9,16 @@
 
 
     <TextView
-        android:id="@+id/textmessage"
+        android:id="@+id/textMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:background="@drawable/background_received_msg"
         android:padding="12dp"
-        android:text="Your text message goes here"
+
         android:textColor="@color/white"
         android:textSize="13sp"
+        app:layout_constraintWidth_max="wrap"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,11 +26,12 @@
         app:layout_constraintWidth_percent="0.6" />
 
     <TextView
+    android:id="@+id/textDateTime"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:textColor="@color/white"
     android:textSize="10sp"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textmessage"/>
+    app:layout_constraintTop_toBottomOf="@id/textMessage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

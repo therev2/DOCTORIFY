@@ -94,6 +94,7 @@
                 android:layout_marginTop="14dp"
                 android:layout_below="@+id/view"
                 android:layout_height="match_parent"
+                android:id="@+id/chatRecyclerView"
                 >
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -106,6 +107,7 @@
             android:id="@+id/bottom_layout">
 
             <EditText
+                android:id="@+id/chat_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
