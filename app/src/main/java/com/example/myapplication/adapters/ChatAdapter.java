@@ -1,13 +1,17 @@
 package com.example.myapplication.adapters;
+import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.ChatMessage;
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.ItemContainerRecievedMessageBinding;
 import com.example.myapplication.databinding.ItemContainerSentMessageBinding;
 
@@ -15,17 +19,23 @@ import java.util.List;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+
+
+
     private final List<ChatMessage> chatMessages;
     private final String senderId;
 
     public static final int VIEW_TYPE_SENT = 1;
     public static final int VIEW_TYPE_RECEIVED = 2;
+    private final OnImageClickListener onImageClickListener;
 
-
-    public ChatAdapter(List<ChatMessage> chatMessages, String senderId) {
+    public ChatAdapter(List<ChatMessage> chatMessages, String senderId,OnImageClickListener onImageClickListener) {
         this.chatMessages = chatMessages;
         this.senderId = senderId;
+        this.onImageClickListener = onImageClickListener;
+
     }
+
 
     @NonNull
     @Override
@@ -69,6 +79,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Glide.with(holder.itemView.getContext())
                     .load(chatMessage.message)
                     .into(holder.binding.imageMessage);
+            holder.binding.imageMessage.setOnClickListener(v -> onImageClickListener.onImageClick(chatMessage.message));
         } else {
             holder.binding.textMessage.setVisibility(View.VISIBLE);
             holder.binding.imageMessage.setVisibility(View.GONE);
@@ -85,6 +96,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             Glide.with(holder.itemView.getContext())
                     .load(chatMessage.message)
                     .into(holder.binding.imageMessage);
+            holder.binding.imageMessage.setOnClickListener(v -> onImageClickListener.onImageClick(chatMessage.message));
+
         } else {
             holder.binding.textMessage.setVisibility(View.VISIBLE);
             holder.binding.imageMessage.setVisibility(View.GONE);
@@ -152,6 +165,12 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    public interface OnImageClickListener {
+        void onImageClick(String imageUrl);
+    }
+
 
 
 }
+
+

@@ -106,7 +106,7 @@ public class chat_activity_doctor extends AppCompatActivity {
     }
     private void init(){
         chatMessages = new ArrayList<>();
-        chatAdapter = new ChatAdapter(chatMessages,Email_of_doct);//doct->email
+        chatAdapter = new ChatAdapter(chatMessages,Email_of_doct, (ChatAdapter.OnImageClickListener) this);//doct->email
         binding.chatRecyclerViewDoc.setAdapter(chatAdapter);
 
         database = FirebaseFirestore.getInstance();

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -54,7 +55,28 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class chat_activity extends AppCompatActivity {
+public class chat_activity extends AppCompatActivity implements ChatAdapter.OnImageClickListener {
+
+
+
+    @Override
+    public void onImageClick(String imageUrl) {
+
+        Toast.makeText(this,imageUrl,Toast.LENGTH_SHORT).show();
+        openImageViewer(imageUrl);
+    }
+
+    private void openImageViewer(String imageUrl) {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_image_viewer);
+        ImageView imageView = dialog.findViewById(R.id.image_view);
+        Glide.with(this)
+                .load(imageUrl)
+                .into(imageView);
+        dialog.show();
+    }
+
+    // ...
     private List<ChatMessage> chatMessages;
 
     private ChatAdapter chatAdapter;
@@ -200,8 +222,8 @@ public class chat_activity extends AppCompatActivity {
 
     private void init(){
         chatMessages = new ArrayList<>();
-        chatAdapter = new ChatAdapter(chatMessages,Email_of_pat);
-
+//        chatAdapter = new ChatAdapter(chatMessages,Email_of_pat);
+        chatAdapter = new ChatAdapter(chatMessages, Email_of_pat, (ChatAdapter.OnImageClickListener) this);
         binding.chatRecyclerView.setAdapter(chatAdapter);
         
         database = FirebaseFirestore.getInstance();
