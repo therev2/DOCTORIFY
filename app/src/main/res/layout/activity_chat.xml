@@ -89,51 +89,52 @@
                 android:id="@+id/view"
                 android:layout_height="30dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <RelativeLayout
+                android:id="@+id/bottom_layout"
                 android:layout_width="match_parent"
-                android:layout_marginTop="14dp"
-                android:layout_below="@+id/view"
-                android:layout_height="match_parent"
-                android:id="@+id/chatRecyclerView"
-                >
+                android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <EditText
+                    android:id="@+id/chat_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_toLeftOf="@id/send_btn"
+                    android:background="@drawable/edit_text_rounded_corner"
+                    android:elevation="4dp"
+                    android:hint="Type the Message"
+                    android:padding="10dp">
+
+                </EditText>
+
+                <ImageButton
+                    android:id="@+id/send_btn"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="50dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/baseline_send_24" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chatRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_above="@id/chat_edittext"/>
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/bottom_layout">
 
-            <EditText
-                android:id="@+id/chat_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:hint="Type the Message"
-                android:layout_marginBottom="50dp"
-                android:elevation="4dp"
-                android:padding="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/edit_text_rounded_corner"
-                android:layout_toLeftOf="@id/send_btn">
-
-            </EditText>
-            <ImageButton
-                android:id="@+id/send_btn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="50dp"
-                android:src="@drawable/baseline_send_24"
-                android:background="@android:color/transparent" />
-
-        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 
 

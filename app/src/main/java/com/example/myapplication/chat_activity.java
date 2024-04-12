@@ -61,10 +61,11 @@ public class chat_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityChatBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_chat);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-         Email_of_pat= sharedPreferences.getString("patient_email","");
+        Email_of_pat = sharedPreferences.getString("patient_email", "");
         init();
         listenMessages();
 
@@ -105,16 +106,18 @@ public class chat_activity extends AppCompatActivity {
 
     }
     private void init(){
-//        chatMessages = new ArrayList<>();
-//        chatAdapter = new ChatAdapter(chatMessages,"Email_of_pat");
-//        binding.chatRecyclerView.setAdapter(chatAdapter);
+        chatMessages = new ArrayList<>();
+        chatAdapter = new ChatAdapter(chatMessages,Email_of_pat);
+
+        binding.chatRecyclerView.setAdapter(chatAdapter);
+        
         database = FirebaseFirestore.getInstance();
     }
 
     private void sendMessage(){
         HashMap<String, Object> message = new HashMap<>();
         editText = findViewById(R.id.chat_edittext);
-        message.put(Constants.KEY_SENDER_ID,"Email_of_pat");
+        message.put(Constants.KEY_SENDER_ID,Email_of_pat);
         message.put(Constants.KEY_RECEIVER_ID,getIntent().getStringExtra("email_doc"));
         message.put(Constants.KEY_MESSAGE,editText.getText().toString());
         message.put(Constants.KEY_TIMESTAMP,new Date());
