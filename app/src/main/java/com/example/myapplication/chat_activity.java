@@ -1,18 +1,32 @@
 package com.example.myapplication;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,6 +40,9 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,9 +56,12 @@ public class chat_activity extends AppCompatActivity {
     private List<ChatMessage> chatMessages;
 
     private ChatAdapter chatAdapter;
+    Uri uri;
 
     private FirebaseFirestore database;
     public static final String SHARED_PREFS="sharedPrefs";
+    private static final int PERMISSION_REQUIRED_CODE = 100;
+
 
 
     EditText editText;
@@ -54,6 +74,9 @@ public class chat_activity extends AppCompatActivity {
     ImageView docImage;
     ImageButton back_btn;
     TextView doct_staus;
+
+    private static final int REQUEST_CODE_PICK_IMAGE = 1;
+    private ImageView add_img_btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +98,67 @@ public class chat_activity extends AppCompatActivity {
         //setting the doctor username on chat screen//
         doc_name = findViewById(R.id.doctor_name);
         doc_name.setText(getIntent().getStringExtra("username"));
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+                            Intent data = result.getData();
+                            if (data != null && data.getData() != null) {
+                                uri = data.getData();
+                                try {
+                                    InputStream inputStream = getContentResolver().openInputStream(uri);
+                                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                                    Bitmap resizedBitmap = getResizedBitmap(bitmap, 300, 300);
+//                                    uplodedImage.setImageBitmap(resizedBitmap);     <-here we have to send to the bubble
+                                } catch (FileNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                Bundle extras = data.getExtras();
+                                Bitmap imageBitmap = (Bitmap) extras.get("data");
+//                                uplodedImage.setImageBitmap(imageBitmap);
+                                uri = getImageUri(imageBitmap);
+                            }
+                        } else {
+                            Toast.makeText(chat_activity.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
+        );
+
+
+        //add_img_btn
+
+        add_img_btn = findViewById(R.id.add_img_btn);
+        add_img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(chat_activity.this);
+                builder.setTitle("Select Image Source")
+                        .setItems(new CharSequence[]{"Gallery", "Camera"}, (dialog, which) -> {
+                            switch (which) {
+                                case 0:
+                                    Intent photoPicker = new Intent(Intent.ACTION_PICK);
+                                    photoPicker.setType("image/*");
+                                    activityResultLauncher.launch(photoPicker);
+                                    break;
+                                case 1:
+                                    if (ActivityCompat.checkSelfPermission(chat_activity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(chat_activity.this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUIRED_CODE);
+                                    } else {
+                                        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                        activityResultLauncher.launch(cameraIntent);
+                                    }
+                                    break;
+                            }
+                        });
+                builder.create().show();
+            }
+        });
 
         back_btn = findViewById(R.id.back_btn_arrow);
 
@@ -107,6 +191,9 @@ public class chat_activity extends AppCompatActivity {
         });
 
     }
+
+
+
     private void init(){
         chatMessages = new ArrayList<>();
         chatAdapter = new ChatAdapter(chatMessages,Email_of_pat);
@@ -179,6 +266,30 @@ public class chat_activity extends AppCompatActivity {
 
     private String getReadableDateTime(Date date){
         return new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.getDefault()).format(date);
+    }
+    public Bitmap getResizedBitmap(Bitmap image, int maxWidth, int maxHeight) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float ratioBitmap = (float) width / (float) height;
+        float ratioMax = (float) maxWidth / (float) maxHeight;
+
+        int finalWidth = maxWidth;
+        int finalHeight = maxHeight;
+        if (ratioMax > ratioBitmap) {
+            finalWidth = (int) ((float)maxHeight * ratioBitmap);
+        } else {
+            finalHeight = (int) ((float)maxWidth / ratioBitmap);
+        }
+
+        return Bitmap.createScaledBitmap(image, finalWidth, finalHeight, true);
+    }
+
+    private Uri getImageUri(Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
     }
 
 }
