@@ -1,13 +1,17 @@
 package com.example.myapplication;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -42,18 +46,19 @@ import java.util.Locale;
 public class chat_activity_doctor extends AppCompatActivity {
     private User receiverUser;
     private List<ChatMessage> chatMessages;
-
+    String Email_of_pat;
+    String Email_of_doct;
     private ChatAdapter chatAdapter;
 
     private FirebaseFirestore database;
-    public static final String SHARED_PREFS="sharedPrefs";
+    public static final String SHARED_PREFS="sharedPrefs_doc";
 
 
     EditText editText;
     ImageButton sendBtn;
 
     private ActivityChatDoctorBinding binding;
-    TextView doc_name;
+    TextView patinet_name;
     ImageView docImage;
     ImageButton back_btn;
     @Override
@@ -62,13 +67,18 @@ public class chat_activity_doctor extends AppCompatActivity {
         binding = ActivityChatDoctorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         EdgeToEdge.enable(this);
-//        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-//        Email_of_pat = sharedPreferences.getString("patient_email", "");
+        SharedPreferences sharedPreferences_doc = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        Email_of_doct = sharedPreferences_doc.getString("doc_email", "");
+        Email_of_pat = getIntent().getStringExtra("pat_email");
+//        System.out.println(Email_of_doct);
+//        System.out.println(Email_of_pat);
+        Toast.makeText(chat_activity_doctor.this,Email_of_pat,Toast.LENGTH_SHORT).show();
         init();
         listenMessages();
 
         //setting the doctor username on chat screen//
-        doc_name = findViewById(R.id.patient_name);
+        patinet_name = findViewById(R.id.patient_name);
+        patinet_name.setText(getIntent().getStringExtra("pat_name"));
 
         back_btn = findViewById(R.id.back_btn_arrow);
 
@@ -99,7 +109,7 @@ public class chat_activity_doctor extends AppCompatActivity {
     }
     private void init(){
         chatMessages = new ArrayList<>();
-        chatAdapter = new ChatAdapter(chatMessages,"rajeev@gmail.com");
+        chatAdapter = new ChatAdapter(chatMessages,Email_of_doct);//doct->email
         binding.chatRecyclerViewDoc.setAdapter(chatAdapter);
 
         database = FirebaseFirestore.getInstance();
@@ -108,8 +118,8 @@ public class chat_activity_doctor extends AppCompatActivity {
     private void sendMessage(){
         HashMap<String, Object> message = new HashMap<>();
         editText = findViewById(R.id.chat_edittext);
-        message.put(Constants.KEY_SENDER_ID,"rajeev@gmail.com");
-        message.put(Constants.KEY_RECEIVER_ID,"x@gmail.com");
+        message.put(Constants.KEY_SENDER_ID,Email_of_doct);//doct->email
+        message.put(Constants.KEY_RECEIVER_ID,Email_of_pat);//pat-email
         message.put(Constants.KEY_MESSAGE,editText.getText().toString());
         message.put(Constants.KEY_TIMESTAMP,new Date());
         database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
@@ -120,12 +130,12 @@ public class chat_activity_doctor extends AppCompatActivity {
 
 
         database.collection(Constants.KEY_COLLECTION_CHAT)
-                .whereEqualTo(Constants.KEY_SENDER_ID,"rajeev@gmail.com")
-                .whereEqualTo(Constants.KEY_RECEIVER_ID,"x@gmail.com")
+                .whereEqualTo(Constants.KEY_SENDER_ID,Email_of_doct)//doct->email
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,Email_of_pat)//patinet->email
                 .addSnapshotListener(eventListener);
         database.collection(Constants.KEY_COLLECTION_CHAT)
-                .whereEqualTo(Constants.KEY_SENDER_ID,"x@gmail.com")
-                .whereEqualTo(Constants.KEY_RECEIVER_ID,"rajeev@gmail.com" )
+                .whereEqualTo(Constants.KEY_SENDER_ID,Email_of_pat)//patient->email
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,Email_of_doct )//doc->email
                 .addSnapshotListener(eventListener);
     }
 

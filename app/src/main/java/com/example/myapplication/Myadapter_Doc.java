@@ -40,6 +40,8 @@ public class Myadapter_Doc extends RecyclerView.Adapter<Myadapter_Doc.MyViewHold
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, chat_activity_doctor.class);
+            intent.putExtra("pat_email",helperclass.getPat_email());
+            intent.putExtra("pat_name",helperclass.getPat_name());
             context.startActivity(intent);
 
         });
