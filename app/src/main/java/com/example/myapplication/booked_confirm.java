@@ -1,13 +1,18 @@
 package com.example.myapplication;
 
-import android.content.Context;
+import static android.content.ContentValues.TAG;
+
+import android.app.Activity;
+import com.razorpay.PaymentResultListener;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +25,12 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.razorpay.Checkout;
 
 
-public class booked_confirm extends AppCompatActivity {
+
+
+public class booked_confirm extends AppCompatActivity{
 
     Button done1;
     TextView doctor_namee;
@@ -34,9 +42,16 @@ public class booked_confirm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_booked_confirm);
+        Checkout.preload(getApplicationContext());
+
+
+
         done1 = findViewById(R.id.done);
         done1.setOnClickListener(v -> {
+            
+
             Intent intent = new Intent(booked_confirm.this,my_app_list.class);
+
             startActivity(intent);
             finish();
 
@@ -68,4 +83,5 @@ public class booked_confirm extends AppCompatActivity {
             return insets;
         });
     }
+
 }

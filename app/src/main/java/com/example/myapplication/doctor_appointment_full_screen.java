@@ -1,12 +1,17 @@
 package com.example.myapplication;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,13 +25,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class doctor_appointment_full_screen extends AppCompatActivity {
+public class doctor_appointment_full_screen extends AppCompatActivity implements PaymentResultListener {
     private TextView doctorName;
     private TextView doctorSpecialist;
     private ImageView docProfile;
@@ -126,26 +135,71 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         });
 
         appointmentButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, booked_confirm.class);
-            intent.putExtra("doctor_name", doctorNameString);
-            intent.putExtra("timee", selectedTime);
-            intent.putExtra("qr_code_data", patMail + "&" + docMail);
+            makepayment();
 
-            // Check if selectedDateItem and selectedTime are not empty or null
-            if (selectedDateItem != null && !selectedTime.isEmpty()) {
-                dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                reference.set(database.getReference("appointment"));
 
-                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime,pat_name,doc_name,doc_image);
-                reference.get().child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
-            }
-
-            startActivity(intent);
         });
     }
+    private void makepayment() {
+        Checkout checkout = new Checkout();
 
+        checkout.setKeyID("rzp_test_NFFUtTEk4AO34O");
+
+        checkout.setImage(R.drawable.logo_line_black);//<----logo
+
+        final Activity activity = this;
+
+        try {
+            JSONObject options = new JSONObject();
+
+            options.put("name", "Doctorify");
+            options.put("description", "Reference No. #123456");
+            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
+            options.put("theme.color", "#08A045");
+            options.put("currency", "INR");
+            options.put("amount", "50000");//pass amount in currency subunits-->500
+            options.put("prefill.email", "gaurav.kumar@example.com");
+            options.put("prefill.contact","9988776655");
+            JSONObject retryObj = new JSONObject();
+            retryObj.put("enabled", true);
+            retryObj.put("max_count", 4);
+            options.put("retry", retryObj);
+
+            checkout.open(activity, options);
+
+        } catch(Exception e) {
+            Log.e(TAG, "Error in starting Razorpay Checkout", e);
+        }
+    }
+
+    @Override
+    public void onPaymentSuccess(String s) {
+        Intent intent = new Intent(this, booked_confirm.class);
+        intent.putExtra("doctor_name", doctorNameString);
+        intent.putExtra("timee", selectedTime);
+        intent.putExtra("qr_code_data", patMail + "&" + docMail);
+
+        // Check if selectedDateItem and selectedTime are not empty or null
+        if (selectedDateItem != null && !selectedTime.isEmpty()) {
+            dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference appointmentRef = database.getReference("appointment");
+
+            HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime, pat_name, doc_name, doc_image);
+            appointmentRef.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
+        }
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onPaymentError(int i, String s) {
+        Toast.makeText(this,"Failed",Toast.LENGTH_SHORT).show();
+
+
+    }
     private List<ItemDate> getDateItems() {
         List<ItemDate> items = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
@@ -203,4 +257,5 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
                 return "";
         }
     }
+
 }
