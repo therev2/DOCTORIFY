@@ -39,7 +39,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
     private String selectedTime = "";
     private String patMail;
     private String docMail;
-    String pat_name;
+    String pat_name,doc_name,doc_image;
     private ItemDate selectedDateItem;
 
     @Override
@@ -60,6 +60,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
             adapter.setSelectedPosition(clickedPosition);
         });
 
+        //initalising variables
         doctorName = findViewById(R.id.doc_namee);
         doctorSpecialist = findViewById(R.id.doc_specialistt);
         docProfile = findViewById(R.id.doc_dp);
@@ -69,14 +70,37 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
 
         timeButton.setOnClickListener(v -> openDialog());
 
+        //setting image, name and specialist for doc
         doctorNameString = getIntent().getStringExtra("username");
         doctorName.setText(doctorNameString);
         doctorSpecialist.setText(getIntent().getStringExtra("specialist"));
         Glide.with(this).load(getIntent().getStringExtra("Image")).into(docProfile);
 
+        //getting doc and pat email
         docMail = getIntent().getStringExtra("doc_mail");
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         patMail = sharedPreferences.getString("patient_email", "");
+
+        //referencing database for parent "patient"
+        DatabaseReference reference_doc = FirebaseDatabase.getInstance().getReference("doctor");
+
+        //matching input email with database email
+        Query checkUserDatabase_doc = reference_doc.orderByChild("email").equalTo(docMail);
+
+        checkUserDatabase_doc.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    doc_name = snapshot.child(docMail.replace(".",",")).child("name").getValue(String.class);
+                    doc_image = snapshot.child(docMail.replace(".",",")).child("image").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //referencing database for parent "patient"
         AtomicReference<DatabaseReference> reference = new AtomicReference<>(FirebaseDatabase.getInstance().getReference("patient"));
@@ -114,7 +138,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 reference.set(database.getReference("appointment"));
 
-                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime,pat_name);
+                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime,pat_name,doc_name,doc_image);
                 reference.get().child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
             }
 
