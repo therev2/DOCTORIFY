@@ -19,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MYprofPat extends AppCompatActivity {
 
-    TextView textView,name_mp,age_mp,add_mp,ms_mp,gender_mp;
+    TextView textView,name_mp,age_mp,add_mp,ms_mp,gender_mp,phonenumber;
     public static final String SHARED_PREFS="sharedPrefs";
 
     @Override
@@ -38,6 +38,7 @@ public class MYprofPat extends AppCompatActivity {
         ms_mp = findViewById(R.id.status_mp);
         gender_mp =findViewById(R.id.gender_mp);
         textView = findViewById(R.id.edit);
+        phonenumber = findViewById(R.id.phone);
 
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
@@ -56,7 +57,7 @@ public class MYprofPat extends AppCompatActivity {
                     String age = snapshot.child(Email_of_pat.replace(".",",")).child("age").getValue(String.class);
                     String gender = snapshot.child(Email_of_pat.replace(".",",")).child("gender").getValue(String.class);
                     String status = snapshot.child(Email_of_pat.replace(".",",")).child("status").getValue(String.class);
-
+                    String phoneno = snapshot.child(Email_of_pat.replace(".",",")).child("phoneNumber").getValue(String.class);
 
                     //setting patient name
                     name_mp.setText(name);
@@ -64,6 +65,7 @@ public class MYprofPat extends AppCompatActivity {
                     age_mp.setText(age);
                     gender_mp.setText(gender);
                     ms_mp.setText(status);
+                    phonenumber.setText(phoneno);
 
                 }
             }

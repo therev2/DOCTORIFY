@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".doctor_appointment_full_screen">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
@@ -141,13 +142,15 @@
                 android:letterSpacing="0.06"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="110dp"
                 android:backgroundTint="@color/my_primary"
                 android:fontFamily="@font/regular_semi_bold"
                 android:text="Book Appointment"
+                android:elevation="4sp"
                 android:layout_marginHorizontal="15dp"
                 android:textSize="18dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </RelativeLayout>
