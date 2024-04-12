@@ -36,7 +36,7 @@ public class booked_confirm extends AppCompatActivity {
         setContentView(R.layout.activity_booked_confirm);
         done1 = findViewById(R.id.done);
         done1.setOnClickListener(v -> {
-            Intent intent = new Intent(booked_confirm.this,HomePage.class);
+            Intent intent = new Intent(booked_confirm.this,my_app_list.class);
             startActivity(intent);
             finish();
 

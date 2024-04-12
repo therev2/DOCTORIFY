@@ -81,33 +81,33 @@
             android:paddingLeft="10dp"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/rupees"
-            android:fontFamily="@font/regular_semi_bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/time"
-            android:text="Rs."
-            android:paddingLeft="10dp"
-            android:textSize="12sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/rupees"-->
+<!--            android:fontFamily="@font/regular_semi_bold"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:layout_marginStart="26dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:layout_toEndOf="@id/time"-->
+<!--            android:text="Rs."-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:textSize="12sp" />-->
 
-        <TextView
-            android:id="@+id/charges"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-6dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="12dp"
-            android:layout_toEndOf="@id/rupees"
-            android:fontFamily="@font/regular_semi_bold"
-            android:paddingLeft="10dp"
-            android:text="500"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/charges"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="-6dp"-->
+<!--            android:layout_marginTop="60dp"-->
+<!--            android:layout_marginBottom="12dp"-->
+<!--            android:layout_toEndOf="@id/rupees"-->
+<!--            android:fontFamily="@font/regular_semi_bold"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:text="500"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="12sp" />-->
 
     </RelativeLayout>
 

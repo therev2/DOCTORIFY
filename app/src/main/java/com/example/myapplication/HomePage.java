@@ -92,8 +92,6 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                     //getting patient name form database
                     String pat_name = snapshot.child(Email_of_pat.replace(".",",")).child("name").getValue(String.class);
 
-                    System.out.println(pat_name);
-
                     //setting patient name
                     patName.setText(pat_name);
 

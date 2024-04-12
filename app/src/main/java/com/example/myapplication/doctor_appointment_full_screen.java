@@ -3,27 +3,28 @@ package com.example.myapplication;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class doctor_appointment_full_screen extends AppCompatActivity {
     private TextView doctorName;
@@ -38,6 +39,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
     private String selectedTime = "";
     private String patMail;
     private String docMail;
+    String pat_name;
     private ItemDate selectedDateItem;
 
     @Override
@@ -76,6 +78,29 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         patMail = sharedPreferences.getString("patient_email", "");
 
+        //referencing database for parent "patient"
+        AtomicReference<DatabaseReference> reference = new AtomicReference<>(FirebaseDatabase.getInstance().getReference("patient"));
+
+        //matching input email with database email
+        Query checkUserDatabase = reference.get().orderByChild("email").equalTo(patMail);
+
+        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()) {
+
+                    //getting patient name form database
+                    pat_name = snapshot.child(patMail.replace(".", ",")).child("name").getValue(String.class);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         appointmentButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, booked_confirm.class);
             intent.putExtra("doctor_name", doctorNameString);
@@ -87,10 +112,10 @@ public class doctor_appointment_full_screen extends AppCompatActivity {
                 dateForDatabase = selectedDateItem.getDate() + " " + selectedDateItem.getDay();
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                reference = database.getReference("appointment");
+                reference.set(database.getReference("appointment"));
 
-                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime);
-                reference.child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
+                HelperClass3 helperClass = new HelperClass3(patMail, docMail, dateForDatabase, selectedTime,pat_name);
+                reference.get().child(patMail.replace(".", ",") + "&" + docMail.replace(".", ",")).setValue(helperClass);
             }
 
             startActivity(intent);

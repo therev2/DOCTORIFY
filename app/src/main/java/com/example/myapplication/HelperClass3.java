@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
 public class HelperClass3 {
-    String pat_email, doc_email, date, time;
+    String pat_email, doc_email, date, time, pat_name;
 
 
     public String getPat_email() {
@@ -36,12 +36,21 @@ public class HelperClass3 {
         this.time = time;
     }
 
+    public String getPat_name() {
+        return pat_name;
+    }
 
-    public HelperClass3(String pat_email, String doc_email, String date, String time) {
+    public void setPat_name(String pat_name) {
+        this.pat_name = pat_name;
+    }
+
+
+    public HelperClass3(String pat_email, String doc_email, String date, String time, String pat_name) {
         this.pat_email = pat_email;
         this.doc_email = doc_email;
         this.date = date;
         this.time = time;
+        this.pat_name = pat_name;
     }
 
     public HelperClass3() {
