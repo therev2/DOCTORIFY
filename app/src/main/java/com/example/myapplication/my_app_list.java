@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -54,6 +57,21 @@ public class my_app_list extends AppCompatActivity {
         appointment_list = new ArrayList<>();
         myadapter_appointments = new MyAppointmentsPat_Adapter(this,appointment_list);
         recyclerView_appointment.setAdapter(myadapter_appointments);
+
+
+        //on back pressed we go to home page
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                Intent intent =new Intent(my_app_list.this,HomePage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
 
         //getting all appointments from database
         database.addValueEventListener(new ValueEventListener() {
