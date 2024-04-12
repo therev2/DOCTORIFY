@@ -477,7 +477,7 @@
                                 android:layout_width="55dp"
                                 android:layout_height="55dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/baby_boy"
+                                android:src="@drawable/kids"
                                 app:tint="@color/white" />
 
                             <TextView
@@ -517,7 +517,7 @@
                                 android:layout_width="55dp"
                                 android:layout_height="55dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/eye"
+                                android:src="@drawable/view_3"
                                 app:tint="@color/white" />
 
                             <TextView
@@ -559,7 +559,7 @@
                                 android:layout_width="55dp"
                                 android:layout_height="55dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/hair"
+                                android:src="@drawable/girl_1"
                                 app:tint="@color/white" />
 
                             <TextView
