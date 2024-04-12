@@ -27,16 +27,16 @@
 
         <TextView
             android:id="@+id/docName"
-            android:maxLines="1"
+            android:layout_width="122dp"
 
-            android:fontFamily="@font/regular_bold"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:textColor="@color/black"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@id/recImage"
+            android:fontFamily="@font/regular_bold"
+            android:maxLines="1"
             android:text="Name"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
         <TextView
@@ -51,6 +51,14 @@
             android:layout_toEndOf="@id/recImage"
             android:text="spec"
             android:textSize="12sp" />
+        <ImageButton
+            android:id="@+id/chat_icon"
+            android:layout_width="47dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="25dp"
+            android:layout_toEndOf="@id/docName"
+            android:background="@drawable/chat_icon2" />
 
     </RelativeLayout>
 

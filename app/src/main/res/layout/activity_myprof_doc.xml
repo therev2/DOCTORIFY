@@ -12,13 +12,13 @@
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         />
 
     <LinearLayout
         android:id="@+id/B"
         android:layout_width="match_parent"
-        android:layout_height="314dp"
+        android:layout_height="333dp"
         android:layout_below="@id/view"
         android:layout_marginTop="-31dp"
         android:gravity="center"
@@ -28,27 +28,36 @@
 
         <ImageView
             android:id="@+id/doc_dp"
-            android:layout_width="281dp"
-            android:layout_height="169dp"
+            android:layout_width="316dp"
+            android:layout_height="187dp"
             android:layout_gravity="center"
             android:clipToOutline="true"
 
             android:src="@drawable/doctor_default" />
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="428dp"
             android:layout_height="35dp" />
-
 
         <TextView
             android:id="@+id/n7"
-            android:layout_width="319dp"
-            android:layout_height="33dp"
+            android:layout_width="274dp"
+            android:layout_height="44dp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/regular_italic"
             android:text="DR.Revan Channa"
             android:textColor="@color/white"
             android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/mail_doc"
+            android:layout_width="258dp"
+            android:layout_height="33dp"
+            android:fontFamily="@font/regular_italic"
+            android:text="Rajeev@gmail.com"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
 
     </LinearLayout>
 
@@ -122,10 +131,10 @@
 
     <TextView
         android:id="@+id/charges"
-        android:layout_width="228dp"
-        android:layout_height="37dp"
+        android:layout_width="212dp"
+        android:layout_height="36dp"
         android:layout_below="@id/view2"
-        android:layout_marginStart="-231dp"
+        android:layout_marginStart="-213dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/specialist_mp"
         android:fontFamily="@font/regular_semi_bold"
