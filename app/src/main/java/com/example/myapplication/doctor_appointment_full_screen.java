@@ -303,6 +303,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         currentMonth = (currentMonth + 1) % 12; // Increment the month, loop back to 0 if it's 12
         currentYear = currentMonth == 0 ? currentYear + 1 : currentYear; // Update the year if the month is January
         isCurrentMonth = false; // Set isCurrentMonth to false when showing the next month
+        RecyclerView recyclerView = findViewById(R.id.recyclerDate);
+        // Reset the selected position in the adapter
+        MyAdapterDate adapter = (MyAdapterDate) recyclerView.getAdapter();
+        adapter.resetSelectedPosition();
+
         updateDateItems();
     }
 
@@ -320,6 +325,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         currentMonth = (currentMonth - 1 + 12) % 12; // Decrement the month, loop back to 11 if it's 0
         currentYear = currentMonth == 11 ? currentYear - 1 : currentYear; // Update the year if the month is December
         isCurrentMonth = (currentMonth == currentSystemMonth && currentYear == currentSystemYear); // Set isCurrentMonth based on whether it's the current month
+        RecyclerView recyclerView = findViewById(R.id.recyclerDate);
+        // Reset the selected position in the adapter
+        MyAdapterDate adapter = (MyAdapterDate) recyclerView.getAdapter();
+        adapter.resetSelectedPosition();
+
         updateDateItems();
     }
     private void updateDateItems() {
