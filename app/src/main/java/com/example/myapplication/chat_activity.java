@@ -61,8 +61,6 @@ public class chat_activity extends AppCompatActivity implements ChatAdapter.OnIm
 
     @Override
     public void onImageClick(String imageUrl) {
-
-
         openImageViewer(imageUrl);
     }
 

@@ -3,6 +3,7 @@ package com.example.myapplication;
 import static android.content.ContentValues.TAG;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -43,7 +44,11 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private Button timeButton;
     private String will_play = "1";
     private String doctorNameString;
-    private DatabaseReference reference;
+    private int currentMonth;
+    private boolean isCurrentMonth;
+    private int currentYear;
+
+    private int currentDay;
     private String dateForDatabase = "";
     private static final String SHARED_PREFS = "sharedPrefs";
     private String selectedTime = "";
@@ -57,11 +62,32 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctor_appointment_full_screen);
+
+
+        Calendar calendar = Calendar.getInstance();
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentYear = calendar.get(Calendar.YEAR);
+        currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+        isCurrentMonth = true;
         RecyclerView recyclerView = findViewById(R.id.recyclerDate);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        List<ItemDate> items = getDateItems();
+        List<ItemDate> items = getDateItems(currentMonth, currentYear);
         MyAdapterDate adapter = new MyAdapterDate(this, items);
         recyclerView.setAdapter(adapter);
+
+        // In the onCreate method
+        Button nextMonthButton = findViewById(R.id.next_month_button);
+        Button previousMonthButton = findViewById(R.id.previous_month_button);
+
+        nextMonthButton.setOnClickListener(v -> showNextMonth());
+        previousMonthButton.setOnClickListener(v -> showPreviousMonth());
+
+
+
+
+//        List<ItemDate> items = getDateItems();
+//        MyAdapterDate adapter = new MyAdapterDate(this, items);
+//        recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener((view, itemDate) -> {
             selectedDateItem = itemDate;
@@ -206,21 +232,30 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
 
 
     }
-    private List<ItemDate> getDateItems() {
+    private List<ItemDate> getDateItems(int month, int year) {
         List<ItemDate> items = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        int currentYear = calendar.get(Calendar.YEAR);
-
+        calendar.set(year, month, 1); // Set the date to the first day of the specified month and year
         int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        for (int day = currentDay; day <= daysInMonth; day++) {
-            calendar.set(currentYear, currentMonth, day);
-            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-            String dayName = getDayName(dayOfWeek);
-            String dayNumber = String.valueOf(day);
-            items.add(new ItemDate(dayName, dayNumber));
+        if (isCurrentMonth) {
+            // For the current month, show dates from the current day until the end of the month
+            for (int day = currentDay; day <= daysInMonth; day++) {
+                calendar.set(year, month, day);
+                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                String dayName = getDayName(dayOfWeek);
+                String dayNumber = String.valueOf(day);
+                items.add(new ItemDate(dayName, dayNumber));
+            }
+        } else {
+            // For other months, show dates from the beginning of the month until the end
+            for (int day = 1; day <= daysInMonth; day++) {
+                calendar.set(year, month, day);
+                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                String dayName = getDayName(dayOfWeek);
+                String dayNumber = String.valueOf(day);
+                items.add(new ItemDate(dayName, dayNumber));
+            }
         }
 
         return items;
@@ -262,6 +297,37 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
             default:
                 return "";
         }
+    }
+
+    private void showNextMonth() {
+        currentMonth = (currentMonth + 1) % 12; // Increment the month, loop back to 0 if it's 12
+        currentYear = currentMonth == 0 ? currentYear + 1 : currentYear; // Update the year if the month is January
+        isCurrentMonth = false; // Set isCurrentMonth to false when showing the next month
+        updateDateItems();
+    }
+
+    private void showPreviousMonth() {
+        Calendar currentCalendar = Calendar.getInstance();
+        int currentSystemMonth = currentCalendar.get(Calendar.MONTH);
+        int currentSystemYear = currentCalendar.get(Calendar.YEAR);
+        int currentSystemDay = currentCalendar.get(Calendar.DAY_OF_MONTH);
+
+        if (currentMonth == currentSystemMonth && currentYear == currentSystemYear && currentDay == currentSystemDay) {
+            // Don't allow going to the previous month if it's the current month and day
+            return;
+        }
+
+        currentMonth = (currentMonth - 1 + 12) % 12; // Decrement the month, loop back to 11 if it's 0
+        currentYear = currentMonth == 11 ? currentYear - 1 : currentYear; // Update the year if the month is December
+        isCurrentMonth = (currentMonth == currentSystemMonth && currentYear == currentSystemYear); // Set isCurrentMonth based on whether it's the current month
+        updateDateItems();
+    }
+    private void updateDateItems() {
+        List<ItemDate> items = getDateItems(currentMonth, currentYear);
+        RecyclerView recyclerView = findViewById(R.id.recyclerDate);
+        MyAdapterDate adapter = (MyAdapterDate) recyclerView.getAdapter();
+        adapter.setItems(items);
+        adapter.notifyDataSetChanged();
     }
 
 }
