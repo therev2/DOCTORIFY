@@ -36,10 +36,15 @@ public class MYprofPat extends AppCompatActivity {
         age_mp = findViewById(R.id.age_mp);
         add_mp = findViewById(R.id.address_mp);
         ms_mp = findViewById(R.id.status_mp);
-        gender_mp =findViewById(R.id.gender_mp);
-        textView = findViewById(R.id.edit);
+        gender_mp = findViewById(R.id.gender_mp);
+        textView = findViewById(R.id.edit); // Initialize textView first
         phonenumber = findViewById(R.id.phone);
         bloodgroup = findViewById(R.id.blood_grp_mp);
+
+        textView.setOnClickListener(v -> {
+            Intent intent = new Intent(MYprofPat.this, complete_your_profile.class);
+            startActivity(intent);
+        });
 
         //referencing database for parent "patient"
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("patient");
@@ -79,10 +84,5 @@ public class MYprofPat extends AppCompatActivity {
             }
         });
 
-
-        textView.setOnClickListener(v->{
-            Intent intent = new Intent(MYprofPat.this, complete_your_profile.class);
-            startActivity(intent);
-        });
     }}
 

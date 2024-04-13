@@ -34,6 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class doctor_appointment_full_screen extends AppCompatActivity implements PaymentResultListener {
@@ -47,6 +48,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
     private int currentMonth;
     private boolean isCurrentMonth;
     private int currentYear;
+    private TextView monthTextView;
 
     private int currentDay;
     private String dateForDatabase = "";
@@ -76,8 +78,12 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         recyclerView.setAdapter(adapter);
 
         // In the onCreate method
-        Button nextMonthButton = findViewById(R.id.next_month_button);
-        Button previousMonthButton = findViewById(R.id.previous_month_button);
+        ImageView nextMonthButton = findViewById(R.id.next_month_button);
+        ImageView previousMonthButton = findViewById(R.id.previous_month_button);
+
+
+        monthTextView = findViewById(R.id.month_current);
+        updateMonthTextView();
 
         nextMonthButton.setOnClickListener(v -> showNextMonth());
         previousMonthButton.setOnClickListener(v -> showPreviousMonth());
@@ -309,6 +315,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         adapter.resetSelectedPosition();
 
         updateDateItems();
+        updateMonthTextView();
     }
 
     private void showPreviousMonth() {
@@ -331,6 +338,7 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         adapter.resetSelectedPosition();
 
         updateDateItems();
+        updateMonthTextView();
     }
     private void updateDateItems() {
         List<ItemDate> items = getDateItems(currentMonth, currentYear);
@@ -338,6 +346,14 @@ public class doctor_appointment_full_screen extends AppCompatActivity implements
         MyAdapterDate adapter = (MyAdapterDate) recyclerView.getAdapter();
         adapter.setItems(items);
         adapter.notifyDataSetChanged();
+    }
+
+    private void updateMonthTextView() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, currentYear);
+        calendar.set(Calendar.MONTH, currentMonth);
+        String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+        monthTextView.setText(monthName);
     }
 
 }
